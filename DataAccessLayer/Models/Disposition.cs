@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BankWebApp.Models;
+namespace DataAccessLayer.Models;
 
 public partial class Disposition
 {
