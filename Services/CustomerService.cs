@@ -24,7 +24,9 @@ namespace Services
 
         public async Task<List<CustomerViewModel>> GetAllCustomersAsync()
         {
-            var query = await _dbContext.Customers.Select(c => new CustomerViewModel
+            var query = await _dbContext.Customers
+                .Take(20)
+                .Select(c => new CustomerViewModel
             {
                 CustomerId = c.CustomerId,
                 GivenName = c.Givenname,

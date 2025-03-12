@@ -5,9 +5,19 @@
 
 
 <section class="section">
-    <div class="d-flex justify-content-center my-5">
+    
         <h1>Customers</h1>
 
-
-    </div>
+        @foreach(var customer in Model.Customers)
+        {
+            <div class="d-flex justify-content-between">
+                <p>@customer.GivenName @customer.SurName</p>
+                <p>@customer.Address</p>
+                <p>@customer.City</p>
+                <p>@customer.Country</p>
+                <br/>
+                <br/>
+            </div>
+        }
+   
 </section>
