@@ -21,7 +21,13 @@ namespace BankWebApp
                 .AddEntityFrameworkStores<BankAppDataContext>();
             builder.Services.AddRazorPages();
 
+
+            //Dependencies
             builder.Services.AddTransient<DataInitializer>();
+
+
+
+
             var app = builder.Build();
 
             using (var scope = app.Services.CreateScope())
