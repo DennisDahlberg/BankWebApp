@@ -52,6 +52,8 @@
             <nav id="navmenu" class="navmenu">
                 <ul>
                     <li><a asp-page="/Index" class="active">Home</a></li>
+                    <li><a asp-page="/Customers/Customers">Customers</a></li>
+
                     @if (User.IsInRole("Admin"))
                     {
                     <li>
