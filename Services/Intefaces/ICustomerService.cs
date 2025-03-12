@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.Models;
+using Services.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Services.Intefaces
 {
     public interface ICustomerService
     {
-        List<Customer> GetAllCustomers();
+        Task<List<CustomerViewModel>> GetAllCustomersAsync();
     }
 }

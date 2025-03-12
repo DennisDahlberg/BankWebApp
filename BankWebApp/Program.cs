@@ -1,6 +1,8 @@
 using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Services;
+using Services.Intefaces;
 
 namespace BankWebApp
 {
@@ -24,7 +26,7 @@ namespace BankWebApp
 
             //Dependencies
             builder.Services.AddTransient<DataInitializer>();
-
+            builder.Services.AddTransient<ICustomerService, CustomerService>();
 
 
 

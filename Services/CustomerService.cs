@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccessLayer.Models;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Services.Intefaces;
+using Services.ViewModels;
 
 namespace Services
 {
@@ -17,9 +20,21 @@ namespace Services
             _dbContext = dbContext;
         }
 
-        public List<Customer> GetAllCustomers()
+        
+
+        public async Task<List<CustomerViewModel>> GetAllCustomersAsync()
         {
-            throw new NotImplementedException();
+            var query = await _dbContext.Customers.Select(c => new CustomerViewModel
+            {
+                CustomerId = c.CustomerId,
+                GivenName = c.Givenname,
+                SurName = c.Surname,
+                Address = c.Streetaddress,
+                City = c.City,
+                Country = c.Country
+            }).ToListAsync();
+
+            return query;
         }
     }
 }
