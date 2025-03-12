@@ -5,9 +5,12 @@
     ViewData["Title"] = "Log in";
 }
 
-<section class="section">
-<div class="row mt-5 mb-5 d-flex justify-content-center">
-    <div class="col-md-4">
+<section class="hero section dark-background">
+
+    <img src="~/assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
+
+    <div class="container d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="col-md-4">
             <h1>@ViewData["Title"]</h1>
         
             <form id="account" method="post">
@@ -44,11 +47,13 @@
                         <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
                     </p>
                 </div>
-            </form>        
+            </form>
+        </div>
     </div>
-    
-</div>
 </section>
+
+
+
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
