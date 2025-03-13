@@ -22,7 +22,7 @@ namespace Services
 
         
 
-        public async Task<List<CustomerViewModel>> GetAllCustomersAsync()
+        public async Task<List<CustomerViewModel>> GetAllCustomersAsync(string sortBy, string sortOrder)
         {
             var query = await _dbContext.Customers
                 .Take(20)

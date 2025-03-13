@@ -19,7 +19,19 @@
                         <tr>
 
                             <th scope="col">Id</th>
-                            <th scope="col">Name</th>
+                            <th scope="col">
+                                Name
+                                <a  asp-page="/Customers/Customers"
+                                    asp-route-sortBy="Name"
+                                    asp-route-sortOrder="asc">
+                                <i class="fa-solid fa-angle-up"></i>
+                                </a>
+                                <a  asp-page="/Customers/Customers"
+                                    asp-route-sortBy="Name"
+                                    asp-route-sortOrder="asc">
+                                <i class="fa-solid fa-angle-down"></i>
+                            </a>
+                            </th>
                             <th scope="col">Address</th>
                             <th scope="col">City</th>
                             <th scope="col">Country</th>
