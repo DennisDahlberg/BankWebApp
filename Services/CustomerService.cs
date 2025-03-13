@@ -22,21 +22,46 @@ namespace Services
 
         
 
-        public async Task<List<CustomerViewModel>> GetAllCustomersAsync()
+        public async Task<List<CustomerViewModel>> GetAllCustomersAsync(string sortBy, string sortOrder)
         {
-            var query = await _dbContext.Customers
-                .Take(20)
-                .Select(c => new CustomerViewModel
-            {
-                CustomerId = c.CustomerId,
-                GivenName = c.Givenname,
-                SurName = c.Surname,
-                Address = c.Streetaddress,
-                City = c.City,
-                Country = c.Country
-            }).ToListAsync();
+            var query = _dbContext.Customers.AsQueryable();
 
-            return query;
+            if (sortBy == "Name")
+                query = sortOrder == "asc" ? query.OrderBy(c => c.Surname) : query.OrderByDescending(c => c.Surname);
+
+            else if (sortBy == "Address")
+                query = sortOrder == "asc" ? query.OrderBy(c => c.Streetaddress) : query.OrderByDescending(c => c.Streetaddress);
+
+            else if (sortBy == "City")
+                query = sortOrder == "asc" ? query.OrderBy(c => c.City) : query.OrderByDescending(c => c.City);
+
+            else if (sortBy == "Country")
+                query = sortOrder == "asc" ? query.OrderBy(c => c.Country) : query.OrderByDescending(c => c.Country);
+
+            return await query.Take(25)
+                .Select(c => new CustomerViewModel
+                {
+                    CustomerId = c.CustomerId,
+                    GivenName = c.Givenname,
+                    SurName = c.Surname,
+                    Address = c.Streetaddress,
+                    City = c.City,
+                    Country = c.Country
+                })
+                .ToListAsync();
+
+
+            //    .Select(c => new CustomerViewModel
+            //{
+            //    CustomerId = c.CustomerId,
+            //    GivenName = c.Givenname,
+            //    SurName = c.Surname,
+            //    Address = c.Streetaddress,
+            //    City = c.City,
+            //    Country = c.Country
+            //}).ToListAsync();
+
+            //return query;
         }
     }
 }

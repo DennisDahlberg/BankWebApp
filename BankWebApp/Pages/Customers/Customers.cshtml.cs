@@ -17,9 +17,9 @@ namespace BankWebApp.Pages.Customers
         public List<CustomerViewModel> Customers { get; set; }
 
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string sortBy, string sortOrder)
         {
-            Customers = await _customerService.GetAllCustomersAsync();
+            Customers = await _customerService.GetAllCustomersAsync(sortBy, sortOrder);
         }
     }
 }
