@@ -15,10 +15,16 @@ namespace BankWebApp.Pages
         }
 
         public CountryStatsViewModel SwedenStats { get; set; }
+        public CountryStatsViewModel FinlandStats { get; set; }
+        public CountryStatsViewModel NorwayStats { get; set; }
+        public CountryStatsViewModel DenmarkStats { get; set; }
 
         public void OnGet()
         {
             SwedenStats = _countryService.GetSwedenStats();
+            FinlandStats = _countryService.GetFinlandStats();
+            NorwayStats = _countryService.GetNorwayStats();
+            DenmarkStats = _countryService.GetDenmarkStats();
         }
     }
 }

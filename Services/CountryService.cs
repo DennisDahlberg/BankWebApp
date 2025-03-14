@@ -41,17 +41,74 @@ namespace Services
                 AmountOfMoney = money
             };
         }
-        public void GetFinlandStats()
+        public CountryStatsViewModel GetFinlandStats()
         {
+            var customers = _dbContext.Customers
+                .Where(x => x.Country == "Finland")
+                .Count();
 
+            var accounts = _dbContext.Accounts
+                .Where(x => x.Dispositions
+                .Any(x => x.Customer.Country == "Finland"))
+                .Count();
+
+            var money = _dbContext.Accounts
+                .Where(x => x.Dispositions
+                .Any(x => x.Customer.Country == "Finland"))
+                .Sum(x => x.Balance);
+
+            return new CountryStatsViewModel
+            {
+                AmountOfCustomers = customers,
+                AmountOfAccounts = accounts,
+                AmountOfMoney = money
+            };
         }
-        public void GetDenmarkStats()
+        public CountryStatsViewModel GetDenmarkStats()
         {
+            var customers = _dbContext.Customers
+                .Where(x => x.Country == "Denmark")
+                .Count();
 
+            var accounts = _dbContext.Accounts
+                .Where(x => x.Dispositions
+                .Any(x => x.Customer.Country == "Denmark"))
+                .Count();
+
+            var money = _dbContext.Accounts
+                .Where(x => x.Dispositions
+                .Any(x => x.Customer.Country == "Denmark"))
+                .Sum(x => x.Balance);
+
+            return new CountryStatsViewModel
+            {
+                AmountOfCustomers = customers,
+                AmountOfAccounts = accounts,
+                AmountOfMoney = money
+            };
         }
-        public void GetNorwayStats()
+        public CountryStatsViewModel GetNorwayStats()
         {
+            var customers = _dbContext.Customers
+                .Where(x => x.Country == "Norway")
+                .Count();
 
+            var accounts = _dbContext.Accounts
+                .Where(x => x.Dispositions
+                .Any(x => x.Customer.Country == "Norway"))
+                .Count();
+
+            var money = _dbContext.Accounts
+                .Where(x => x.Dispositions
+                .Any(x => x.Customer.Country == "Norway"))
+                .Sum(x => x.Balance);
+
+            return new CountryStatsViewModel
+            {
+                AmountOfCustomers = customers,
+                AmountOfAccounts = accounts,
+                AmountOfMoney = money
+            };
         }
     }
 }
