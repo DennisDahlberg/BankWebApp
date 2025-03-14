@@ -1,4 +1,6 @@
-﻿
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,7 +58,12 @@
             <nav id="navmenu" class="navmenu">
                 <ul>
                     <li><a asp-page="/Index" class="active">Home</a></li>
-                    <li><a asp-page="/Customers/Customers">Customers</a></li>
+                    @if (User.IsInRole("Cashier"))
+                    {
+                        <li>
+                            <a asp-area="Identity" asp-page="/Customers/Customers">Register</a>
+                        </li>
+                    }
 
                     @if (User.IsInRole("Admin"))
                     {
@@ -89,12 +96,28 @@
                             <li><a href="#">Dropdown 4</a></li>
                         </ul>
                     </li>
-                    <li><a href="#contact">Contact</a></li> *@
+                    *@
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        @* <li>
+                            <a class="pr-3" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+                        </li> *@
+                        <li>
+                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+                                <button type="submit" class="logoutBtn">Logout</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a asp-area="Identity" asp-page="/Account/Login">Login</a>
+                        </li>
+                    }
 
 
-                    <li>
-                        <partial name="_LoginPartial" />
-                    </li>
+
+                    
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
