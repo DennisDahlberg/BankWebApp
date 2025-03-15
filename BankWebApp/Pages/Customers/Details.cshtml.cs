@@ -18,9 +18,9 @@ namespace BankWebApp.Pages.Customers
 
         public CustomerViewModel Customer { get; set; }
 
-        public void OnGet()
+        public async Task OnGetAsync(int id)
         {
-
+            Customer = await _customerService.GetCustomerByIdAsync(id);
         }
     }
 }

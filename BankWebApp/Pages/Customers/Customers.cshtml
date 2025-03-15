@@ -90,7 +90,7 @@
                                 <td>@customer.Address</td>
                                 <td>@customer.City</td>
                                 <td>@customer.Country</td>
-                                <td><a class="more">Details</a></td>
+                                <td><a class="more" asp-page="/Customers/Details" asp-route-id="@customer.CustomerId">Details</a></td>
                             </tr>
                         }
                     </tbody>

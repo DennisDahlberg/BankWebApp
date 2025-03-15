@@ -11,5 +11,6 @@ namespace Services.Intefaces
     public interface ICustomerService
     {
         Task<List<CustomerViewModel>> GetAllCustomersAsync(string sortBy, string order);
+        Task<CustomerViewModel> GetCustomerByIdAsync(int id);
     }
 }

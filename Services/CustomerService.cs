@@ -49,19 +49,20 @@ namespace Services
                     Country = c.Country
                 })
                 .ToListAsync();
+        }
 
-
-            //    .Select(c => new CustomerViewModel
-            //{
-            //    CustomerId = c.CustomerId,
-            //    GivenName = c.Givenname,
-            //    SurName = c.Surname,
-            //    Address = c.Streetaddress,
-            //    City = c.City,
-            //    Country = c.Country
-            //}).ToListAsync();
-
-            //return query;
+        public async Task<CustomerViewModel> GetCustomerByIdAsync(int id)
+        {
+           var customer = await _dbContext.Customers.FirstOrDefaultAsync(c => c.CustomerId == id);
+            return new CustomerViewModel
+            {
+                GivenName = customer.Givenname,
+                SurName= customer.Surname,
+                Address = customer.Streetaddress,
+                Country = customer.Country,
+                City = customer.City,
+                CustomerId = customer.CustomerId,
+            };
         }
     }
 }
