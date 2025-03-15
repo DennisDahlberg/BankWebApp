@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccessLayer.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,16 +12,21 @@ namespace Services.APIs
     {
         public readonly string _baseUrl = "https://randomuser.me/api/?gender=";
         public readonly HttpClient _httpClient;
+        public readonly BankAppDataContext _dbContext;
 
-        public RandomUserService(HttpClient httpClient)
+        public RandomUserService(HttpClient httpClient, BankAppDataContext dataContext)
         {
             _httpClient = httpClient;
+            _dbContext = dataContext;
         }
 
-        public async Task<string> FetchFromApi(string gender)
+        public async Task<string> FetchFromApi(int id)
         {
-            if (string.IsNullOrEmpty(gender))
+            var gender = _dbContext.Customers.FirstOrDefault(x => x.CustomerId == id).Gender;
+
+            if (gender == null)
                 gender = "female";
+
             var request = new HttpRequestMessage(HttpMethod.Get, $"{_baseUrl}{gender}");
 
             var response = await _httpClient.SendAsync(request);

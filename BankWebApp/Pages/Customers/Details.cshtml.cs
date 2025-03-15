@@ -24,7 +24,7 @@ namespace BankWebApp.Pages.Customers
         public async Task OnGetAsync(int id)
         {
             Customer = await _customerService.GetCustomerByIdAsync(id);
-            CustomerImageUrl = await _randomUserService.FetchFromApi("female");
+            CustomerImageUrl = await _randomUserService.FetchFromApi(id);
         }
     }
 }

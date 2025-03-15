@@ -62,6 +62,7 @@ namespace Services
                 Country = customer.Country,
                 City = customer.City,
                 CustomerId = customer.CustomerId,
+                Gender = customer.Gender,
             };
         }
     }
