@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Services.APIs
@@ -24,7 +25,16 @@ namespace Services.APIs
 
             var response = await _httpClient.SendAsync(request);
 
-            return null;
+            if (!response.IsSuccessStatusCode)
+            {
+                return null;
+            }
+
+            var jsonString = await response.Content.ReadAsStringAsync();
+
+            var jsonDoc = JsonDocument.Parse(jsonString);
+
+            return jsonDoc.RootElement.GetProperty("results")[0].GetProperty("picture").GetProperty("large").GetString();
         }
     }
 }
