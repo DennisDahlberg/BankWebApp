@@ -24,8 +24,7 @@ namespace Services.APIs
         {
             var gender = _dbContext.Customers.FirstOrDefault(x => x.CustomerId == id).Gender;
 
-            if (gender == null)
-                gender = "female";
+            gender ??= "female";
 
             var request = new HttpRequestMessage(HttpMethod.Get, $"{_baseUrl}{gender}");
 
