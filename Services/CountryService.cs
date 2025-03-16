@@ -16,22 +16,22 @@ namespace Services
         public CountryService(BankAppDataContext bankAppDataContext)
         {
             _dbContext = bankAppDataContext;
-        }
+        }        
 
-        public CountryStatsViewModel GetSwedenStats()
+        public CountryStatsViewModel GetACountriesStats(string countryName)
         {
             var customers = _dbContext.Customers
-                .Where(x => x.Country == "Sweden")
+                .Where(x => x.Country == countryName)
                 .Count();
 
             var accounts = _dbContext.Accounts
                 .Where(x => x.Dispositions
-                .Any(x => x.Customer.Country == "Sweden"))
+                .Any(x => x.Customer.Country == countryName))
                 .Count();
 
             var money = _dbContext.Accounts
                 .Where(x => x.Dispositions
-                .Any(x => x.Customer.Country == "Sweden"))
+                .Any(x => x.Customer.Country == countryName))
                 .Sum(x => x.Balance);
 
             return new CountryStatsViewModel
@@ -41,74 +41,28 @@ namespace Services
                 AmountOfMoney = money
             };
         }
-        public CountryStatsViewModel GetFinlandStats()
+
+        public List<CountryStatsViewModel> GetCountriesStats()
         {
-            var customers = _dbContext.Customers
-                .Where(x => x.Country == "Finland")
-                .Count();
+            var sweden = GetACountriesStats("Sweden");
+            sweden.ImageUrl = "assets/img/Flags/se.png";
 
-            var accounts = _dbContext.Accounts
-                .Where(x => x.Dispositions
-                .Any(x => x.Customer.Country == "Finland"))
-                .Count();
+            var denmark = GetACountriesStats("Denmark");
+            denmark.ImageUrl = "assets/img/Flags/dk.png";
 
-            var money = _dbContext.Accounts
-                .Where(x => x.Dispositions
-                .Any(x => x.Customer.Country == "Finland"))
-                .Sum(x => x.Balance);
+            var finland = GetACountriesStats("Finland");
+            finland.ImageUrl = "assets/img/Flags/fi.png";
 
-            return new CountryStatsViewModel
-            {
-                AmountOfCustomers = customers,
-                AmountOfAccounts = accounts,
-                AmountOfMoney = money
-            };
-        }
-        public CountryStatsViewModel GetDenmarkStats()
-        {
-            var customers = _dbContext.Customers
-                .Where(x => x.Country == "Denmark")
-                .Count();
+            var norway = GetACountriesStats("Norway");
+            norway.ImageUrl = "assets/img/Flags/no.png";
 
-            var accounts = _dbContext.Accounts
-                .Where(x => x.Dispositions
-                .Any(x => x.Customer.Country == "Denmark"))
-                .Count();
+            var stats = new List<CountryStatsViewModel>();
+            stats.Add(sweden);
+            stats.Add(denmark);
+            stats.Add(finland);
+            stats.Add(norway);
 
-            var money = _dbContext.Accounts
-                .Where(x => x.Dispositions
-                .Any(x => x.Customer.Country == "Denmark"))
-                .Sum(x => x.Balance);
-
-            return new CountryStatsViewModel
-            {
-                AmountOfCustomers = customers,
-                AmountOfAccounts = accounts,
-                AmountOfMoney = money
-            };
-        }
-        public CountryStatsViewModel GetNorwayStats()
-        {
-            var customers = _dbContext.Customers
-                .Where(x => x.Country == "Norway")
-                .Count();
-
-            var accounts = _dbContext.Accounts
-                .Where(x => x.Dispositions
-                .Any(x => x.Customer.Country == "Norway"))
-                .Count();
-
-            var money = _dbContext.Accounts
-                .Where(x => x.Dispositions
-                .Any(x => x.Customer.Country == "Norway"))
-                .Sum(x => x.Balance);
-
-            return new CountryStatsViewModel
-            {
-                AmountOfCustomers = customers,
-                AmountOfAccounts = accounts,
-                AmountOfMoney = money
-            };
+            return stats;
         }
     }
 }

@@ -11,5 +11,6 @@ namespace Services.ViewModels
         public int AmountOfCustomers { get; set; }
         public int AmountOfAccounts { get; set; }
         public decimal AmountOfMoney { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

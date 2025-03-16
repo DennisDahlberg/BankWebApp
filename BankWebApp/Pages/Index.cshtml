@@ -20,37 +20,24 @@
 
         </div>
     </div>
+
     <div class="countryStatsContainer">
-        <div class="countryContainer" data-aos="fade-up" data-aos-duration="700">
-            <img src="/assets/img/Flags/se.png" />
-            <p class="countryStat"><i class="fa-solid fa-user"></i>: @Model.SwedenStats.AmountOfCustomers</p>
-            <p class="countryStat"><i class="fa-solid fa-credit-card"></i>: @Model.SwedenStats.AmountOfAccounts</p>
-            <p class="countryStat"><i class="fa-solid fa-coins"></i>: @Model.SwedenStats.AmountOfMoney</p>
-        </div>
+        
 
-        <div class="countryContainer" data-aos="fade-up" data-aos-duration="800">
-            <img src="/assets/img/Flags/fi.png" />
-            <p class="countryStat"><i class="fa-solid fa-user"></i>: @Model.FinlandStats.AmountOfCustomers</p>
-            <p class="countryStat"><i class="fa-solid fa-credit-card"></i>: @Model.FinlandStats.AmountOfAccounts</p>
-            <p class="countryStat"><i class="fa-solid fa-coins"></i>: @Model.FinlandStats.AmountOfMoney</p>
-        </div>
-
-        <div class="countryContainer" data-aos="fade-up" data-aos-duration="900">
-            <img src="/assets/img/Flags/dk.png" />
-            <div class="stats">
-                <p class="countryStat"><i class="fa-solid fa-user"></i>: @Model.DenmarkStats.AmountOfCustomers</p>
-                <p class="countryStat"><i class="fa-solid fa-credit-card"></i>: @Model.DenmarkStats.AmountOfAccounts</p>
-                <p class="countryStat"><i class="fa-solid fa-coins"></i>: @Model.DenmarkStats.AmountOfMoney</p>
+        @foreach (var country in Model.CountryStats)
+        {
+            
+            <div class="countryContainer" data-aos="fade-up" data-aos-duration="700">
+                <img src="@country.ImageUrl" />
+                <p class="countryStat"><i class="fa-solid fa-user"></i>: @country.AmountOfCustomers</p>
+                <p class="countryStat"><i class="fa-solid fa-credit-card"></i>: @country.AmountOfAccounts</p>
+                <p class="countryStat"><i class="fa-solid fa-coins"></i>: @country.AmountOfMoney</p>
             </div>
+        }
 
-        </div>
 
-        <div class="countryContainer" data-aos="fade-up" data-aos-duration="1000">
-            <img src="/assets/img/Flags/no.png" />
-            <p class="countryStat"><i class="fa-solid fa-user"></i>: @Model.NorwayStats.AmountOfCustomers</p>
-            <p class="countryStat"><i class="fa-solid fa-credit-card"></i>: @Model.NorwayStats.AmountOfAccounts</p>
-            <p class="countryStat"><i class="fa-solid fa-coins"></i>: @Model.NorwayStats.AmountOfMoney</p>
-        </div>
+
+        
 
     </div>
 
