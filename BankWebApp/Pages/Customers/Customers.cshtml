@@ -93,6 +93,23 @@
                                 <td><a class="more" asp-page="/Customers/Details" asp-route-id="@customer.CustomerId">Details</a></td>
                             </tr>
                         }
+                        <tr>
+                            <td>
+                                <a 
+                                    asp-page="/Customers/Customers" 
+                                    asp-route-sortOrder="@Model.SortOrder"
+                                    asp-route-sortBy="@Model.SortBy"
+                                    asp-route-pageNo="@(Model.CurrentPage + 1)"
+                                    class="btn btn-success">
+                                    Next
+                                </a>
+                            </td>
+                        <td>CurrentPage: @Model.CurrentPage</td>
+                        <td>SortBy: @Model.SortBy</td>
+                        <td>SortOrder: @Model.SortOrder</td>
+                            <td>aaa</td>
+                            <td>aaa</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
