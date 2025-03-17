@@ -11,8 +11,8 @@ namespace BankWebApp.Pages.Customers
     public class DetailsModel : PageModel
     {
         private readonly ICustomerService _customerService;
-        private readonly RandomUserService _randomUserService;
-        public DetailsModel(ICustomerService customerService, RandomUserService userService)
+        private readonly IRandomUserService _randomUserService;
+        public DetailsModel(ICustomerService customerService, IRandomUserService userService)
         {
             _customerService = customerService;
             _randomUserService = userService;

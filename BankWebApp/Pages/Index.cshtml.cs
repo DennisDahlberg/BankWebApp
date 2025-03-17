@@ -1,15 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Services;
+using Services.Intefaces;
 using Services.ViewModels;
 
 namespace BankWebApp.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly CountryService _countryService;
+        private readonly ICountryService _countryService;
 
-        public IndexModel(CountryService service)
+        public IndexModel(ICountryService service)
         {
             _countryService = service;
         }

@@ -28,8 +28,8 @@ namespace BankWebApp
             //Dependencies
             builder.Services.AddTransient<DataInitializer>();
             builder.Services.AddTransient<ICustomerService, CustomerService>();
-            builder.Services.AddTransient<CountryService>();
-            builder.Services.AddTransient<RandomUserService>();
+            builder.Services.AddTransient<ICountryService,CountryService>();
+            builder.Services.AddTransient<IRandomUserService,RandomUserService>();
             builder.Services.AddHttpClient();
 
 

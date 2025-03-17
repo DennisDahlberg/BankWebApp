@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer.Models;
 using Microsoft.EntityFrameworkCore;
+using Services.Intefaces;
 using Services.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    public class CountryService
+    public class CountryService : ICountryService
     {
         private readonly BankAppDataContext _dbContext;
 

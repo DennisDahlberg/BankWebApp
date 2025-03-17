@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.Models;
+using Services.Intefaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Services.APIs
 {
-    public class RandomUserService
+    public class RandomUserService : IRandomUserService
     {
         public readonly string _baseUrl = "https://randomuser.me/api/?gender=";
         public readonly HttpClient _httpClient;
