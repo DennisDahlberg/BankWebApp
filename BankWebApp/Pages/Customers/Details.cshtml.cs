@@ -23,7 +23,19 @@ namespace BankWebApp.Pages.Customers
 
         public async Task OnGetAsync(int id)
         {
-            Customer = await _customerService.GetCustomerByIdAsync(id);
+            var customer = _customerService.GetCustomerByIdAsync(id);
+
+            Customer = new CustomerViewModel
+            {
+                GivenName = customer.GivenName,
+                SurName = customer.SurName,
+                CustomerId = customer.CustomerId,
+                Gender = customer.Gender,
+                Address = customer.Address,
+                Country = customer.Country,
+                City = customer.City,
+            };
+
             CustomerImageUrl = await _randomUserService.FetchFromApi(id);
         }
     }

@@ -1,5 +1,5 @@
-﻿using DataAccessLayer.Models;
-using Services.ViewModels;
+﻿using DataAccessLayer.DTOs;
+using DataAccessLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace Services.Intefaces
 {
     public interface ICustomerService
     {
-        Task<List<CustomerViewModel>> GetAllCustomersAsync(string sortBy, string order);
-        Task<CustomerViewModel> GetCustomerByIdAsync(int id);
+        List<CustomerDTO> GetAllCustomersAsync(string sortBy, string order);
+        CustomerDTO GetCustomerByIdAsync(int id);
     }
 }

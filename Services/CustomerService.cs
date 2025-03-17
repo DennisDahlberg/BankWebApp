@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataAccessLayer.DTOs;
 using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Services.Intefaces;
-using Services.ViewModels;
 
 namespace Services
 {
@@ -22,7 +22,7 @@ namespace Services
 
         
 
-        public async Task<List<CustomerViewModel>> GetAllCustomersAsync(string sortBy, string sortOrder)
+        public List<CustomerDTO> GetAllCustomersAsync(string sortBy, string sortOrder)
         {
             var query = _dbContext.Customers.AsQueryable();
 
@@ -38,8 +38,8 @@ namespace Services
             else if (sortBy == "Country")
                 query = sortOrder == "asc" ? query.OrderBy(c => c.Country) : query.OrderByDescending(c => c.Country);
 
-            return await query.Take(25)
-                .Select(c => new CustomerViewModel
+            return  query.Take(25)
+                .Select(c => new CustomerDTO
                 {
                     CustomerId = c.CustomerId,
                     GivenName = c.Givenname,
@@ -48,13 +48,14 @@ namespace Services
                     City = c.City,
                     Country = c.Country
                 })
-                .ToListAsync();
+                .ToList();
         }
 
-        public async Task<CustomerViewModel> GetCustomerByIdAsync(int id)
+        public CustomerDTO GetCustomerByIdAsync(int id)
         {
-           var customer = await _dbContext.Customers.FirstOrDefaultAsync(c => c.CustomerId == id);
-            return new CustomerViewModel
+           var customer =  _dbContext.Customers.FirstOrDefault(c => c.CustomerId == id);
+
+            return new CustomerDTO
             {
                 GivenName = customer.Givenname,
                 SurName= customer.Surname,

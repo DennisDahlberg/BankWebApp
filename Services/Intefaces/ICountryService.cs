@@ -1,4 +1,4 @@
-﻿using Services.ViewModels;
+﻿using DataAccessLayer.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace Services.Intefaces
 {
     public interface ICountryService
     {
-        CountryStatsViewModel GetACountriesStats(string countryName);
-        List<CountryStatsViewModel> GetCountriesStats();
+        CountryStatsDTO GetACountriesStats(string countryName);
+        List<CountryStatsDTO> GetCountriesStats();
     }
 }

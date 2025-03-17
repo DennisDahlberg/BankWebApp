@@ -1,7 +1,7 @@
-﻿using DataAccessLayer.Models;
+﻿using DataAccessLayer.DTOs;
+using DataAccessLayer.Models;
 using Microsoft.EntityFrameworkCore;
 using Services.Intefaces;
-using Services.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +19,7 @@ namespace Services
             _dbContext = bankAppDataContext;
         }        
 
-        public CountryStatsViewModel GetACountriesStats(string countryName)
+        public CountryStatsDTO GetACountriesStats(string countryName)
         {
             var customers = _dbContext.Customers
                 .Where(x => x.Country == countryName)
@@ -35,7 +35,7 @@ namespace Services
                 .Any(x => x.Customer.Country == countryName))
                 .Sum(x => x.Balance);
 
-            return new CountryStatsViewModel
+            return new CountryStatsDTO
             {
                 AmountOfCustomers = customers,
                 AmountOfAccounts = accounts,
@@ -43,7 +43,7 @@ namespace Services
             };
         }
 
-        public List<CountryStatsViewModel> GetCountriesStats()
+        public List<CountryStatsDTO> GetCountriesStats()
         {
             var sweden = GetACountriesStats("Sweden");
             sweden.ImageUrl = "assets/img/Flags/se.png";
@@ -57,7 +57,7 @@ namespace Services
             var norway = GetACountriesStats("Norway");
             norway.ImageUrl = "assets/img/Flags/no.png";
 
-            var stats = new List<CountryStatsViewModel>();
+            var stats = new List<CountryStatsDTO>();
             stats.Add(sweden);
             stats.Add(denmark);
             stats.Add(finland);

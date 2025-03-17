@@ -19,7 +19,14 @@ namespace BankWebApp.Pages
 
         public void OnGet()
         {
-            CountryStats = _countryService.GetCountriesStats();
+            CountryStats = _countryService.GetCountriesStats()
+                .Select(c => new CountryStatsViewModel
+                {
+                    AmountOfAccounts = c.AmountOfAccounts,
+                    AmountOfCustomers = c.AmountOfCustomers,
+                    AmountOfMoney = c.AmountOfMoney,
+                    ImageUrl = c.ImageUrl
+                }).ToList();
         }
     }
 }
