@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BankWebApp.Infrastructure.Paging;
 using DataAccessLayer.DTOs;
 using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -22,7 +23,7 @@ namespace Services
 
         
 
-        public List<CustomerDTO> GetAllCustomersAsync(string sortBy, string sortOrder)
+        public PagedResult<Customer> GetAllCustomers(string sortBy, string sortOrder, int page)
         {
             var query = _dbContext.Customers.AsQueryable();
 
@@ -38,17 +39,8 @@ namespace Services
             else if (sortBy == "Country")
                 query = sortOrder == "asc" ? query.OrderBy(c => c.Country) : query.OrderByDescending(c => c.Country);
 
-            return  query.Take(25)
-                .Select(c => new CustomerDTO
-                {
-                    CustomerId = c.CustomerId,
-                    GivenName = c.Givenname,
-                    SurName = c.Surname,
-                    Address = c.Streetaddress,
-                    City = c.City,
-                    Country = c.Country
-                })
-                .ToList();
+            return query.GetPaged(page, 5);
+            
         }
 
         public CustomerDTO GetCustomerByIdAsync(int id)

@@ -17,18 +17,23 @@ namespace BankWebApp.Pages.Customers
         }
 
         public List<CustomerViewModel> Customers { get; set; }
+        public int CurrentPage { get; set; }
+        public int PageCount { get; set; }
 
-
-        public void OnGetAsync(string sortBy, string sortOrder)
+        public void OnGetAsync(string sortBy, string sortOrder, int pageNo)
         {
-            Customers = _customerService.GetAllCustomersAsync(sortBy, sortOrder)
+            if (pageNo == 0)
+                pageNo = 1;
+
+            var result = _customerService.GetAllCustomers(sortBy, sortOrder, pageNo);
+            Customers = result.Results
                 .Select(c => new CustomerViewModel
                 {
                     CustomerId = c.CustomerId,
-                    GivenName = c.GivenName,
-                    SurName = c.SurName,
+                    GivenName = c.Givenname,
+                    SurName = c.Surname,
                     Gender = c.Gender,
-                    Address = c.Address,
+                    Address = c.Streetaddress,
                     City = c.City,
                     Country = c.Country,
                 }).ToList();

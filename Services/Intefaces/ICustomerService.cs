@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.DTOs;
+﻿using BankWebApp.Infrastructure.Paging;
+using DataAccessLayer.DTOs;
 using DataAccessLayer.Models;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace Services.Intefaces
 {
     public interface ICustomerService
     {
-        List<CustomerDTO> GetAllCustomersAsync(string sortBy, string order);
+        PagedResult<Customer> GetAllCustomers(string sortBy, string order, int page);
         CustomerDTO GetCustomerByIdAsync(int id);
     }
 }
