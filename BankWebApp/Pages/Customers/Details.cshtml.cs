@@ -1,3 +1,4 @@
+using BankWebApp.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -12,12 +13,15 @@ namespace BankWebApp.Pages.Customers
     {
         private readonly ICustomerService _customerService;
         private readonly IRandomUserService _randomUserService;
-        public DetailsModel(ICustomerService customerService, IRandomUserService userService)
+        private readonly IAccountService _accountService;
+        public DetailsModel(ICustomerService customerService, IRandomUserService userService, IAccountService accountService)
         {
             _customerService = customerService;
             _randomUserService = userService;
+            _accountService = accountService;
         }
 
+        public List<AccountViewModel> Accounts { get; set; }
         public CustomerViewModel Customer { get; set; }
         public string CustomerImageUrl { get; set; }
 
@@ -38,6 +42,11 @@ namespace BankWebApp.Pages.Customers
 
             CustomerImageUrl = await _randomUserService.FetchFromApi(id);
 
+            Accounts = _accountService.GetAllAccountsFromCustomer(id)
+                .Select(a => new AccountViewModel
+                {
+                    Balance = a.Balance
+                }).ToList();
 
         }
     }
