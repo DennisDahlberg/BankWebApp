@@ -45,7 +45,9 @@ namespace BankWebApp.Pages.Customers
             Accounts = _accountService.GetAllAccountsFromCustomer(id)
                 .Select(a => new AccountViewModel
                 {
-                    Balance = a.Balance
+                    Balance = a.Balance,
+                    AccountId = a.AccountId,
+                   
                 }).ToList();
 
         }

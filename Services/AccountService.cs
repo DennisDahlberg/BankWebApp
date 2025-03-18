@@ -26,6 +26,7 @@ namespace Services
             return accounts.Select(a => new AccountDTO
             {
                 Balance = a.Balance,
+                AccountId = a.AccountId,
             }).ToList();
         }
 

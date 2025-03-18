@@ -65,7 +65,7 @@
                                 @foreach (var account in Model.Accounts)
                                 {
                                     <tr>
-                                        <td>ID</td>
+                                        <td>@account.AccountId</td>
                                         <td>@(account.Balance)kr</td>  
                                         <td>
                                             <div class="d-flex justify-content-end gap-2">
@@ -93,41 +93,6 @@
                     </div>
 
 
-
-
-
-
-
-
-
-
-                    @* <div class="table-responsive">
-                        <table class="table custom-table">
-                            <thead>
-                                <tr>
-                                    <td>Account Id</td>
-                                    <td>Balance</td>
-                                    <td></td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var account in Model.Accounts)
-                                {
-                                    <tr>
-                                        <td>Not added</td>
-                                        <td>@account.Balance</td>
-                                        <td>
-                                            <a class="btn btn-success">Test</a>
-                                            <a class="btn btn-success">Test</a>
-                                            <a class="btn btn-success">Test</a>
-                                        </td>
-                                    </tr>
-                                }
-
-
-                            </tbody>
-                        </table>
-                    </div> *@
                         
                     </div>
 

@@ -9,5 +9,6 @@ namespace DataAccessLayer.DTOs
     public class AccountDTO
     {
         public decimal Balance { get; set; }
+        public int AccountId { get; set; }
     }
 }
