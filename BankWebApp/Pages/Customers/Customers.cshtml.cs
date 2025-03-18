@@ -33,6 +33,9 @@ namespace BankWebApp.Pages.Customers
             SortOrder = sortOrder;
 
             var result = _customerService.GetAllCustomers(sortBy, sortOrder, pageNo);
+
+            PageCount = result.PageCount;
+
             Customers = result.Results
                 .Select(c => new CustomerViewModel
                 {

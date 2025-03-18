@@ -39,7 +39,7 @@ namespace Services
             else if (sortBy == "Country")
                 query = sortOrder == "asc" ? query.OrderBy(c => c.Country) : query.OrderByDescending(c => c.Country);
 
-            return query.GetPaged(page, 5);
+            return query.GetPaged(page, 50);
             
         }
 
