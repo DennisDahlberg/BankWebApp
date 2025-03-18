@@ -80,7 +80,12 @@
         /*min-width: 900px;*/
     }
 
-        
+
+.customer-detail-link:hover {
+    cursor: pointer;
+    color: var(--accent-color)
+}
+
 
 
 .table-responsive {
