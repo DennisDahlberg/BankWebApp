@@ -11,7 +11,7 @@ namespace Services.Intefaces
 {
     public interface ICustomerService
     {
-        PagedResult<Customer> GetAllCustomers(string sortBy, string order, int page);
+        PagedResult<Customer> GetAllCustomers(string sortBy, string order, int page, string q);
         CustomerDTO GetCustomerByIdAsync(int id);
     }
 }

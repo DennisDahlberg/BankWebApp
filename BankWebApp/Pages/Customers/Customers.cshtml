@@ -16,6 +16,15 @@
             <h2>Customers</h2>
         </div>
 
+        <div class="container mb-1">
+            <form method="get">
+                <div class="search-box">
+                    <button type="submit" class="btn-search"><i class="fas fa-search"></i></button>
+                    <input asp-for="@Model.Q" type="text" class="input-search" placeholder="Type to Search...">
+                </div>
+            </form>
+            
+        </div>
 
             <div class="table-responsive">
 
@@ -28,12 +37,14 @@
                                 Name
                                 <a  asp-page="/Customers/Customers"
                                     asp-route-sortBy="Name"
-                                    asp-route-sortOrder="asc">
+                                    asp-route-sortOrder="asc"
+                                    asp-route-q="@Model.Q">
                                 <i class="fa-solid fa-angle-up"></i>
                                 </a>
                                 <a  asp-page="/Customers/Customers"
                                     asp-route-sortBy="Name"
-                                    asp-route-sortOrder="desc">
+                                    asp-route-sortOrder="desc"
+                                    asp-route-q="@Model.Q">
                                 <i class="fa-solid fa-angle-down"></i>
                             </a>
                             </th>
@@ -41,11 +52,13 @@
                             Address
                             <a asp-page="/Customers/Customers"
                                asp-route-sortBy="Address"
+                               asp-route-q="@Model.Q"
                                asp-route-sortOrder="asc">
                                 <i class="fa-solid fa-angle-up"></i>
                             </a>
                             <a asp-page="/Customers/Customers"
                                asp-route-sortBy="Address"
+                               asp-route-q="@Model.Q"
                                asp-route-sortOrder="desc">
                                 <i class="fa-solid fa-angle-down"></i>
                             </a>
@@ -54,11 +67,13 @@
                             City
                             <a asp-page="/Customers/Customers"
                                asp-route-sortBy="City"
+                               asp-route-q="@Model.Q"
                                asp-route-sortOrder="asc">
                                 <i class="fa-solid fa-angle-up"></i>
                             </a>
                             <a asp-page="/Customers/Customers"
                                asp-route-sortBy="City"
+                               asp-route-q="@Model.Q"
                                asp-route-sortOrder="desc">
                                 <i class="fa-solid fa-angle-down"></i>
                             </a>
@@ -67,11 +82,13 @@
                             Country
                             <a asp-page="/Customers/Customers"
                                asp-route-sortBy="Country"
+                               asp-route-q="@Model.Q"
                                asp-route-sortOrder="asc">
                                 <i class="fa-solid fa-angle-up"></i>
                             </a>
                             <a asp-page="/Customers/Customers"
                                asp-route-sortBy="Country"
+                               asp-route-q="@Model.Q"
                                asp-route-sortOrder="desc">
                                 <i class="fa-solid fa-angle-down"></i>
                             </a>
@@ -86,7 +103,7 @@
                         {
                         <tr>
                                 <td>@customer.CustomerId</td>
-                            <td><a>@customer.GivenName @customer.SurName</a></td>
+                                <td><a>@customer.GivenName @customer.SurName</a></td>
                                 <td>@customer.Address</td>
                                 <td>@customer.City</td>
                                 <td>@customer.Country</td>
@@ -103,6 +120,7 @@
                                 <a asp-page="/Customers/Customers"
                                    asp-route-sortOrder="@Model.SortOrder"
                                    asp-route-sortBy="@Model.SortBy"
+                                   asp-route-q="@Model.Q"
                                    asp-route-pageNo="@(Model.CurrentPage - 1)"
                                    class="btn btn-success">
                                     Prev
@@ -116,6 +134,7 @@
                                     <a asp-page="/Customers/Customers"
                                        asp-route-sortOrder="@Model.SortOrder"
                                        asp-route-sortBy="@Model.SortBy"
+                                       asp-route-q="@Model.Q"
                                        asp-route-pageNo="@i"
                                        class="btn @(Model.CurrentPage == i ? "btn-success" : "btn-secondary")">
                                         @i
@@ -130,6 +149,7 @@
                                 {
                                     <a asp-page="/Customers/Customers"
                                        asp-route-sortOrder="@Model.SortOrder"
+                                       asp-route-q="@Model.Q"
                                        asp-route-sortBy="@Model.SortBy"
                                        asp-route-pageNo="@(Model.CurrentPage + 1)"
                                        class="btn btn-success">

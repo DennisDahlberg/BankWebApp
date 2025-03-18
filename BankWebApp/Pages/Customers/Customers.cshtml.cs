@@ -21,18 +21,21 @@ namespace BankWebApp.Pages.Customers
         public int PageCount { get; set; }
         public string SortOrder { get; set; }
         public string SortBy { get; set; }
+        public string Q { get; set; }
 
 
-        public void OnGet(string sortBy, string sortOrder, int pageNo)
+        public void OnGet(string sortBy, string sortOrder, int pageNo, string q)
         {           
             if (pageNo == 0)
                 pageNo = 1;
 
+            Q = q;
             CurrentPage = pageNo;
             SortBy = sortBy;
             SortOrder = sortOrder;
+            Q = q;
 
-            var result = _customerService.GetAllCustomers(sortBy, sortOrder, pageNo);
+            var result = _customerService.GetAllCustomers(sortBy, sortOrder, pageNo, q);
 
             PageCount = result.PageCount;
 

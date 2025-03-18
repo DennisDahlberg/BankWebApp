@@ -23,9 +23,19 @@ namespace Services
 
         
 
-        public PagedResult<Customer> GetAllCustomers(string sortBy, string sortOrder, int page)
+        public PagedResult<Customer> GetAllCustomers(string sortBy, string sortOrder, int page, string q)
         {
             var query = _dbContext.Customers.AsQueryable();
+
+            if (!string.IsNullOrEmpty(q))
+            {
+                query = query
+                    .Where(c => c.Givenname.Contains(q) ||
+                    c.Surname.Contains(q) ||
+                    c.Streetaddress.Contains(q) ||
+                    c.City.Contains(q) ||
+                    c.Country.Contains(q));
+            }
 
             if (sortBy == "Name")
                 query = sortOrder == "asc" ? query.OrderBy(c => c.Surname) : query.OrderByDescending(c => c.Surname);
