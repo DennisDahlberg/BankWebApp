@@ -17,6 +17,31 @@
 --------------------------------------------------------------*/
 
 
+
+/*--------------------------------------------------------------
+# Form - Customer
+--------------------------------------------------------------*/
+.form-control {
+    color: var(--default-color);
+    opacity: 0.9;
+    background-color: var(--background-color);
+    border: none;
+    outline: none;
+}
+    .form-control:hover {
+        box-shadow: 0 0 0 .15vw rgba(135, 207, 235, 0.186);
+        opacity: 0.9;
+        background-color: var(--background-color);
+        color: var(--default-color);
+    }
+
+    .form-control:focus {
+        box-shadow: 0 0 0 .15vw skyblue;
+        color: var(--default-color);
+        opacity: 0.9;
+        background-color: var(--background-color);
+    }
+
 /*--------------------------------------------------------------
 # Country
 --------------------------------------------------------------*/
@@ -52,8 +77,12 @@
 # Tables
 --------------------------------------------------------------*/
     .custom-table {
-        min-width: 900px;
+        /*min-width: 900px;*/
     }
+
+        
+
+
 .table-responsive {
     border-radius: 7px;
 }
@@ -152,6 +181,10 @@
 .accounts-information {
     flex: 1;
     width: 100%;
+}
+
+.customer-container {
+    background-color: rgba(0, 0, 0, 0.4);
 }
 /*--------------------------------------------------------------
 # Custom navbar css

@@ -9,16 +9,15 @@
     <div class="container text-center" data-aos="fade-down" data-aos-delay="100">
         <div class="row justify-content-center">
             
-                <div class="d-flex py-3 gap-5 justify-content-center border rounded">
+                <div class="customer-container d-flex py-3 gap-5 justify-content-center rounded">
                     <div class="customer-information">
-                        <img src="@Model.CustomerImageUrl"style="background:green" alt="Customer picture" class="rounded-circle mb-2"/>
+                        <img src="@Model.CustomerImageUrl" alt="Customer picture" class="rounded-circle mb-3"/>
                         <form method="get">                            
                             <div class="form-container d-flex flex-column gap-2">
                                 <div class="d-flex gap-2">
                                     <input asp-for="@Model.Customer.GivenName" class="form-control" />
                                     <input asp-for="@Model.Customer.SurName" class="form-control" />
                                 </div>
-                                @* <input asp-for="@Model.Customer.Gender" class="form-control" /> *@
 
                                 <div class="d-flex gap-2">
                                     <div class="form-check">
@@ -49,21 +48,76 @@
                         <div class="container section-title" data-aos="fade-down">
                             <span class="description-title">Accounts</span>
                             <h2>Accounts</h2>
-                            @foreach (var account in Model.Accounts)
-                            {
-                                <div class="d-flex justify-content-between align-items-center border px-2">
-                                    <div>
-                                        <p>@(account.Balance)kr</p>
-                                    </div>
-
-                                    <div>
-                                        <a class="btn btn-success">Test</a>
-                                        <a class="btn btn-success">Test</a>
-                                        <a class="btn btn-success">Test</a>
-                                    </div>
-                                </div>
-                            }
                         </div>
+
+                    <div class="table-responsive">
+
+                        <table class="table custom-table">
+                            <thead>
+                                <tr>
+
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Balance</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var account in Model.Accounts)
+                                {
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>@account.Balance</td>  
+                                        <td>
+                                            <a class="btn btn-success">Test</a>
+                                            <a class="btn btn-success">Test</a>
+                                        </td>
+                                    </tr>
+                                }
+
+
+
+                                
+                            </tbody>
+                        </table>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+                    @* <div class="table-responsive">
+                        <table class="table custom-table">
+                            <thead>
+                                <tr>
+                                    <td>Account Id</td>
+                                    <td>Balance</td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var account in Model.Accounts)
+                                {
+                                    <tr>
+                                        <td>Not added</td>
+                                        <td>@account.Balance</td>
+                                        <td>
+                                            <a class="btn btn-success">Test</a>
+                                            <a class="btn btn-success">Test</a>
+                                            <a class="btn btn-success">Test</a>
+                                        </td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div> *@
+                        
                     </div>
 
                 </div>
