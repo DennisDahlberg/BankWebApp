@@ -8,7 +8,7 @@
 
     <img class="backgroundImage" src="~/assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
 
-    <div class="container mt-3" data-aos="fade-up" data-aos-delay="100">
+    <div class="container mt-3">
 
 
         <div class="container section-title" data-aos="fade-up">
@@ -84,7 +84,7 @@
                     <tbody>
                         @foreach(var customer in Model.Customers)
                         {
-                            <tr>
+                        <tr data-aos="fade-right" data-aos-delay="100">
                                 <td>@customer.CustomerId</td>
                             <td><a>@customer.GivenName @customer.SurName</a></td>
                                 <td>@customer.Address</td>
