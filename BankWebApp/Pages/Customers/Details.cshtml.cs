@@ -37,6 +37,8 @@ namespace BankWebApp.Pages.Customers
             };
 
             CustomerImageUrl = await _randomUserService.FetchFromApi(id);
+
+
         }
     }
 }
