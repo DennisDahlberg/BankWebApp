@@ -9,9 +9,28 @@
     <div class="container text-center" data-aos="fade-down" data-aos-delay="100">
         <div class="row justify-content-center">
             
-                <div class="d-flex gap-2 justify-content-center border rounded">
-                    <img src="@Model.CustomerImageUrl" alt="Customer picture" />
-                    <div>Customer information here!</div>
+                <div class="d-flex py-3 gap-5 justify-content-center border rounded">
+                    <div class="customer-information">
+                        <img src="@Model.CustomerImageUrl"style="background:green" alt="Customer picture" class="rounded-circle mb-2"/>
+                        <form method="get">                            
+                            <div class="form-container d-flex flex-column gap-2">
+                                <div class="d-flex gap-2">
+                                    <input asp-for="@Model.Customer.GivenName" class="form-control" />
+                                    <input asp-for="@Model.Customer.SurName" class="form-control" />
+                                </div>
+                                @* <input asp-for="@Model.Customer.Gender" class="form-control" /> *@
+                                <input asp-for="@Model.Customer.Address" class="form-control" />
+                                <input asp-for="@Model.Customer.City" class="form-control" />
+                                <input asp-for="@Model.Customer.Country" class="form-control" />
+                                <input type="submit" class="btn btn-success" value="Update">
+                            </div>
+                            
+                        </form>
+                    </div>
+
+                    <div class="accounts-information">
+                        Accounts information here!
+                     </div>
                 </div>
             
         </div>
