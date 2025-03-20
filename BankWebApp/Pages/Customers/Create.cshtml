@@ -1,4 +1,5 @@
 ﻿@page
+@using Services.Enums
 @model BankWebApp.Pages.Customers.CreateModel
 @{
 }
@@ -15,30 +16,89 @@
     <div class="container d-flex justify-content-center customer-container w-75 p-4 rounded" data-aos="fade-down">
         <form method="post" class="w-100">
             
-                <div class="form-container d-flex flex-column gap-2">
-                    <div class="d-flex gap-2">
-                        <input @* asp-for="@Model.Customer.GivenName" *@ class="form-control" />
-                        <input @* asp-for="@Model.Customer.SurName" *@ class="form-control" />
+                
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <input asp-for="@Model.Customer.Givenname" class="form-control" placeholder="First name" />
+                                <span asp-validation-for="@Model.Customer.Givenname" class="text-danger"></span>
+                            </div>
+                        </div>
+                    
+                        <div class="col">
+                            <div class="form-group">
+                                <input asp-for="@Model.Customer.Surname" class="form-control" placeholder="Last name" />
+                                <span asp-validation-for="@Model.Customer.Surname" class="text-danger"></span>
+                            </div>
+                        </div>            
                     </div>
 
-                    <div class="d-flex gap-2">
+                    <div class="d-flex gap-2 py-2">
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" @* asp-for="@Model.Customer.Gender" *@ id="male" name="gender" value="Male" />
+                            <input type="radio" class="form-check-input" asp-for="@Model.Customer.Gender" id="male" name="gender" value="Male" />
                             <label for="male" class="form-check-label">Male</label>
                         </div>
 
                         <div class="form-check">
-                            <input type="radio" @* asp-for="@Model.Customer.Gender" *@ class="form-check-input" id="female" name="gender" value="Female" />
+                            <input type="radio" asp-for="@Model.Customer.Gender" class="form-check-input" id="female" name="gender" value="Female" />
                             <label for="female" class="form-check-label">Female</label>
                         </div>
 
                     </div>
 
-                    <input @* asp-for="@Model.Customer.Address" *@ class="form-control" />
-                    <input @* asp-for="@Model.Customer.City"    *@ class="form-control" />
-                    <input @* asp-for="@Model.Customer.Country" *@ class="form-control" />
-                    <input type="submit" class="btn btn-success" value="Update">
-                </div>
+                    <div class="row mb-2">
+                        <div class="col">
+                            <div class="form-group">
+                                <input asp-for="@Model.Customer.Streetaddress" class="form-control" placeholder="Address" />
+                                <span asp-validation-for="@Model.Customer.Streetaddress" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="form-group">
+                                <input asp-for="@Model.Customer.Zipcode" class="form-control" placeholder="Zipcode" />
+                                <span asp-validation-for="@Model.Customer.Zipcode" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <input asp-for="@Model.Customer.City" class="form-control" placeholder="City" />
+                        <span asp-validation-for="@Model.Customer.City" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <select class="form-control">
+                            <option value="@Country.Sweden">Sweden</option>
+                            <option value="@Country.Norway">Norway</option>
+                            <option value="@Country.Finland">Finland</option>
+                            <option value="@Country.Denmark">Denmark</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <input asp-for="@Model.Customer.Phonenumber" class="form-control" placeholder="Phone number" />
+                        <span asp-validation-for="@Model.Customer.Phonenumber" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <input type="email" asp-for="@Model.Customer.Emailaddress" class="form-control" placeholder="Emailaddress" />
+                        <span asp-validation-for="@Model.Customer.Emailaddress" class="text-danger"></span>
+                    </div>
+
+
+                    @* Birtday? *@
+                    @* <div class="form-group mb-2">
+                        <input asp-for="@Model.Customer" class="form-control" placeholder="City" />
+                        <span asp-validation-for="@Model.Customer.City" class="text-danger"></span>
+                    </div> *@
+            
+
+                    <div class="d-flex gap-2">
+                        <input type="submit" class="btn btn-success" value="Create">
+                        <a class="btn btn-secondary" asp-page="Customers/Customers">Back</a>
+                    </div>
+                
 
            
         </form>

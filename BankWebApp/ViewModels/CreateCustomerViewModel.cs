@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Services.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace BankWebApp.ViewModels
 {
@@ -20,7 +21,7 @@ namespace BankWebApp.ViewModels
         public string City { get; set; }
 
         [Required]
-        public string Country {  get; set; }
+        public Country Country {  get; set; }
 
         [Required]
         [StringLength(15)]
