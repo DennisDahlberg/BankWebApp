@@ -10,14 +10,18 @@
     <div class="container">
              
 
-        <a class="btn btn-success mt-5">Back</a>
+        
         <div class="row justify-content-center">
-            <div class="customer-container rounded">
+            <div class="customer-container rounded mt-5">
                 <div class="container section-title" data-aos="fade-down">
                     <span class="description-title">Deposit</span>
                     <h2>Deposit</h2>
                 </div>
-                <a asp-page="/Customers/Details" asp-route-id="@Model.CustomerId" class="btn btn-success mb-2">Deposit</a>
+                <a class="btn btn-success mb-2">Deposit</a>
+                <a asp-page="/Customers/Details" asp-route-id="@Model.CustomerId" class="btn btn-secondary mb-2">Back</a>
+                
+
+                
 
             </div>
         </div>
@@ -27,5 +31,6 @@
     </div>
 
 
-
+    <!-- HTML !-->
+    
 </section>
