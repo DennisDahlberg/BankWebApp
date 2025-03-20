@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer.DTOs;
 using DataAccessLayer.Models;
+using Microsoft.AspNetCore.Http.Features;
 using Services.Enums;
 using Services.Intefaces;
 using System;
@@ -51,6 +52,18 @@ namespace Services
             _dbContext.SaveChanges();
         }
 
+        public ResultCode Withdrawal(int accountId, decimal amount)
+        {
+            var account = _dbContext.Accounts.First(a => a.AccountId == accountId);
+            if (account.Balance < amount)
+                return ResultCode.BalanceToLow;
+
+            account.Balance -= amount;
+            CreateTransanction(accountId, -amount, TransactionType.Withdrawal, account.Balance);
+            _dbContext.SaveChanges();
+            return ResultCode.Success;
+        }
+
 
         public void CreateTransanction(int accountId, decimal amount, TransactionType transactionType, decimal balance)
         {
@@ -66,5 +79,6 @@ namespace Services
             _dbContext.Transactions.Add(transaction);
         }
 
+        
     }
 }

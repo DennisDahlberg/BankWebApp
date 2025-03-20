@@ -1,12 +1,48 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Services.Intefaces;
 
 namespace BankWebApp.Pages.Customers.Accounts
 {
+    [BindProperties]
     public class WithdrawalModel : PageModel
     {
-        public void OnGet()
+        private readonly IAccountService _accountService;
+
+        public WithdrawalModel(IAccountService accountService)
         {
+            _accountService = accountService;
+        }
+
+        public int AccountId { get; set; }
+        public int CustomerId { get; set; }
+        public decimal Balance { get; set; }
+        public decimal Withdrawal { get; set; }
+
+
+        public void OnGet(int accountId, int customerId)
+        {
+            AccountId = accountId;
+            CustomerId = customerId;
+            Balance = _accountService.GetAccount(accountId).Balance;
+        }
+
+        public IActionResult OnPost()
+        {
+            var resultCode = _accountService.Withdrawal(AccountId, Withdrawal);
+
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            if (resultCode == Services.Enums.ResultCode.BalanceToLow)
+            {
+                ModelState.AddModelError("Withdrawal", "You do not have enough money for the withdrawal!");
+                return Page();
+            }
+
+            return RedirectToPage("/Customers/Details", new { id = CustomerId });
         }
     }
 }
