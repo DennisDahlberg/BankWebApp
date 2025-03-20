@@ -19,7 +19,7 @@ namespace BankWebApp.Pages.Customers.Accounts
         public int CustomerId { get; set; }
         public decimal Balance { get; set; }
 
-        [Range(100,1000)]
+        [Range(100, double.MaxValue, ErrorMessage = "You cant make a deposit under 100kr")]
         public decimal Deposit { get; set; }
 
         public void OnGet(int accountId, int customerId)
@@ -35,7 +35,10 @@ namespace BankWebApp.Pages.Customers.Accounts
             {
                 return Page();
             }
-            return Page();
+
+            _accountService.Deposit(AccountId, Deposit);
+
+            return RedirectToPage("/Customers/Details", new { id = CustomerId });
         }
     }
 }

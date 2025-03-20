@@ -11,5 +11,6 @@ namespace Services.Intefaces
     {
         List<AccountDTO> GetAllAccountsFromCustomer(int customerId);
         AccountDTO GetAccount(int customerId);
+        void Deposit(int accountId, decimal amount);
     }
 }

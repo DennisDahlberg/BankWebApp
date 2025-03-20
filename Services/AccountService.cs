@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer.DTOs;
 using DataAccessLayer.Models;
+using Services.Enums;
 using Services.Intefaces;
 using System;
 using System.Collections.Generic;
@@ -41,9 +42,29 @@ namespace Services
             };
         }
 
+        public void Deposit(int accountId, decimal amount)
+        {
+            var account = _dbContext.Accounts.First(a => a.AccountId == accountId);
+            account.Balance += amount;
+
+            CreateTransanction(accountId, amount, TransactionType.Deposit, account.Balance);
+            _dbContext.SaveChanges();
+        }
 
 
-
+        public void CreateTransanction(int accountId, decimal amount, TransactionType transactionType, decimal balance)
+        {
+            var transaction = new Transaction()
+            {
+                AccountId = accountId,
+                Date = DateOnly.FromDateTime(DateTime.Now),
+                Amount = amount,
+                Balance = balance,
+                Type = "Debit",
+                Operation = transactionType.ToString(),
+            };
+            _dbContext.Transactions.Add(transaction);
+        }
 
     }
 }
