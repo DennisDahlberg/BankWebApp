@@ -1,0 +1,31 @@
+﻿@page
+@model BankWebApp.Pages.Customers.Accounts.DepositModel
+@{
+}
+
+<section id="hero" class="hero section dark-background justify-content-start">
+
+    <img class="backgroundImage" src="~/assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
+
+    <div class="container">
+             
+
+
+        <div class="row justify-content-center">
+            <div class="customer-container rounded mt-5">
+                <div class="container section-title" data-aos="fade-down">
+                    <span class="description-title">Deposit</span>
+                    <h2>Deposit</h2>
+                </div>
+                <a asp-page="/Customers/Details" asp-route-id="@Model.CustomerId" class="btn btn-success">Back</a>
+
+            </div>
+        </div>
+        
+
+
+    </div>
+
+
+
+</section>

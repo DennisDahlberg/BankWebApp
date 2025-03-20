@@ -24,9 +24,11 @@ namespace BankWebApp.Pages.Customers
         public List<AccountViewModel> Accounts { get; set; }
         public CustomerViewModel Customer { get; set; }
         public string CustomerImageUrl { get; set; }
+        public int CustomerId { get; set; }
 
         public async Task OnGetAsync(int id)
         {
+            CustomerId = id;
             var customer = _customerService.GetCustomerByIdAsync(id);
 
             Customer = new CustomerViewModel

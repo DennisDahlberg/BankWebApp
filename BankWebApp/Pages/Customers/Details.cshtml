@@ -71,13 +71,25 @@
                                             <div class="d-flex justify-content-end gap-2">
                                                 <a>
                                                     <span class="customer-detail-link">
-                                                        <i class="fa-solid fa-circle-user fa-xl"></i>
+                                                        <i class="fa-solid fa-circle-info fa-lg"></i>
+                                                    </span>
+                                                </a>
+
+                                                <a asp-page="Accounts/Deposit" asp-route-accountId="@account.AccountId" asp-route-customerId="@Model.CustomerId">
+                                                    <span class="customer-detail-link">
+                                                        <i class="fa-solid fa-plus fa-lg"></i>
                                                     </span>
                                                 </a>
 
                                                 <a>
                                                     <span class="customer-detail-link">
-                                                        <i class="fa-solid fa-circle-user fa-xl"></i>
+                                                        <i class="fa-solid fa-minus fa-lg"></i>
+                                                    </span>
+                                                </a>
+
+                                                <a>
+                                                    <span class="customer-detail-link">
+                                                        <i class="fa-solid fa-money-bill-transfer fa-lg"></i>
                                                     </span>
                                                 </a>
                                             </div>
