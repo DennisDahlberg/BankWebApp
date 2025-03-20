@@ -30,6 +30,17 @@ namespace Services
             }).ToList();
         }
 
+        public AccountDTO GetAccount(int accountId)
+        {
+            var account = _dbContext.Accounts.FirstOrDefault(a => a.AccountId == accountId);
+
+            return new AccountDTO()
+            {
+                AccountId = account.AccountId,
+                Balance = account.Balance,
+            };
+        }
+
 
 
 

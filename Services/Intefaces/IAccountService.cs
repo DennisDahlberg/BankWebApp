@@ -10,5 +10,6 @@ namespace Services.Intefaces
     public interface IAccountService
     {
         List<AccountDTO> GetAllAccountsFromCustomer(int customerId);
+        AccountDTO GetAccount(int customerId);
     }
 }
