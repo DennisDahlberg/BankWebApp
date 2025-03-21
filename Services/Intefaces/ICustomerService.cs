@@ -13,5 +13,6 @@ namespace Services.Intefaces
     {
         PagedResult<Customer> GetAllCustomers(string sortBy, string order, int page, string q);
         CustomerDTO GetCustomerByIdAsync(int id);
+        Task CreateCustomerWithAccount(CreateCustomerDTO customer);
     }
 }

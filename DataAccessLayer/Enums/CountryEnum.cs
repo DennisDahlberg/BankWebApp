@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Enums
+namespace DataAccessLayer.Enums
 {
-   public enum ResultCode
+    public enum Country
     {
-        Success,
-        BalanceToLow,
-        AmountToLow
+        Sweden,
+        Norway,
+        Denmark,
+        Finland,
     }
-
 }

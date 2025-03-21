@@ -1,3 +1,4 @@
+using DataAccessLayer.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Services.Intefaces;
@@ -36,7 +37,7 @@ namespace BankWebApp.Pages.Customers.Accounts
                 return Page();
             }
 
-            if (resultCode == Services.Enums.ResultCode.BalanceToLow)
+            if (resultCode == ResultCode.BalanceToLow)
             {
                 ModelState.AddModelError("Withdrawal", "You do not have enough money for the withdrawal!");
                 return Page();

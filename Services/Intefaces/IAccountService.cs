@@ -1,5 +1,5 @@
 ﻿using DataAccessLayer.DTOs;
-using Services.Enums;
+using DataAccessLayer.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +12,7 @@ namespace Services.Intefaces
     {
         List<AccountDTO> GetAllAccountsFromCustomer(int customerId);
         AccountDTO GetAccount(int customerId);
+        void CreateAccount(int customerId);
         void Deposit(int accountId, decimal amount);
         ResultCode Withdrawal(int accountId, decimal amount);
     }

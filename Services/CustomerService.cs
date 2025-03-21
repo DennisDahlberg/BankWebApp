@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BankWebApp.Infrastructure.Paging;
 using DataAccessLayer.DTOs;
+using DataAccessLayer.Enums;
 using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -67,6 +68,53 @@ namespace Services
                 CustomerId = customer.CustomerId,
                 Gender = customer.Gender,
             };
+        }
+
+        public async Task CreateCustomerWithAccount(CreateCustomerDTO customer)
+        {
+            var newCustomer = new Customer()
+            {
+                Givenname = customer.Givenname,
+                Surname = customer.Surname,
+                Gender = customer.Gender,
+                Streetaddress = customer.Streetaddress,
+                Country = customer.Country.ToString(),
+                City = customer.City,
+                Telephonenumber = customer.Phonenumber,
+                Emailaddress = customer.Emailaddress,
+                Zipcode = customer.Zipcode,
+            };
+            if (customer.Country == Country.Sweden)
+                newCustomer.CountryCode = "SE";
+
+            else if (customer.Country == Country.Norway)
+                newCustomer.CountryCode = "NO";
+
+            else if (customer.Country == Country.Denmark)
+                newCustomer.CountryCode = "DK";
+
+            else if (customer.Country == Country.Finland)
+                newCustomer.CountryCode = "FI";
+
+            var account = new Account()
+            {
+                Frequency = "Monthly",
+                Created = DateOnly.FromDateTime(DateTime.Now),
+                Balance = 0,
+            };
+
+            var disposition = new Disposition()
+            {
+                Account = account,
+                Customer = newCustomer,
+                Type = "Owner"
+            };
+
+            _dbContext.Customers.Add(newCustomer);
+            _dbContext.Accounts.Add(account);
+            _dbContext.Dispositions.Add(disposition);
+
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Services.Enums;
+﻿using DataAccessLayer.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace BankWebApp.ViewModels

@@ -1,7 +1,7 @@
 ﻿using DataAccessLayer.DTOs;
 using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Http.Features;
-using Services.Enums;
+using DataAccessLayer.Enums;
 using Services.Intefaces;
 using System;
 using System.Collections.Generic;
@@ -80,5 +80,10 @@ namespace Services
         }
 
         
+        public void CreateAccount(int customerId)
+        {
+            
+        }
+
     }
 }

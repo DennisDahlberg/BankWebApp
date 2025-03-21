@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Enums
+namespace DataAccessLayer.Enums
 {
-    public enum TransactionType
+   public enum ResultCode
     {
-        Deposit,
-        Withdrawal,
-        Transfer
+        Success,
+        BalanceToLow,
+        AmountToLow
     }
+
 }
