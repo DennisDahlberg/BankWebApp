@@ -24,7 +24,7 @@ namespace BankWebApp.ViewModels
         public Country Country {  get; set; }
 
         [Required]
-        [StringLength(15)]
+        [RegularExpression(@"^\d{4,5}$", ErrorMessage = "Zipcode must be 4 or 5 digits")]
         public string Zipcode { get; set; }
 
         [Required]
@@ -32,6 +32,7 @@ namespace BankWebApp.ViewModels
         public string Emailaddress { get; set; }
 
         [Required]
+        [RegularExpression(@"^\d{8,10}", ErrorMessage = "Phone number must be between 8-10 digits")]
         public string Phonenumber { get; set; }
     }
 }
