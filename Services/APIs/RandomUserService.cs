@@ -23,7 +23,7 @@ namespace Services.APIs
 
         public async Task<string> FetchFromApi(int id)
         {
-            var gender = _dbContext.Customers.FirstOrDefault(x => x.CustomerId == id).Gender;
+            var gender = _dbContext.Customers.FirstOrDefault(x => x.CustomerId == id).Gender.ToLower();
 
             gender ??= "female";
 
