@@ -70,6 +70,25 @@ namespace Services
             };
         }
 
+        public CreateCustomerDTO GetCreateCustomer(int customerId)
+        {
+            var customer = _dbContext.Customers.FirstOrDefault(c => c.CustomerId == customerId);
+
+            return new CreateCustomerDTO()
+            {
+                Givenname = customer.Givenname,
+                Surname = customer.Surname,
+                Gender = customer.Gender,
+                City = customer.City,
+                Country = customer.Country,
+                Streetaddress = customer.Streetaddress,
+                Emailaddress = customer.Emailaddress,
+                Phonenumber = customer.Telephonenumber,
+                Zipcode = customer.Zipcode,
+            };
+        }
+
+
         public async Task CreateCustomerWithAccount(CreateCustomerDTO customer)
         {
             var newCustomer = new Customer()
@@ -84,16 +103,16 @@ namespace Services
                 Emailaddress = customer.Emailaddress,
                 Zipcode = customer.Zipcode,
             };
-            if (customer.Country == Country.Sweden)
+            if (customer.Country == Country.Sweden.ToString())
                 newCustomer.CountryCode = "SE";
 
-            else if (customer.Country == Country.Norway)
+            else if (customer.Country == Country.Norway.ToString())
                 newCustomer.CountryCode = "NO";
 
-            else if (customer.Country == Country.Denmark)
+            else if (customer.Country == Country.Denmark.ToString())
                 newCustomer.CountryCode = "DK";
 
-            else if (customer.Country == Country.Finland)
+            else if (customer.Country == Country.Finland.ToString())
                 newCustomer.CountryCode = "FI";
 
             var account = new Account()

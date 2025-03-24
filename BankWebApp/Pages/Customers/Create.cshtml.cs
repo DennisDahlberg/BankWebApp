@@ -46,7 +46,7 @@ namespace BankWebApp.Pages.Customers
                 Gender = Customer.Gender,
                 Streetaddress = Customer.Streetaddress,
                 City = Customer.City,
-                Country = Customer.Country,
+                Country = Customer.Country.ToString(),
                 Emailaddress = Customer.Emailaddress,
                 Phonenumber = Customer.Phonenumber,
                 Zipcode = Customer.Zipcode,
