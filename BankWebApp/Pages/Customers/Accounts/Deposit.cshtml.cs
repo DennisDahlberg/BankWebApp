@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Services.Intefaces;
@@ -5,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BankWebApp.Pages.Customers.Accounts
 {
+    [Authorize(Roles = "Cashier")]
     [BindProperties]
     public class DepositModel : PageModel
     {

@@ -1,10 +1,12 @@
 using DataAccessLayer.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Services.Intefaces;
 
 namespace BankWebApp.Pages.Customers.Accounts
 {
+    [Authorize(Roles = "Cashier")]
     [BindProperties]
     public class WithdrawalModel : PageModel
     {
