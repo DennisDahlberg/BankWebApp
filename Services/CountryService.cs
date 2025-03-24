@@ -1,5 +1,7 @@
 ﻿using DataAccessLayer.DTOs;
+using DataAccessLayer.Enums;
 using DataAccessLayer.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Services.Intefaces;
 using System;
@@ -65,5 +67,22 @@ namespace Services
 
             return stats;
         }
+
+
+        public List<SelectListItem> GetCountryEnums()
+        {
+            var genders = Enum.GetValues<Country>()
+                .Select(c => new SelectListItem()
+                {
+                    Value = c.ToString(),
+                    Text = c.ToString()
+                }).ToList();
+
+            
+
+            return genders;
+        }
+
+
     }
 }

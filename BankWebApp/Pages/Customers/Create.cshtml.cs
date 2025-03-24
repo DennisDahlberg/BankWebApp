@@ -3,6 +3,7 @@ using DataAccessLayer.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Services.Intefaces;
 
 namespace BankWebApp.Pages.Customers
@@ -11,18 +12,22 @@ namespace BankWebApp.Pages.Customers
     public class CreateModel : PageModel
     {
         private readonly ICustomerService _customerService;
+        private readonly ICountryService _countryService;
 
-        public CreateModel(ICustomerService customerService)
+        public CreateModel(ICustomerService customerService, ICountryService countryService)
         {
             _customerService = customerService;
+            _countryService = countryService;
         }
 
         [BindProperty]
         public CreateCustomerViewModel Customer { get; set; }
 
+        public List<SelectListItem> Countries { get; set; }
+
         public void OnGet()
         {
-
+            Countries = _countryService.GetCountryEnums();
         }
 
 
@@ -30,6 +35,7 @@ namespace BankWebApp.Pages.Customers
         {
             if (!ModelState.IsValid)
             {
+                Countries = _countryService.GetCountryEnums();
                 return Page();
             }
 

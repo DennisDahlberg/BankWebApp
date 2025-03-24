@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.DTOs;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace Services.Intefaces
     {
         CountryStatsDTO GetACountriesStats(string countryName);
         List<CountryStatsDTO> GetCountriesStats();
+        List<SelectListItem> GetCountryEnums();
     }
 }
