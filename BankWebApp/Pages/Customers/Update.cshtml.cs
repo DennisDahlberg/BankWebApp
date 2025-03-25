@@ -23,11 +23,25 @@ namespace BankWebApp.Pages.Customers
         public CreateCustomerViewModel Customer { get; set; }
 
         public List<SelectListItem> Countries { get; set; }
+        public int CustomerId { get; set; }
 
-        public void OnGet()
+        public void OnGet(int customerId)
         {
+            CustomerId = customerId;
             Countries = _countryService.GetCountryEnums();
-            //var customerDTO = 
+            var customerDTO = _customerService.GetCreateCustomer(customerId);
+            Customer = new CreateCustomerViewModel()
+            {
+                Givenname = customerDTO.Givenname,
+                Surname = customerDTO.Surname,
+                Streetaddress = customerDTO.Streetaddress,
+                City = customerDTO.City,
+                Country = customerDTO.Country,
+                Gender = customerDTO.Gender,
+                Zipcode = customerDTO.Zipcode,
+                Emailaddress = customerDTO.Emailaddress,
+                Phonenumber = customerDTO.Phonenumber,
+            };
         }
 
     }

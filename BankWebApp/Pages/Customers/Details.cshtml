@@ -35,7 +35,7 @@
                                 <input asp-for="@Model.Customer.Address" class="form-control" />
                                 <input asp-for="@Model.Customer.City" class="form-control" />
                                 <input asp-for="@Model.Customer.Country" class="form-control" />
-                                <input type="submit" class="btn btn-success" value="Update">
+                                <a asp-page="/Customers/Update" asp-route-customerId="@Model.CustomerId">Update</a>
                             </div>
                             
                         </form>

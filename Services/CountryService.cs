@@ -68,6 +68,20 @@ namespace Services
             return stats;
         }
 
+        public Country GetEnumFromString(string country)
+        {
+            if (country.ToLower() == "sweden")
+                return Country.Sweden;
+
+            else if (country.ToLower() == "norway")
+                return Country.Norway;
+
+            else if (country.ToLower() == "denmark")
+                return Country.Denmark;
+
+            else 
+                return Country.Finland;
+        }
 
         public List<SelectListItem> GetCountryEnums()
         {

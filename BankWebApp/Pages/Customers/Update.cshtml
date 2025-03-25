@@ -69,7 +69,7 @@
 
             <div class="form-group mb-2">
                 <select class="form-control" asp-for="@Model.Customer.Country" asp-items="@Model.Countries" required>
-                    <option selected disabled value="">Choose a country</option>
+                    
                 </select>
                 <span asp-validation-for="@Model.Customer.Country" class="text-danger"></span>
             </div>
@@ -89,8 +89,8 @@
 
 
             <div class="d-flex gap-2">
-                <input type="submit" class="btn btn-success" value="Create">
-                <a class="btn btn-secondary" asp-page="Customers/Customers">Back</a>
+                <input type="submit" class="btn btn-success" value="Update">
+                <a class="btn btn-secondary" asp-page="/Customers/Details" asp-route-id="@Model.CustomerId">Back</a>
             </div>
 
 

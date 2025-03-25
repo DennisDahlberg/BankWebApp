@@ -16,10 +16,12 @@ namespace Services
     public class CustomerService : ICustomerService
     {
         private readonly BankAppDataContext _dbContext;
+        private readonly ICountryService _countryService;
 
-        public CustomerService(BankAppDataContext dbContext)
+        public CustomerService(BankAppDataContext dbContext, ICountryService countryService)
         {
             _dbContext = dbContext;
+            _countryService = countryService;
         }
 
         
@@ -80,7 +82,7 @@ namespace Services
                 Surname = customer.Surname,
                 Gender = customer.Gender,
                 City = customer.City,
-                Country = customer.Country,
+                Country = _countryService.GetEnumFromString(customer.Country),
                 Streetaddress = customer.Streetaddress,
                 Emailaddress = customer.Emailaddress,
                 Phonenumber = customer.Telephonenumber,
@@ -103,16 +105,16 @@ namespace Services
                 Emailaddress = customer.Emailaddress,
                 Zipcode = customer.Zipcode,
             };
-            if (customer.Country == Country.Sweden.ToString())
+            if (customer.Country == Country.Sweden)
                 newCustomer.CountryCode = "SE";
 
-            else if (customer.Country == Country.Norway.ToString())
+            else if (customer.Country == Country.Norway)
                 newCustomer.CountryCode = "NO";
 
-            else if (customer.Country == Country.Denmark.ToString())
+            else if (customer.Country == Country.Denmark)
                 newCustomer.CountryCode = "DK";
 
-            else if (customer.Country == Country.Finland.ToString())
+            else if (customer.Country == Country.Finland)
                 newCustomer.CountryCode = "FI";
 
             var account = new Account()

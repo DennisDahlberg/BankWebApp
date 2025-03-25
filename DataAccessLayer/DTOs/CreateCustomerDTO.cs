@@ -21,7 +21,7 @@ namespace DataAccessLayer.DTOs
 
         public string City { get; set; }
 
-        public string Country { get; set; }
+        public Country Country { get; set; }
 
         public string Zipcode { get; set; }
 
