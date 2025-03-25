@@ -9,7 +9,8 @@
     <div class="container text-center" data-aos="fade-down" data-aos-delay="100">
         <div class="row justify-content-center">
             
-                <div class="customer-container d-flex py-3 gap-5 justify-content-center rounded">
+                <div class="customer-container d-flex py-3 gap-5 justify-content-center rounded position-relative">
+                    <a asp-page="/Customers/Customers" class="btn btn-secondary position-absolute top-0 start-0">Back</a>
                     <div class="customer-information">
                         <img src="@Model.CustomerImageUrl" alt="Customer picture" class="rounded-circle mb-3"/>
                         <form method="get">                            
@@ -35,7 +36,7 @@
                                 <input asp-for="@Model.Customer.Address" class="form-control" />
                                 <input asp-for="@Model.Customer.City" class="form-control" />
                                 <input asp-for="@Model.Customer.Country" class="form-control" />
-                                <a asp-page="/Customers/Update" asp-route-customerId="@Model.CustomerId">Update</a>
+                                <a asp-page="/Customers/Update" asp-route-customerId="@Model.CustomerId" class="btn btn-success">Update</a>
                             </div>
                             
                         </form>
