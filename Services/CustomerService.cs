@@ -137,5 +137,23 @@ namespace Services
 
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task UpdateCustomer(int customerId, CreateCustomerDTO customer)
+        {
+            var customerToUpdate = _dbContext.Customers.First(c => c.CustomerId == customerId);
+
+            customerToUpdate.Givenname = customer.Givenname;
+            customerToUpdate.Surname = customer.Surname;
+            customerToUpdate.Gender = customer.Gender;
+            customerToUpdate.Streetaddress = customer.Streetaddress;
+            customerToUpdate.City = customer.City;
+            customerToUpdate.Country = customer.Country.ToString();
+            customerToUpdate.Zipcode = customer.Zipcode;
+            customerToUpdate.Emailaddress = customer.Emailaddress;
+            customerToUpdate.Telephonenumber = customer.Phonenumber;
+            
+            _dbContext.Customers.Update(customerToUpdate);
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }

@@ -15,5 +15,6 @@ namespace Services.Intefaces
         CustomerDTO GetCustomerByIdAsync(int id);
         CreateCustomerDTO GetCreateCustomer(int customerId);
         Task CreateCustomerWithAccount(CreateCustomerDTO customer);
+        Task UpdateCustomer(int customerId, CreateCustomerDTO customer);
     }
 }

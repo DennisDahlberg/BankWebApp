@@ -1,4 +1,5 @@
 using BankWebApp.ViewModels;
+using DataAccessLayer.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -22,8 +23,9 @@ namespace BankWebApp.Pages.Customers
         [BindProperty]
         public CreateCustomerViewModel Customer { get; set; }
 
-        public List<SelectListItem> Countries { get; set; }
+        [BindProperty]
         public int CustomerId { get; set; }
+        public List<SelectListItem> Countries { get; set; }
 
         public void OnGet(int customerId)
         {
@@ -44,5 +46,31 @@ namespace BankWebApp.Pages.Customers
             };
         }
 
+
+
+        public IActionResult OnPost()
+        {
+            if (!ModelState.IsValid)
+            {
+                Countries = _countryService.GetCountryEnums();
+                return Page();
+            }
+
+            var customerDTO = new CreateCustomerDTO()
+            {
+                Givenname = Customer.Givenname,
+                Surname = Customer.Surname,
+                Gender = Customer.Gender,
+                Streetaddress = Customer.Streetaddress,
+                City = Customer.City,
+                Country = Customer.Country,
+                Emailaddress = Customer.Emailaddress,
+                Phonenumber = Customer.Phonenumber,
+                Zipcode = Customer.Zipcode,
+            };
+
+            _customerService.UpdateCustomer(CustomerId, customerDTO);
+            return RedirectToPage("/Customers/Details", new { id = CustomerId });
+        }
     }
 }
