@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.DTOs
 {
-    public class CustomerNameDTO
+    public class MoneyLaunderingCustomerDTO
     {
         public string Firstname { get; set; }
         public string Lastname { get; set; }
+        public int CustomerId { get; set; }
     }
 }

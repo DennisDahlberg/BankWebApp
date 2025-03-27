@@ -56,6 +56,18 @@ namespace Services
             
         }
 
+        public List<MoneyLaunderingCustomerDTO> GetCustomersByCountry(string country)
+        {
+            var customers = _dbContext.Customers.Where(c => c.Country == country);
+
+            return customers.Select(c => new MoneyLaunderingCustomerDTO()
+            {
+                CustomerId = c.CustomerId,
+                Firstname = c.Givenname,
+                Lastname = c.Surname,
+            }).ToList();
+        }
+
         public CustomerDTO GetCustomerByIdAsync(int id)
         {
            var customer =  _dbContext.Customers.FirstOrDefault(c => c.CustomerId == id);

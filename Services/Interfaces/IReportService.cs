@@ -1,5 +1,4 @@
 ﻿using DataAccessLayer.DTOs;
-using DataAccessLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace Services.Interfaces
 {
-    public interface ITransactionService
+    public interface IReportService
     {
-        
+        void WriteReport(List<SuspectTransactionDTO> transactions, string country);
+
     }
 }

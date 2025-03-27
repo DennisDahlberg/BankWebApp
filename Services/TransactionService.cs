@@ -19,37 +19,18 @@ namespace Services
             _dbContext = dbContext;
         }
 
-        public async Task<List<TransactionDTO>> GetTransactionsFromDate(DateOnly date)
+        public void GetSuspectTransactionsFromCountry(List<MoneyLaunderingCustomerDTO> customers, DateOnly date)
         {
-            try
-            {
-                var transactionDTOs = await _dbContext.Transactions
-                    .Where(t => t.Date >= date && t.Amount > 15000)
-                    .Join(
-                        _dbContext.Dispositions.Include(d => d.Customer),
-                        transaction => transaction.AccountId,
-                        disposition => disposition.AccountId,
-                        (transaction, disposition) => new TransactionDTO
-                        {
-                            AccountId = transaction.AccountId,
-                            Amount = transaction.Amount,
-                            Date = transaction.Date,
-                            TransactionId = transaction.TransactionId,
-                            Firstname = disposition.Customer.Givenname,
-                            Lastname = disposition.Customer.Surname
-                        })
-                    .AsNoTracking()
-                    .ToListAsync();
+            List<SuspectTransactionDTO> suspectTransactionDTOs = new List<SuspectTransactionDTO>();
 
-                return transactionDTOs;
-            }
-            catch (Exception ex)
+            foreach (var customer in customers)
             {
-                Console.WriteLine($"Error in GetTransactionsFromDate: {ex.Message}");
-                return new List<TransactionDTO>(); // Return an empty list instead of crashing
+
             }
+            //TODO
         }
 
 
+        
     }
 }
