@@ -27,9 +27,10 @@ namespace MoneyLaunderingApp
             foreach (var country in countries)
             {
                 Console.WriteLine(country.Value);
-                var customers = _customerService.GetCustomersByCountry(country.Text);
 
+                var transactions = await _transactionService.GetSuspectTransactions(DateOnly.FromDateTime(DateTime.Now), country.Text);
 
+                Console.WriteLine(transactions.Count);
             }
         }
     }

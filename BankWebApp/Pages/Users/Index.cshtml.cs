@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
 using Services;
-using Services.Intefaces;
+using Services.Interfaces;
 using System.Globalization;
 
 namespace BankWebApp.Pages.Users

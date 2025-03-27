@@ -2,7 +2,7 @@ using DataAccessLayer.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Services.Intefaces;
+using Services.Interfaces;
 
 namespace BankWebApp.Pages.Customers.Accounts
 {

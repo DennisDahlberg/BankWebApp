@@ -14,7 +14,6 @@ namespace Services.Interfaces
     {
         PagedResult<Customer> GetAllCustomers(string sortBy, string order, int page, string q);
         CustomerDTO GetCustomerByIdAsync(int id);
-        List<MoneyLaunderingCustomerDTO> GetCustomersByCountry(string country);
         CreateCustomerDTO GetCreateCustomer(int customerId);
         Task CreateCustomerWithAccount(CreateCustomerDTO customer);
         Task UpdateCustomer(int customerId, CreateCustomerDTO customer);

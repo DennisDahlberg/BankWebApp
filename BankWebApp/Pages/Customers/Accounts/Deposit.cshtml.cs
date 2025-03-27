@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Services.Intefaces;
+using Services.Interfaces;
 using System.ComponentModel.DataAnnotations;
 
 namespace BankWebApp.Pages.Customers.Accounts

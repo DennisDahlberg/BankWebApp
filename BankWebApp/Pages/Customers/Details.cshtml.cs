@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Services.APIs;
-using Services.Intefaces;
+using Services.Interfaces;
 using Services.ViewModels;
 
 namespace BankWebApp.Pages.Customers

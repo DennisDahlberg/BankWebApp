@@ -10,6 +10,6 @@ namespace Services.Interfaces
 {
     public interface ITransactionService
     {
-        
+        Task<List<SuspectTransactionDTO>> GetSuspectTransactions(DateOnly date, string country);
     }
 }
