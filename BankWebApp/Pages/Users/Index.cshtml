@@ -32,21 +32,36 @@
                 <thead>
                     <tr>
 
-                        <th scope="col">Id</th>
+                        <th scope="col">
+                            Id
+                            <a asp-page="/Users/Index"
+                               asp-route-sortBy="Id"
+                               asp-route-q="@Model.Q"
+                               asp-route-sortOrder="asc">
+                                <i class="fa-solid fa-angle-up"></i>
+                            </a>
+                            <a asp-page="/Users/Index"
+                               asp-route-sortBy="Id"
+                               asp-route-q="@Model.Q"
+                               asp-route-sortOrder="desc">
+                                <i class="fa-solid fa-angle-down"></i>
+                            </a>
+                        </th>
+
                         <th scope="col">
                             Email
-                            @* <a asp-page="/Users/Index"
-                               asp-route-sortBy="Name"
+                            <a asp-page="/Users/Index"
+                               asp-route-sortBy="Email"
                                asp-route-sortOrder="asc"
                                asp-route-q="@Model.Q">
                                 <i class="fa-solid fa-angle-up"></i>
                             </a>
                             <a asp-page="/Users/Index"
-                               asp-route-sortBy="Name"
+                               asp-route-sortBy="Email"
                                asp-route-sortOrder="desc"
                                asp-route-q="@Model.Q">
                                 <i class="fa-solid fa-angle-down"></i>
-                            </a> *@
+                            </a>
                         </th>
                         <th scope="col">
                             Role
