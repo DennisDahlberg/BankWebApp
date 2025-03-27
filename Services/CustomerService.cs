@@ -9,7 +9,7 @@ using DataAccessLayer.Enums;
 using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Services.Intefaces;
+using Services.Interfaces;
 
 namespace Services
 {

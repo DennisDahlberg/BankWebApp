@@ -3,7 +3,7 @@ using DataAccessLayer.Enums;
 using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Services.Intefaces;
+using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
