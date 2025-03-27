@@ -1,4 +1,7 @@
 ﻿using Autofac;
+using DataAccessLayer.Models;
+using Services;
+using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +15,8 @@ namespace MoneyLaunderingApp.AutoFac
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<App>().AsSelf();
+            builder.RegisterType<BankAppDataContext>().AsSelf();
+            builder.RegisterType<TransactionService>().As<ITransactionService>();
         }
 
         public static IContainer Configure()

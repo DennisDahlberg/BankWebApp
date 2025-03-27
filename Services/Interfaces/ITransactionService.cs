@@ -10,6 +10,6 @@ namespace Services.Interfaces
 {
     public interface ITransactionService
     {
-        List<TransactionDTO> GetTransactions();
+        Task<List<TransactionDTO>> GetTransactionsFromDate(DateOnly date);
     }
 }
