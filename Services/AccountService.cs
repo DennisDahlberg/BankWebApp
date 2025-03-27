@@ -82,7 +82,25 @@ namespace Services
         
         public void CreateAccount(int customerId)
         {
-            
+            var customer = _dbContext.Customers.First(c => c.CustomerId == customerId);
+
+            var account = new Account()
+            {
+                Frequency = "Monthly",
+                Created = DateOnly.FromDateTime(DateTime.Now),
+                Balance = 0,
+            };
+
+            var disposition = new Disposition()
+            {
+                Account = account,
+                Customer = customer,
+                Type = "Owner"
+            };
+
+            _dbContext.Accounts.Add(account);
+            _dbContext.Dispositions.Add(disposition);
+            _dbContext.SaveChanges();
         }
 
     }

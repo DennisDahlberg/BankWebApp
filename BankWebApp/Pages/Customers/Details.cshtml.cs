@@ -75,6 +75,9 @@ namespace BankWebApp.Pages.Customers
                 Country = customerDTO.Country,
                 City = customerDTO.City,
             };
+
+            _accountService.CreateAccount(CustomerId);
+
             Accounts = _accountService.GetAllAccountsFromCustomer(CustomerId)
                 .Select(a => new AccountViewModel
                 {
