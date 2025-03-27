@@ -23,23 +23,27 @@ namespace BankWebApp.Pages.Customers
 
         public List<AccountViewModel> Accounts { get; set; }
         public CustomerViewModel Customer { get; set; }
+
+        [BindProperty]
         public string CustomerImageUrl { get; set; }
+
+        [BindProperty]
         public int CustomerId { get; set; }
 
         public async Task OnGetAsync(int id)
         {
             CustomerId = id;
-            var customer = _customerService.GetCustomerByIdAsync(id);
+            var customerDTO = _customerService.GetCustomerByIdAsync(id);
 
             Customer = new CustomerViewModel
             {
-                GivenName = customer.GivenName,
-                SurName = customer.SurName,
-                CustomerId = customer.CustomerId,
-                Gender = customer.Gender,
-                Address = customer.Address,
-                Country = customer.Country,
-                City = customer.City,
+                GivenName = customerDTO.GivenName,
+                SurName = customerDTO.SurName,
+                CustomerId = customerDTO.CustomerId,
+                Gender = customerDTO.Gender,
+                Address = customerDTO.Address,
+                Country = customerDTO.Country,
+                City = customerDTO.City,
             };
 
             CustomerImageUrl = await _randomUserService.FetchFromApi(id);
@@ -51,7 +55,38 @@ namespace BankWebApp.Pages.Customers
                     AccountId = a.AccountId,
                    
                 }).ToList();
-
         }
+
+        public IActionResult OnPost()
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToPage("/Customers/Customers");
+            }
+
+            var customerDTO = _customerService.GetCustomerByIdAsync(CustomerId);
+            Customer = new CustomerViewModel
+            {
+                GivenName = customerDTO.GivenName,
+                SurName = customerDTO.SurName,
+                CustomerId = customerDTO.CustomerId,
+                Gender = customerDTO.Gender,
+                Address = customerDTO.Address,
+                Country = customerDTO.Country,
+                City = customerDTO.City,
+            };
+            Accounts = _accountService.GetAllAccountsFromCustomer(CustomerId)
+                .Select(a => new AccountViewModel
+                {
+                    Balance = a.Balance,
+                    AccountId = a.AccountId,
+
+                }).ToList();
+
+
+
+            return Page();
+        }
+
     }
 }

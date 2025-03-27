@@ -51,63 +51,69 @@
                             <h2>Accounts</h2>
                         </div>
 
-                    <div class="table-responsive">
+                        <div class="table-responsive">
 
-                        <table class="table custom-table">
-                            <thead>
-                                <tr>
-
-                                    <th scope="col">Id</th>
-                                    <th scope="col">Balance</th>
-                                    <th scope="col"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var account in Model.Accounts)
-                                {
+                            <table class="table custom-table">
+                                <thead>
                                     <tr>
-                                        <td>@account.AccountId</td>
-                                        <td>@(account.Balance)kr</td>  
-                                        <td>
-                                            <div class="d-flex justify-content-end gap-2">
-                                                <a>
-                                                    <span class="customer-detail-link">
-                                                        <i class="fa-solid fa-circle-info fa-lg"></i>
-                                                    </span>
-                                                </a>
 
-                                                <a asp-page="Accounts/Deposit" asp-route-accountId="@account.AccountId" asp-route-customerId="@Model.CustomerId">
-                                                    <span class="customer-detail-link">
-                                                        <i class="fa-solid fa-plus fa-lg"></i>
-                                                    </span>
-                                                </a>
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Balance</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var account in Model.Accounts)
+                                    {
+                                        <tr>
+                                            <td>@account.AccountId</td>
+                                            <td>@(account.Balance)kr</td>  
+                                            <td>
+                                                <div class="d-flex justify-content-end gap-2">
+                                                    <a>
+                                                        <span class="customer-detail-link">
+                                                            <i class="fa-solid fa-circle-info fa-lg"></i>
+                                                        </span>
+                                                    </a>
 
-                                                <a asp-page="Accounts/Withdrawal" asp-route-accountId="@account.AccountId" asp-route-customerId="@Model.CustomerId">
-                                                    <span class="customer-detail-link">
-                                                        <i class="fa-solid fa-minus fa-lg"></i>
-                                                    </span>
-                                                </a>
+                                                    <a asp-page="Accounts/Deposit" asp-route-accountId="@account.AccountId" asp-route-customerId="@Model.CustomerId">
+                                                        <span class="customer-detail-link">
+                                                            <i class="fa-solid fa-plus fa-lg"></i>
+                                                        </span>
+                                                    </a>
 
-                                                <a>
-                                                    <span class="customer-detail-link">
-                                                        <i class="fa-solid fa-money-bill-transfer fa-lg"></i>
-                                                    </span>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>                                    
-                                }
+                                                    <a asp-page="Accounts/Withdrawal" asp-route-accountId="@account.AccountId" asp-route-customerId="@Model.CustomerId">
+                                                        <span class="customer-detail-link">
+                                                            <i class="fa-solid fa-minus fa-lg"></i>
+                                                        </span>
+                                                    </a>
+
+                                                    <a>
+                                                        <span class="customer-detail-link">
+                                                            <i class="fa-solid fa-money-bill-transfer fa-lg"></i>
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>                                    
+                                    }
 
 
 
-                                
-                            </tbody>
-                        </table>
-                    </div>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+
+                    <button type="button" class="btn btn-success mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <i class="fa-solid fa-plus"></i> Account
+                    </button>
 
 
-                        
-                    </div>
+
+
+
+                </div>
 
                 </div>
             
@@ -115,5 +121,26 @@
     </div>
 </section>
 
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content text-light bg-dark">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Do you want to create a new account?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <form method="post">
+                    <input type="hidden" asp-for="@Model.CustomerId" />
+                    <input type="hidden" asp-for="@Model.CustomerImageUrl" />
+                    <button type="submit" class="btn btn-success">Create</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
