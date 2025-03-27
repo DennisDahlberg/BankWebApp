@@ -67,41 +67,17 @@
 
                     @if (User.IsInRole("Admin"))
                     {
-                    <li>
-                        <a class="navbarLink" asp-area="Identity" asp-page="/Account/Register">Register</a>
-                    </li>
+                        <li>
+                            <a class="navbarLink" asp-page="/Cashiers/Index">Employees</a>
+                        </li>
+                        <li>
+                            <a class="navbarLink" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                        </li>
                     }
 
-                    @* <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li class="dropdown">
-                        <a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                        <ul>
-                            <li><a href="#">Dropdown 1</a></li>
-                            <li class="dropdown">
-                                <a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                                <ul>
-                                    <li><a href="#">Deep Dropdown 1</a></li>
-                                    <li><a href="#">Deep Dropdown 2</a></li>
-                                    <li><a href="#">Deep Dropdown 3</a></li>
-                                    <li><a href="#">Deep Dropdown 4</a></li>
-                                    <li><a href="#">Deep Dropdown 5</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Dropdown 2</a></li>
-                            <li><a href="#">Dropdown 3</a></li>
-                            <li><a href="#">Dropdown 4</a></li>
-                        </ul>
-                    </li>
-                    *@
+                    
                     @if (SignInManager.IsSignedIn(User))
-                    {
-                        @* <li>
-                            <a class="pr-3" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
-                        </li> *@
+                    {                       
                         <li>
                             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
                                 <button type="submit" class="logoutBtn"> Logout</button>
