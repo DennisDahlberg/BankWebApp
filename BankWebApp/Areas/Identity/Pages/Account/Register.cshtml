@@ -36,8 +36,11 @@
     
                     <input asp-for="Input.UserRole" type="radio" class="form-check-input" value="Cashier" />
                 <label asp-for="Input.UserRole">Cashier</label> <br />
-    
-                <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-success mt-3">Register</button>
+                
+                <div class="w-100 mt-3">
+                    <button id="registerSubmit" type="submit" class="btn btn-success w-25">Register</button>
+                    <a asp-page="/Users/Index" class="btn btn-secondary w-25">Back</a>
+                </div>
             </form>
         </div>
         
