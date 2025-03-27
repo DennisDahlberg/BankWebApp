@@ -5,14 +5,14 @@ namespace MoneyLaunderingApp
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             var container = ProgramModule.Configure();
 
             using (var scope = container.BeginLifetimeScope())
             {
                 var app = container.Resolve<App>();
-                app.Run();
+                await app.Run();
             }
         }
     }

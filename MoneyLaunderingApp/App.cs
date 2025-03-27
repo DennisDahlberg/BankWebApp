@@ -20,6 +20,7 @@ namespace MoneyLaunderingApp
         {
             var sketchyTransactions = await _transactionService.GetTransactionsFromDate(DateOnly.MinValue);
             Console.WriteLine("Success");
+            Console.ReadLine();
         }
     }
 }

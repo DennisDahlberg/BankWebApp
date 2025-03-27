@@ -21,37 +21,35 @@ namespace Services
 
         public async Task<List<TransactionDTO>> GetTransactionsFromDate(DateOnly date)
         {
-            var transactions = _dbContext.Transactions
-                .Where(t => t.Date >= date && t.Amount > 15000);
-            var transactionDTOs = new List<TransactionDTO>();
-
-            foreach (var transaction in transactions)
+            try
             {
-                var customerName = GetUserFromAccountId(transaction.AccountId);
+                var transactionDTOs = await _dbContext.Transactions
+                    .Where(t => t.Date >= date && t.Amount > 15000)
+                    .Join(
+                        _dbContext.Dispositions.Include(d => d.Customer),
+                        transaction => transaction.AccountId,
+                        disposition => disposition.AccountId,
+                        (transaction, disposition) => new TransactionDTO
+                        {
+                            AccountId = transaction.AccountId,
+                            Amount = transaction.Amount,
+                            Date = transaction.Date,
+                            TransactionId = transaction.TransactionId,
+                            Firstname = disposition.Customer.Givenname,
+                            Lastname = disposition.Customer.Surname
+                        })
+                    .AsNoTracking()
+                    .ToListAsync();
 
-                transactionDTOs.Add(new TransactionDTO()
-                {
-                    AccountId = transaction.AccountId,
-                    Amount = transaction.Amount,
-                    Date = transaction.Date,
-                    TransactionId = transaction.TransactionId,
-                    Firstname = customerName.Firstname,
-                    Lastname = customerName.Lastname,
-                });
+                return transactionDTOs;
             }
-            return transactionDTOs;
-
-        }
-
-        public CustomerNameDTO GetUserFromAccountId(int accountId)
-        {
-            var user = _dbContext.Dispositions.Where(d => d.AccountId == accountId).Include(d => d.Customer).FirstOrDefault();
-
-            return new CustomerNameDTO()
+            catch (Exception ex)
             {
-                Firstname = user.Customer.Givenname,
-                Lastname = user.Customer.Surname,
-            };
+                Console.WriteLine($"Error in GetTransactionsFromDate: {ex.Message}");
+                return new List<TransactionDTO>(); // Return an empty list instead of crashing
+            }
         }
+
+
     }
 }
