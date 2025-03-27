@@ -1,4 +1,6 @@
-﻿using DataAccessLayer.DTOs;
+﻿using BankWebApp.Infrastructure.Paging;
+using DataAccessLayer.DTOs;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,6 @@ namespace Services.Intefaces
 {
     public interface IUserService
     {
-        Task<List<UserDTO>> GetAllUsersAsync();
+        Task<PagedResult<UserDTO>> GetAllUsers(string sortBy, string sortOrder, int pageNo, string q);
     }
 }

@@ -1,7 +1,11 @@
+using Azure;
 using BankWebApp.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Data.SqlClient;
+using Services;
 using Services.Intefaces;
+using System.Globalization;
 
 namespace BankWebApp.Pages.Users
 {
@@ -16,13 +20,26 @@ namespace BankWebApp.Pages.Users
         }
 
         public List<UserViewModel> Users { get; set; }
+        public int CurrentPage { get; set; }
+        public int PageCount { get; set; }
+        public string SortOrder { get; set; }
+        public string SortBy { get; set; }
         public string Q { get; set; }
-
-        public async Task OnGet()
+        public async Task OnGet(string sortBy, string sortOrder, int pageNo, string q)
         {
-            var userDTOs = await _userService.GetAllUsersAsync();
+            if (pageNo == 0)
+                pageNo = 1;
 
-            Users = userDTOs.Select(u => new UserViewModel()
+            Q = q;
+            CurrentPage = pageNo;
+            SortBy = sortBy;
+            SortOrder = sortOrder;
+
+            var result = await _userService.GetAllUsers(sortBy, sortOrder, pageNo, q);
+
+            PageCount = result.PageCount;
+
+            Users = result.Results.Select(u => new UserViewModel()
             {
                 UserId = u.UserId,
                 Email = u.Email,
