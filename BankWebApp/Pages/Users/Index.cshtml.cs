@@ -16,6 +16,7 @@ namespace BankWebApp.Pages.Users
         }
 
         public List<UserViewModel> Users { get; set; }
+        public string Q { get; set; }
 
         public async Task OnGet()
         {
