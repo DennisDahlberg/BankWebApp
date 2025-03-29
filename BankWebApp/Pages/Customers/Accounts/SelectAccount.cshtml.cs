@@ -1,3 +1,4 @@
+using BankWebApp.ViewModels;
 using DataAccessLayer.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,12 +20,29 @@ namespace BankWebApp.Pages.Customers.Accounts
 
         public int AccountId { get; set; }
         public int CustomerId { get; set; }
-        public List<AccountDTO> Accounts { get; set; }
+        public List<AccountWithCustomerNameViewModel> CustomerAccounts { get; set; }
+        public List<AccountWithCustomerNameViewModel> AllAccounts { get; set; }
 
         public void OnGet(int accountId, int customerId)
         {
             AccountId = accountId;
-            Accounts = _accountService.GetAllAccounsFromCustomerExcludingOne(accountId, customerId);
+            CustomerAccounts = _accountService.GetAllAccounsFromCustomerExcludingOne(accountId, customerId)
+                .Select(a => new AccountWithCustomerNameViewModel()
+                {
+                    AccountId = a.AccountId,
+                    Balance = a.Balance,
+                    Firstname = a.Firstname,
+                    Lastname = a.Lastname,                    
+                }).ToList();
+
+            AllAccounts = _accountService.GetAllAccounsFromAllCustomerExcludingOne(customerId)
+                .Select(a => new AccountWithCustomerNameViewModel()
+                {
+                    AccountId = a.AccountId,
+                    Balance = a.Balance,
+                    Firstname = a.Firstname,
+                    Lastname = a.Lastname,
+                }).ToList();
         }
     }
 }
