@@ -11,6 +11,7 @@ namespace Services.Interfaces
     public interface IAccountService
     {
         List<AccountDTO> GetAllAccountsFromCustomer(int customerId);
+        List<AccountWithCustomerNameDTO> GetAllAccounsFromCustomerExcludingOne(int accountId, int customerId);
         AccountDTO GetAccount(int customerId);
         void CreateAccount(int customerId);
         void Deposit(int accountId, decimal amount);

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Identity.Client;
 
 namespace Services
 {
@@ -29,6 +30,56 @@ namespace Services
             {
                 Balance = a.Balance,
                 AccountId = a.AccountId,
+            }).ToList();
+        }
+
+        public List<AccountWithCustomerNameDTO> GetAllAccounsFromCustomerExcludingOne(int accountId, int customerId)
+        {
+            var customer = _dbContext.Customers
+                .Where(c => c.CustomerId == customerId)
+                .FirstOrDefault();
+
+            var accounts = _dbContext.Accounts
+                .Where(a => a.AccountId != accountId &&
+                a.Dispositions.Any(d => d.CustomerId == customerId));
+
+
+            return accounts.Select(a => new AccountWithCustomerNameDTO
+            {
+                Balance = a.Balance,
+                AccountId = a.AccountId,
+                Firstname = customer.Givenname,
+                Lastname = customer.Surname,                
+            }).ToList();
+        }
+
+        public List<AccountWithCustomerNameDTO> GetAllAccounsFromAllCustomerExcludingOne(int customerId)
+        {
+            var accounts = _dbContext.Accounts
+                .Where(a => a.Dispositions.Any(d => d.CustomerId != customerId))
+                .Join(
+                    _dbContext.Dispositions,
+                    a => a.AccountId,
+                    d => d.AccountId,
+                    (a, d) => new { a, d })
+                .Join(
+                    _dbContext.Customers,
+                    ad => ad.d.CustomerId,
+                    c => c.CustomerId,
+                    (ad, c) => new
+                    {
+                        AccountId = ad.a.AccountId,
+                        Balance = ad.a.Balance,
+                        Firstname = c.Givenname,
+                        Lastname = c.Surname,
+                    });
+
+            return accounts.Select(a => new AccountWithCustomerNameDTO()
+            {
+                AccountId = a.AccountId,
+                Balance = a.Balance,
+                Firstname = a.Firstname,
+                Lastname = a.Lastname,
             }).ToList();
         }
 
