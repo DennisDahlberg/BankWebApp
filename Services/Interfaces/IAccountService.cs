@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.DTOs;
+﻿using BankWebApp.Infrastructure.Paging;
+using DataAccessLayer.DTOs;
 using DataAccessLayer.Enums;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace Services.Interfaces
     {
         List<AccountDTO> GetAllAccountsFromCustomer(int customerId);
         List<AccountWithCustomerNameDTO> GetAllAccounsFromCustomerExcludingOne(int accountId, int customerId);
-        List<AccountWithCustomerNameDTO> GetAllAccounsFromAllCustomerExcludingOne(int customerId);
+        PagedResult<AccountWithCustomerNameDTO> GetAllAccounsFromAllCustomerExcludingOne(int customerId, int page, string orderBy, string sortBy, string q);
         AccountDTO GetAccount(int customerId);
         void CreateAccount(int customerId);
         void Deposit(int accountId, decimal amount);

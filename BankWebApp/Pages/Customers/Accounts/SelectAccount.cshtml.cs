@@ -28,6 +28,7 @@ namespace BankWebApp.Pages.Customers.Accounts
         public int CurrentPage { get; set; }
         public string SortBy { get; set; }
         public string SortOrder { get; set; }
+        public int PageCount { get; set; }
 
         public void OnGet(int accountId, int customerId, string sortBy, string sortOrder, int pageNo, string q)
         {
@@ -51,17 +52,16 @@ namespace BankWebApp.Pages.Customers.Accounts
                     Lastname = a.Lastname,                    
                 }).ToList();
 
+            var result = _accountService.GetAllAccounsFromAllCustomerExcludingOne(customerId, pageNo, sortOrder, sortBy, q);
+            PageCount = result.PageCount;
 
-
-            AllAccounts = _accountService.GetAllAccounsFromAllCustomerExcludingOne(customerId)
-                .Select(a => new AccountWithCustomerNameViewModel()
-                {
-                    AccountId = a.AccountId,
-                    Balance = a.Balance,
-                    Firstname = a.Firstname,
-                    Lastname = a.Lastname,
-                }).ToList();
-
+            AllAccounts = result.Results.Select(a => new AccountWithCustomerNameViewModel()
+            {
+                AccountId = a.AccountId,
+                Balance = a.Balance,
+                Firstname = a.Firstname,
+                Lastname = a.Lastname,
+            }).ToList();
 
         }
     }

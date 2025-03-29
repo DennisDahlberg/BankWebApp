@@ -10,6 +10,9 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Identity.Client;
+using BankWebApp.Infrastructure.Paging;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using Microsoft.Data.SqlClient;
 
 namespace Services
 {
@@ -53,34 +56,53 @@ namespace Services
             }).ToList();
         }
 
-        public List<AccountWithCustomerNameDTO> GetAllAccounsFromAllCustomerExcludingOne(int customerId)
+        public PagedResult<AccountWithCustomerNameDTO> GetAllAccounsFromAllCustomerExcludingOne
+            (int customerId, int page, string sortOrder, string sortBy, string q)
         {
             var accounts = _dbContext.Accounts
                 .Where(a => a.Dispositions.Any(d => d.CustomerId != customerId))
-                .Join(
-                    _dbContext.Dispositions,
-                    a => a.AccountId,
-                    d => d.AccountId,
-                    (a, d) => new { a, d })
-                .Join(
-                    _dbContext.Customers,
-                    ad => ad.d.CustomerId,
-                    c => c.CustomerId,
-                    (ad, c) => new
-                    {
-                        AccountId = ad.a.AccountId,
-                        Balance = ad.a.Balance,
-                        Firstname = c.Givenname,
-                        Lastname = c.Surname,
-                    }).Take(30);
+                .Select(a => new
+                {
+                    AccountId = a.AccountId,
+                    Balance = a.Balance,
+                    Customers = a.Dispositions
+                        .Select(d => d.Customer)
+                        .Distinct()
+                })
+                .Select(a => new
+                {
+                    AccountId = a.AccountId,
+                    Balance = a.Balance,
+                    Firstname = a.Customers.First().Givenname,
+                    Lastname = a.Customers.First().Surname
+                });
 
-            return accounts.Select(a => new AccountWithCustomerNameDTO()
+            if (!string.IsNullOrEmpty(q))
+            {
+                accounts = accounts
+                    .Where(c => c.Firstname.Contains(q) ||
+                    c.Lastname.Contains(q) ||
+                    c.AccountId.ToString().Contains(q));
+            }
+
+            if (sortBy == "Id")
+                accounts = sortOrder == "asc" ? accounts.OrderBy(c => c.AccountId) : accounts.OrderByDescending(c => c.AccountId);
+
+            else if (sortBy == "Name")
+                accounts = sortOrder == "asc" ? accounts.OrderBy(c => c.Lastname) : accounts.OrderByDescending(c => c.Lastname);
+
+            else if (sortBy == "Name")
+                accounts = sortOrder == "asc" ? accounts.OrderBy(c => c.Balance) : accounts.OrderByDescending(c => c.Balance);
+
+            var accountDTOs = accounts.Select(a => new AccountWithCustomerNameDTO()
             {
                 AccountId = a.AccountId,
                 Balance = a.Balance,
                 Firstname = a.Firstname,
                 Lastname = a.Lastname,
-            }).ToList();
+            });
+
+            return accountDTOs.GetPaged(page, 50);
         }
 
         public AccountDTO GetAccount(int accountId)
