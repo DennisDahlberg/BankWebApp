@@ -33,7 +33,6 @@ namespace BankWebApp.Pages.Customers
             CurrentPage = pageNo;
             SortBy = sortBy;
             SortOrder = sortOrder;
-            Q = q;
 
             var result = _customerService.GetAllCustomers(sortBy, sortOrder, pageNo, q);
 

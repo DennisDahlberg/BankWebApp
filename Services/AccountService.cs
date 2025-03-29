@@ -72,7 +72,7 @@ namespace Services
                         Balance = ad.a.Balance,
                         Firstname = c.Givenname,
                         Lastname = c.Surname,
-                    });
+                    }).Take(30);
 
             return accounts.Select(a => new AccountWithCustomerNameDTO()
             {
