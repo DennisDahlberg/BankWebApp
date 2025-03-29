@@ -20,6 +20,7 @@ namespace BankWebApp.Pages.Customers.Accounts
             _accountService = accountService;
         }
 
+        public string ShowContent { get; set; }
         public int AccountId { get; set; }
         public int CustomerId { get; set; }
         public List<AccountWithCustomerNameViewModel> CustomerAccounts { get; set; }
@@ -30,8 +31,9 @@ namespace BankWebApp.Pages.Customers.Accounts
         public string SortOrder { get; set; }
         public int PageCount { get; set; }
 
-        public void OnGet(int accountId, int customerId, string sortBy, string sortOrder, int pageNo, string q)
+        public void OnGet(int accountId, int customerId, string sortBy, string sortOrder, int pageNo, string q, string showContent)
         {
+            ShowContent = showContent; 
             AccountId = accountId;
             CustomerId = customerId;
 
