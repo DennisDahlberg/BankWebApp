@@ -65,16 +65,12 @@ namespace Services
                 {
                     AccountId = a.AccountId,
                     Balance = a.Balance,
-                    Customers = a.Dispositions
-                        .Select(d => d.Customer)
-                        .Distinct()
-                })
-                .Select(a => new
-                {
-                    AccountId = a.AccountId,
-                    Balance = a.Balance,
-                    Firstname = a.Customers.First().Givenname,
-                    Lastname = a.Customers.First().Surname
+                    Firstname = a.Dispositions
+                        .Select(d => d.Customer.Givenname)
+                        .FirstOrDefault(),
+                    Lastname = a.Dispositions
+                        .Select(d => d.Customer.Surname)
+                        .FirstOrDefault()
                 });
 
             if (!string.IsNullOrEmpty(q))
@@ -91,7 +87,7 @@ namespace Services
             else if (sortBy == "Name")
                 accounts = sortOrder == "asc" ? accounts.OrderBy(c => c.Lastname) : accounts.OrderByDescending(c => c.Lastname);
 
-            else if (sortBy == "Name")
+            else if (sortBy == "Balance")
                 accounts = sortOrder == "asc" ? accounts.OrderBy(c => c.Balance) : accounts.OrderByDescending(c => c.Balance);
 
             var accountDTOs = accounts.Select(a => new AccountWithCustomerNameDTO()
