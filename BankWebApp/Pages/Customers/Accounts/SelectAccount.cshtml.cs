@@ -40,6 +40,9 @@ namespace BankWebApp.Pages.Customers.Accounts
             if (pageNo == 0)
                 pageNo = 1;
 
+            if (string.IsNullOrEmpty(showContent))
+                ShowContent = "all";
+
             Q = q;
             CurrentPage = pageNo;
             SortBy = sortBy;

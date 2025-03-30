@@ -11,8 +11,8 @@
 
 
         <div class="container section-title mb-0" data-aos="fade-down">
-            <span class="description-title">Customers</span>
-            <h2>Customers</h2>
+            <span class="description-title">Select an account</span>
+            <h2>Select an account</h2>
         </div>
 
         <div class="text-center">
@@ -39,11 +39,12 @@
                         <div class="search-box">
                             <button type="submit" class="btn-search"><i class="fas fa-search"></i></button>
                             <input asp-for="@Model.Q" type="text" class="input-search" placeholder="Type to Search...">
+                            <input type="hidden" asp-for="@Model.ShowContent"/>
                             <input type="hidden" asp-for="@Model.CustomerId" />
                             <input type="hidden" asp-for="@Model.AccountId" />
                         </div>
                     </form>
-                    <a class="btn btn-success d-flex align-items-center gap-2" asp-page="/Customers/Create"><i class="fa-solid fa-plus"></i> Customer</a>
+                    
 
                 </div>
 
@@ -59,6 +60,7 @@
                                     <a asp-page="/Customers/Accounts/SelectAccount"
                                        asp-route-sortBy="Id"
                                        asp-route-sortOrder="asc"
+                                       asp-route-showContent="all"
                                        asp-route-customerId="@Model.CustomerId"
                                        asp-route-accountId="@Model.AccountId"
                                        asp-route-q="@Model.Q">
@@ -67,6 +69,7 @@
                                     <a asp-page="/Customers/Accounts/SelectAccount"
                                        asp-route-sortBy="Id"
                                        asp-route-sortOrder="desc"
+                                       asp-route-showContent="all"
                                        asp-route-customerId="@Model.CustomerId"
                                        asp-route-accountId="@Model.AccountId"
                                        asp-route-q="@Model.Q">
@@ -77,6 +80,7 @@
                                     Name
                                     <a asp-page="/Customers/Accounts/SelectAccount"
                                        asp-route-sortBy="Name"
+                                       asp-route-showContent="all"
                                        asp-route-customerId="@Model.CustomerId"
                                        asp-route-accountId="@Model.AccountId"
                                        asp-route-q="@Model.Q"
@@ -85,6 +89,7 @@
                                     </a>
                                     <a asp-page="/Customers/Accounts/SelectAccount"
                                        asp-route-sortBy="Name"
+                                       asp-route-showContent="all"
                                        asp-route-customerId="@Model.CustomerId"
                                        asp-route-accountId="@Model.AccountId"
                                        asp-route-q="@Model.Q"
@@ -97,6 +102,7 @@
                                     <a asp-page="/Customers/Accounts/SelectAccount"
                                        asp-route-sortBy="Balance"
                                        asp-route-q="@Model.Q"
+                                       asp-route-showContent="all"
                                        asp-route-customerId="@Model.CustomerId"
                                        asp-route-accountId="@Model.AccountId"
                                        asp-route-sortOrder="asc">
@@ -105,6 +111,7 @@
                                     <a asp-page="/Customers/Accounts/SelectAccount"
                                        asp-route-sortBy="Balance"
                                        asp-route-q="@Model.Q"
+                                       asp-route-showContent="all"
                                        asp-route-customerId="@Model.CustomerId"
                                        asp-route-accountId="@Model.AccountId"
                                        asp-route-sortOrder="desc">
@@ -138,6 +145,7 @@
                                            asp-route-sortOrder="@Model.SortOrder"
                                            asp-route-sortBy="@Model.SortBy"
                                            asp-route-q="@Model.Q"
+                                           asp-route-showContent="all"
                                            asp-route-customerId="@Model.CustomerId"
                                            asp-route-accountId="@Model.AccountId"
                                            asp-route-pageNo="@(Model.CurrentPage - 1)"
@@ -151,6 +159,7 @@
                                         <a asp-page="/Customers/Accounts/SelectAccount"
                                            asp-route-sortOrder="@Model.SortOrder"
                                            asp-route-sortBy="@Model.SortBy"
+                                           asp-route-showContent="all"
                                            asp-route-customerId="@Model.CustomerId"
                                            asp-route-accountId="@Model.AccountId"
                                            asp-route-q="@Model.Q"
@@ -165,6 +174,7 @@
                                         <a asp-page="/Customers/Accounts/SelectAccount"
                                            asp-route-sortOrder="@Model.SortOrder"
                                            asp-route-q="@Model.Q"
+                                           asp-route-showContent="all"
                                            asp-route-customerId="@Model.CustomerId"
                                            asp-route-accountId="@Model.AccountId"
                                            asp-route-sortBy="@Model.SortBy"
@@ -183,7 +193,32 @@
         }
         else
         {
-            <div>Nothing to see here!</div>
+            <div class="mt-3">                
+                <div class="table-responsive">
+
+                    <table class="table custom-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">AccountId</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Balance</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var account in Model.CustomerAccounts)
+                            {
+                                <tr>
+                                    <td>@account.AccountId</td>
+                                    <td><a>@account.Firstname @account.Lastname</a></td>
+                                    <td>@account.Balance</td>
+                                    <td><a class="more btn">Transfer</a></td>
+                                </tr>
+                            }                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         }
         
 
