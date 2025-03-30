@@ -18,5 +18,6 @@ namespace Services.Interfaces
         void CreateAccount(int customerId);
         void Deposit(int accountId, decimal amount);
         ResultCode Withdrawal(int accountId, decimal amount);
+        ResultCode Transfer(int accountFrom, int accountTo, decimal amount);
     }
 }

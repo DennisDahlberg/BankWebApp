@@ -34,6 +34,7 @@
                     <input type="hidden" asp-for="@Model.AccountFromId" />
                     <input type="hidden" asp-for="@Model.AccountToBalance" />
                     <input type="hidden" asp-for="@Model.AccountToId" />
+                    <input type="hidden" asp-for="@Model.CustomerId" />
 
                     <div class="from-group">
                         <label asp-for="@Model.TransferAmount">Amount</label>
@@ -43,7 +44,13 @@
 
 
                     <input type="submit" class="btn btn-success mb-2" value="Deposit" />
-                    <a asp-page="/Customers/Details" class="btn btn-secondary mb-2">Back</a>
+                    <a 
+                        asp-page="/Customers/Accounts/SelectAccount"
+                        asp-route-customerId="@Model.CustomerId"
+                        asp-route-accountId="@Model.AccountFromId"
+                        class="btn btn-secondary mb-2">
+                        Back
+                    </a>
                 </form>
 
 

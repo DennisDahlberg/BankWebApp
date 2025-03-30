@@ -133,6 +133,24 @@ namespace Services
             return ResultCode.Success;
         }
 
+        public ResultCode Transfer(int accountFrom, int accountTo, decimal amount)
+        {
+            var accountTransferFrom = _dbContext.Accounts.First(a => a.AccountId == accountFrom);
+            var accountTransferTo = _dbContext.Accounts.First(a => a.AccountId == accountTo);
+
+            if (accountTransferFrom.Balance < amount)
+                return ResultCode.BalanceToLow;
+
+            accountTransferFrom.Balance -= amount;
+            accountTransferTo.Balance += amount;
+
+            CreateTransanction(accountFrom, -amount, TransactionType.TransferFromAccount, accountTransferFrom.Balance);
+            CreateTransanction(accountTo, amount, TransactionType.TransferToAccount, accountTransferTo.Balance);
+
+            _dbContext.SaveChanges();
+            return ResultCode.Success;
+        }
+
 
         public void CreateTransanction(int accountId, decimal amount, TransactionType transactionType, decimal balance)
         {

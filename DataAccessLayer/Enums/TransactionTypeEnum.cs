@@ -10,6 +10,7 @@ namespace DataAccessLayer.Enums
     {
         Deposit,
         Withdrawal,
-        Transfer
+        TransferFromAccount,
+        TransferToAccount
     }
 }

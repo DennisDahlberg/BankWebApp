@@ -138,7 +138,8 @@
                                             class="more btn" 
                                             asp-page="/Customers/Accounts/Transfer" 
                                             asp-route-accountIdFrom="@Model.AccountId"
-                                           asp-route-accountIdTo="@account.AccountId">
+                                            asp-route-customerId="@Model.CustomerId"
+                                            asp-route-accountIdTo="@account.AccountId">
                                             Transfer
                                         </a>
                                     </td>
@@ -224,6 +225,7 @@
                                         <a class="more btn"
                                            asp-page="/Customers/Accounts/Transfer"
                                            asp-route-accountIdFrom="@Model.AccountId"
+                                           asp-route-customerId="@Model.CustomerId"
                                            asp-route-accountIdTo="@account.AccountId">
                                             Transfer
                                         </a>
