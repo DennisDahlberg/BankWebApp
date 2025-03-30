@@ -19,6 +19,8 @@ namespace BankWebApp.Pages.Customers.Accounts
         public int AccountToId { get; set; }
         public decimal AccountFromBalance { get; set; }
         public decimal AccountToBalance { get; set; }
+        public decimal TransferAmount { get; set; }
+
         public void OnGet(int accountIdTo, int accountIdFrom)
         {
             AccountFromId = accountIdFrom;

@@ -2,3 +2,62 @@
 @model BankWebApp.Pages.Customers.Accounts.TransferModel
 @{
 }
+
+<section id="hero" class="hero section dark-background justify-content-start">
+
+    <img class="backgroundImage" src="~/assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
+
+    <div class="container">
+
+
+        <div class="container section-title mb-2" data-aos="fade-down">
+            <span class="description-title">Transfer</span>
+            <h2>Transfer</h2>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="customer-container rounded">
+
+                <div>
+                    <div>
+                        <p class="mb-0">From account: @Model.AccountFromId</p>
+                        <p class="mb-2 border-bottom">Balance: <span class="text-warning">@(Model.AccountFromBalance)kr</span></p>
+                    </div>
+                    <div>
+                        <p class="mb-0">To account: @Model.AccountToId</p>
+                        <p class="mb-2 border-bottom">Balance: <span class="text-warning">@(Model.AccountToBalance)kr</span></p>
+                    </div>
+                </div>
+
+                <form method="post">
+                    <input type="hidden" asp-for="@Model.AccountFromBalance" />
+                    <input type="hidden" asp-for="@Model.AccountFromId" />
+                    <input type="hidden" asp-for="@Model.AccountToBalance" />
+                    <input type="hidden" asp-for="@Model.AccountToId" />
+
+                    <div class="from-group">
+                        <label asp-for="@Model.TransferAmount">Amount</label>
+                        <input asp-for="@Model.TransferAmount" class="form-control mb-2" />
+                        <span asp-validation-for="@Model.TransferAmount" class="text-danger"></span>
+                    </div>
+
+
+                    <input type="submit" class="btn btn-success mb-2" value="Deposit" />
+                    <a asp-page="/Customers/Details" class="btn btn-secondary mb-2">Back</a>
+                </form>
+
+
+
+
+
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+</section>

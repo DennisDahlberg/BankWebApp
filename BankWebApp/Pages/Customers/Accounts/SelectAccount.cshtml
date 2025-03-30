@@ -133,7 +133,15 @@
                                     <td>@account.AccountId</td>
                                     <td><a>@account.Firstname @account.Lastname</a></td>
                                     <td>@account.Balance</td>
-                                    <td><a class="more btn">Transfer</a></td>
+                                    <td>
+                                        <a 
+                                            class="more btn" 
+                                            asp-page="/Customers/Accounts/Transfer" 
+                                            asp-route-accountIdFrom="@Model.AccountId"
+                                           asp-route-accountIdTo="@account.AccountId">
+                                            Transfer
+                                        </a>
+                                    </td>
                                 </tr>
                             }
 
@@ -212,7 +220,14 @@
                                     <td>@account.AccountId</td>
                                     <td><a>@account.Firstname @account.Lastname</a></td>
                                     <td>@account.Balance</td>
-                                    <td><a class="more btn">Transfer</a></td>
+                                    <td>
+                                        <a class="more btn"
+                                           asp-page="/Customers/Accounts/Transfer"
+                                           asp-route-accountIdFrom="@Model.AccountId"
+                                           asp-route-accountIdTo="@account.AccountId">
+                                            Transfer
+                                        </a>
+                                    </td>
                                 </tr>
                             }                            
                         </tbody>
