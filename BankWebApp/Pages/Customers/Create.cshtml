@@ -68,7 +68,7 @@
                     </div>
 
                     <div class="form-group mb-2">
-                        <select class="form-control" asp-for="@Model.Customer.Country" asp-items="@Model.Countries" required>
+                        <select class="form-control" asp-for="@Model.Customer.Country" asp-items="@Model.Countries">
                             <option selected disabled value="">Choose a country</option>
                         </select>
                         <span asp-validation-for="@Model.Customer.Country" class="text-danger"></span>
@@ -80,7 +80,7 @@
                     </div>
 
                     <div class="form-group mb-2">
-                        <input type="email" asp-for="@Model.Customer.Emailaddress" class="form-control" placeholder="Email address" />
+                        <input asp-for="@Model.Customer.Emailaddress" class="form-control" placeholder="Email address" />
                         <span asp-validation-for="@Model.Customer.Emailaddress" class="text-danger"></span>
                     </div>
 
@@ -105,3 +105,10 @@
    
 
 </section>
+
+
+
+@section Scripts
+{
+    <partial name="Shared/_ValidationScriptsPartial" />
+}
