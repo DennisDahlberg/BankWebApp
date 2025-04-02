@@ -48,24 +48,22 @@
                 </thead>
 
                 <tbody>                    
-                        <tr>
-                            <td>23</td>
-                            <td>2100</td>
-                            <td>Deposit</td>
-                            <td>54322</td>
-                            <td>21/4-2025</td>
-                        </tr>                
+                                        
                 </tbody>
-
             </table>
         </div>
+        
+        <div class="d-flex justify-content-center mt-2">
+            <a class="btn btn-success" href="javascript:showMore()">Show More</a>
+        </div>
+
     </div>
 </section>
 
 @section Scripts
 {
     <script>
-        let pageNo = 1;
+        let pageNo = 1;        
 
         document.addEventListener("DOMContentLoaded", function () {
             showMore();
@@ -74,20 +72,22 @@
         async function showMore() {
             const response = await fetch("Transactions?handler=ShowMore&pageNo=" + pageNo + "&accountId=" + @Model.AccountId);
             const json = await response.json();
-            json.forEach(drawElement)
+            pageNo += 1;
+            json.transactions.forEach(drawElement);
+            console.log(json.transactions);
             
         }
 
-        function drawElement(element) {
+        function drawElement(element) {            
             document.querySelector("#transactions-table").innerHTML +=
             `<tr>
-                    <td>${element.TransactionId}</td>
-                    <td>${element.Amount}</td>
-                    <td>${element.Operation}</td>
-                    <td>${element.Balance}</td>
-                    <td>${new Date(element.Date)
+                    <td>${element.transactionId}</td>
+                    <td>${element.amount}</td>
+                    <td>${element.operation}</td>
+                    <td>${element.balance}</td>
+                    <td>${new Date(element.date)
                         .toLocaleDateString()}</td>                    
-                </tr>`;
+            </tr>`;
         }
         
     </script>
