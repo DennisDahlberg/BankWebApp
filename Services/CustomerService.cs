@@ -64,9 +64,9 @@ namespace Services
 
             return new CustomerDTO
             {
-                GivenName = customer.Givenname,
-                SurName= customer.Surname,
-                Address = customer.Streetaddress,
+                Givenname = customer.Givenname,
+                Surname= customer.Surname,
+                Streetaddress = customer.Streetaddress,
                 Country = customer.Country,
                 City = customer.City,
                 CustomerId = customer.CustomerId,

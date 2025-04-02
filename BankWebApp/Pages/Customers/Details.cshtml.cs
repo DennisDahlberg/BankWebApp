@@ -1,10 +1,11 @@
-using BankWebApp.ViewModels;
+using Services.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Services.APIs;
 using Services.Interfaces;
 using Services.ViewModels;
+using Mapster;
 
 namespace BankWebApp.Pages.Customers
 {
@@ -34,17 +35,9 @@ namespace BankWebApp.Pages.Customers
         {
             CustomerId = id;
             var customerDTO = _customerService.GetCustomerByIdAsync(id);
-
-            Customer = new CustomerViewModel
-            {
-                GivenName = customerDTO.GivenName,
-                SurName = customerDTO.SurName,
-                CustomerId = customerDTO.CustomerId,
-                Gender = customerDTO.Gender,
-                Address = customerDTO.Address,
-                Country = customerDTO.Country,
-                City = customerDTO.City,
-            };
+                        
+            Customer = new CustomerViewModel();
+            Customer = customerDTO.Adapt<CustomerViewModel>();
 
             CustomerImageUrl = await _randomUserService.FetchFromApi(id);
 
@@ -67,11 +60,11 @@ namespace BankWebApp.Pages.Customers
             var customerDTO = _customerService.GetCustomerByIdAsync(CustomerId);
             Customer = new CustomerViewModel
             {
-                GivenName = customerDTO.GivenName,
-                SurName = customerDTO.SurName,
+                Givenname = customerDTO.Givenname,
+                Surname = customerDTO.Surname,
                 CustomerId = customerDTO.CustomerId,
                 Gender = customerDTO.Gender,
-                Address = customerDTO.Address,
+                Streetaddress = customerDTO.Streetaddress,
                 Country = customerDTO.Country,
                 City = customerDTO.City,
             };

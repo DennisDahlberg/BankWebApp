@@ -9,9 +9,9 @@ namespace DataAccessLayer.DTOs
     public class CustomerDTO
     {
         public int CustomerId { get; set; }
-        public string GivenName { get; set; } = null!;
-        public string SurName { get; set; } = null!;
-        public string Address { get; set; } = null!;
+        public string Givenname { get; set; } = null!;
+        public string Surname { get; set; } = null!;
+        public string Streetaddress { get; set; } = null!;
         public string City { get; set; } = null!;
         public string Country { get; set; } = null!;
         public string Gender { get; set; }

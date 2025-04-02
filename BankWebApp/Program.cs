@@ -1,4 +1,5 @@
 using DataAccessLayer.Models;
+using Mapster;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Services;
@@ -23,6 +24,9 @@ namespace BankWebApp
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<BankAppDataContext>();
             builder.Services.AddRazorPages();
+
+            // Add Mapster to the container
+            builder.Services.AddMapster();
 
 
             //Dependencies

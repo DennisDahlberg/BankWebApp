@@ -1,7 +1,7 @@
 ﻿using DataAccessLayer.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace BankWebApp.ViewModels
+namespace Services.ViewModels
 {
     public class CreateCustomerViewModel
     {

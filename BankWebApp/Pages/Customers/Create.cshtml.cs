@@ -1,4 +1,4 @@
-using BankWebApp.ViewModels;
+using Services.ViewModels;
 using DataAccessLayer.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

@@ -16,8 +16,8 @@
                                                    
                             <div class="form-container d-flex flex-column gap-2">
                                 <div class="d-flex gap-2">
-                                <input asp-for="@Model.Customer.GivenName" class="form-control" readonly />
-                                <input asp-for="@Model.Customer.SurName" class="form-control" readonly />
+                                <input asp-for="@Model.Customer.Givenname" class="form-control" readonly />
+                                <input asp-for="@Model.Customer.Surname" class="form-control" readonly />
                                 </div>
 
                                 <div class="d-flex gap-2">
@@ -33,7 +33,7 @@
                                     
                                 </div>
 
-                                <input asp-for="@Model.Customer.Address" class="form-control" readonly/>
+                                <input asp-for="@Model.Customer.Streetaddress" class="form-control" readonly/>
                                 <input asp-for="@Model.Customer.City" class="form-control" readonly />
                                 <input asp-for="@Model.Customer.Country" class="form-control" readonly />
                                 <a asp-page="/Customers/Update" asp-route-customerId="@Model.CustomerId" class="btn btn-success">Update</a>

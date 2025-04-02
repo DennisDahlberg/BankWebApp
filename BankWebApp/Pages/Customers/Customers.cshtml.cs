@@ -42,10 +42,10 @@ namespace BankWebApp.Pages.Customers
                 .Select(c => new CustomerViewModel
                 {
                     CustomerId = c.CustomerId,
-                    GivenName = c.Givenname,
-                    SurName = c.Surname,
+                    Givenname = c.Givenname,
+                    Surname = c.Surname,
                     Gender = c.Gender,
-                    Address = c.Streetaddress,
+                    Streetaddress = c.Streetaddress,
                     City = c.City,
                     Country = c.Country,
                 }).ToList();

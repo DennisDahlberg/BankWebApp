@@ -1,4 +1,4 @@
-﻿namespace BankWebApp.ViewModels
+﻿namespace Services.ViewModels
 {
     public class AccountWithCustomerNameViewModel
     {
