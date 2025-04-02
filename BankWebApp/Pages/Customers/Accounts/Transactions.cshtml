@@ -52,10 +52,14 @@
                 </tbody>
             </table>
         </div>
+
         
-        <div class="d-flex justify-content-center mt-2">
-            <a class="btn btn-success" href="javascript:showMore()">Show More</a>
-        </div>
+        
+            <div class="d-flex justify-content-center mt-2">
+                <a class="btn btn-success" id="show-more-button" href="javascript:showMore()">Show More</a>
+            </div>
+        
+        
 
     </div>
 </section>
@@ -64,6 +68,7 @@
 {
     <script>
         let pageNo = 1;        
+        let maxPage = 10;
 
         document.addEventListener("DOMContentLoaded", function () {
             showMore();
@@ -73,9 +78,13 @@
             const response = await fetch("Transactions?handler=ShowMore&pageNo=" + pageNo + "&accountId=" + @Model.AccountId);
             const json = await response.json();
             pageNo += 1;
-            json.transactions.forEach(drawElement);
-            console.log(json.transactions);
+            maxPage = json.maxPage;
+
+            json.transactions.forEach(drawElement);           
             
+            if (pageNo >= maxPage) {
+                document.querySelector("#show-more-button").style.display = "none";
+            }
         }
 
         function drawElement(element) {            

@@ -18,20 +18,24 @@ namespace BankWebApp.Pages.Customers.Accounts
         public List<TransactionViewModel> Transactions { get; set; }
         public int AccountId { get; set; }
         public int CustomerId { get; set; }
+        public int CurrentPage { get; set; }
+        public int PageCount { get; set; }
 
 
         public void OnGet(int accountId, int customerId)
         {
             CustomerId = customerId;
-            AccountId = accountId;            
+            AccountId = accountId;     
         }
 
         public IActionResult OnGetShowMore(int pageNo, int accountId)
         {
             var transactions = _transactionService.GetAllTransactionsFromCustomer(accountId, pageNo);
+            PageCount = transactions.PageCount;
+            CurrentPage = pageNo;
             var transactionViewModels = transactions.Results.Adapt<List<TransactionViewModel>>();
 
-            return new JsonResult(new { transactions = transactionViewModels });
+            return new JsonResult(new { transactions = transactionViewModels, maxPage = PageCount });
         }
     }
 }
