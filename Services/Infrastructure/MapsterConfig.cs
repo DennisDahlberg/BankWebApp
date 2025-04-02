@@ -1,4 +1,5 @@
 ﻿using BankWebApp.Infrastructure.Paging;
+using DataAccessLayer.DTOs;
 using DataAccessLayer.Models;
 using Mapster;
 using Services.ViewModels;
@@ -16,6 +17,9 @@ namespace Services.Infrastructure
         {
             TypeAdapterConfig<PagedResult<Customer>, List<CustomerViewModel>>.NewConfig()
                 .MapWith(src => src.Results.Adapt<List<CustomerViewModel>>());
+
+            TypeAdapterConfig<PagedResult<AccountWithCustomerNameDTO>, List<AccountWithCustomerNameViewModel>>.NewConfig()
+                .MapWith(src => src.Results.Adapt<List<AccountWithCustomerNameViewModel>>());
         }
     }
 }

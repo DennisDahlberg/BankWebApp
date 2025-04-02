@@ -13,6 +13,7 @@ using Microsoft.Identity.Client;
 using BankWebApp.Infrastructure.Paging;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using Microsoft.Data.SqlClient;
+using Mapster;
 
 namespace Services
 {
@@ -28,12 +29,7 @@ namespace Services
         public List<AccountDTO> GetAllAccountsFromCustomer(int customerId)
         {
             var accounts = _dbContext.Accounts.Where(a => a.Dispositions.Any(d => d.CustomerId == customerId));
-
-            return accounts.Select(a => new AccountDTO
-            {
-                Balance = a.Balance,
-                AccountId = a.AccountId,
-            }).ToList();
+            return accounts.Adapt<List<AccountDTO>>();
         }
 
         public List<AccountWithCustomerNameDTO> GetAllAccounsFromCustomerExcludingOne(int accountId, int customerId)
@@ -51,8 +47,8 @@ namespace Services
             {
                 Balance = a.Balance,
                 AccountId = a.AccountId,
-                Firstname = customer.Givenname,
-                Lastname = customer.Surname,                
+                Givenname = customer.Givenname,
+                Surname = customer.Surname,                
             }).ToList();
         }
 
@@ -94,8 +90,8 @@ namespace Services
             {
                 AccountId = a.AccountId,
                 Balance = a.Balance,
-                Firstname = a.Firstname,
-                Lastname = a.Lastname,
+                Givenname = a.Firstname,
+                Surname = a.Lastname,
             });
 
             return accountDTOs.GetPaged(page, 50);
@@ -104,12 +100,7 @@ namespace Services
         public AccountDTO GetAccount(int accountId)
         {
             var account = _dbContext.Accounts.FirstOrDefault(a => a.AccountId == accountId);
-
-            return new AccountDTO()
-            {
-                AccountId = account.AccountId,
-                Balance = account.Balance,
-            };
+            return account.Adapt<AccountDTO>();
         }
 
         public void Deposit(int accountId, decimal amount)

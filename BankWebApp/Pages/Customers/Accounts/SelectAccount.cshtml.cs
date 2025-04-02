@@ -7,6 +7,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Identity.Client;
 using Services.Interfaces;
 using System.Globalization;
+using Mapster;
 
 namespace BankWebApp.Pages.Customers.Accounts
 {
@@ -48,25 +49,13 @@ namespace BankWebApp.Pages.Customers.Accounts
             SortBy = sortBy;
             SortOrder = sortOrder;
 
-            CustomerAccounts = _accountService.GetAllAccounsFromCustomerExcludingOne(accountId, customerId)
-                .Select(a => new AccountWithCustomerNameViewModel()
-                {
-                    AccountId = a.AccountId,
-                    Balance = a.Balance,
-                    Firstname = a.Firstname,
-                    Lastname = a.Lastname,                    
-                }).ToList();
+            var customerAccounts = _accountService.GetAllAccounsFromCustomerExcludingOne(accountId, customerId);
+            CustomerAccounts = customerAccounts.Adapt<List<AccountWithCustomerNameViewModel>>();            
 
             var result = _accountService.GetAllAccounsFromAllCustomerExcludingOne(customerId, pageNo, sortOrder, sortBy, q);
             PageCount = result.PageCount;
 
-            AllAccounts = result.Results.Select(a => new AccountWithCustomerNameViewModel()
-            {
-                AccountId = a.AccountId,
-                Balance = a.Balance,
-                Firstname = a.Firstname,
-                Lastname = a.Lastname,
-            }).ToList();
+            AllAccounts = result.Results.Adapt<List<AccountWithCustomerNameViewModel>>();           
 
         }
     }
