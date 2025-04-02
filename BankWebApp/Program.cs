@@ -35,6 +35,7 @@ namespace BankWebApp
             builder.Services.AddTransient<ICountryService,CountryService>();
             builder.Services.AddTransient<IRandomUserService,RandomUserService>();
             builder.Services.AddTransient<IAccountService,AccountService>();
+            builder.Services.AddTransient<ITransactionService,TransactionService>();
             builder.Services.AddTransient<IUserService,UserService>();
             builder.Services.AddHttpClient();
 

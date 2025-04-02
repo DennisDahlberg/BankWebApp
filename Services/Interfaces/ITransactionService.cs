@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.DTOs;
+﻿using BankWebApp.Infrastructure.Paging;
+using DataAccessLayer.DTOs;
 using DataAccessLayer.Models;
 using System;
 using System.Collections.Generic;
@@ -11,5 +12,6 @@ namespace Services.Interfaces
     public interface ITransactionService
     {
         Task<List<SuspectTransactionDTO>> GetSuspectTransactions(DateOnly date, string country);
+        PagedResult<Transaction> GetAllTransactionsFromCustomer(int accountId, int page);
     }
 }

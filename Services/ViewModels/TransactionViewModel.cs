@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer.DTOs
+namespace Services.ViewModels
 {
-    public class TransactionDTO
+    public class TransactionViewModel
     {
         public int TransactionId { get; set; }
         public int AccountId { get; set; }

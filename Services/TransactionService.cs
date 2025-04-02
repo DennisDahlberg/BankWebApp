@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.DTOs;
+﻿using BankWebApp.Infrastructure.Paging;
+using DataAccessLayer.DTOs;
 using DataAccessLayer.Models;
 using Microsoft.EntityFrameworkCore;
 using Services.Interfaces;
@@ -19,7 +20,16 @@ namespace Services
             _dbContext = dbContext;
         }
 
-        
+
+        public PagedResult<Transaction> GetAllTransactionsFromCustomer(int accountId, int page)
+        {
+            var transactions = _dbContext.Transactions
+                .Where(t => t.AccountId == accountId)
+                .OrderByDescending(t => t.Date)
+                .AsQueryable();
+
+            return transactions.GetPaged(page, 20);
+        }
 
 
         public async Task<List<SuspectTransactionDTO>> GetSuspectTransactions(DateOnly date, string country)

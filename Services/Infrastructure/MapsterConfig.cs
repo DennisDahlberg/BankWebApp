@@ -20,6 +20,9 @@ namespace Services.Infrastructure
 
             TypeAdapterConfig<PagedResult<AccountWithCustomerNameDTO>, List<AccountWithCustomerNameViewModel>>.NewConfig()
                 .MapWith(src => src.Results.Adapt<List<AccountWithCustomerNameViewModel>>());
+
+            TypeAdapterConfig<PagedResult<Transaction>, List<TransactionViewModel>>.NewConfig()
+                .MapWith(src => src.Results.Adapt<List<TransactionViewModel>>());
         }
     }
 }

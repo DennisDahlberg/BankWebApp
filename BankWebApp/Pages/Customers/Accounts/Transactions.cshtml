@@ -3,3 +3,92 @@
 @{
 }
 
+
+<section id="hero" class="hero section dark-background">
+
+    <img class="backgroundImage" src="~/assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
+
+    <div class="container mt-3">
+
+
+        <div class="container section-title" data-aos="fade-down">
+            <span class="description-title">Transactions</span>
+            <h2>Transactions</h2>
+        </div>
+
+        
+
+        <div class="table-responsive">
+
+            <table class="table custom-table" id="transactions-table">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            Transaction id
+                        </th>
+                           
+                        <th scope="col">
+                            Amount
+                        </th>
+
+                        <th scope="col">
+                            Operation
+                        </th>
+
+                        <th scope="col">
+                            Balance
+                        </th>
+
+                        <th scope="col">
+                            Date
+                        </th>
+
+                        
+                    </tr>
+                </thead>
+
+                <tbody>                    
+                        <tr>
+                            <td>23</td>
+                            <td>2100</td>
+                            <td>Deposit</td>
+                            <td>54322</td>
+                            <td>21/4-2025</td>
+                        </tr>                
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</section>
+
+@section Scripts
+{
+    <script>
+        let pageNo = 1;
+
+        document.addEventListener("DOMContentLoaded", function () {
+            showMore();
+        });
+
+        async function showMore() {
+            const response = await fetch("Transactions?handler=ShowMore&pageNo=" + pageNo + "&accountId=" + @Model.AccountId);
+            const json = await response.json();
+            json.forEach(drawElement)
+            
+        }
+
+        function drawElement(element) {
+            document.querySelector("#transactions-table").innerHTML +=
+            `<tr>
+                    <td>${element.TransactionId}</td>
+                    <td>${element.Amount}</td>
+                    <td>${element.Operation}</td>
+                    <td>${element.Balance}</td>
+                    <td>${new Date(element.Date)
+                        .toLocaleDateString()}</td>                    
+                </tr>`;
+        }
+        
+    </script>
+}
