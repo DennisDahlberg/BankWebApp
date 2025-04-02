@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Services.Interfaces;
+using Mapster;
 
 namespace BankWebApp.Pages.Customers
 {
@@ -39,18 +40,7 @@ namespace BankWebApp.Pages.Customers
                 return Page();
             }
 
-            var customerDTO = new CreateCustomerDTO()
-            {
-                Givenname = Customer.Givenname,
-                Surname = Customer.Surname,
-                Gender = Customer.Gender,
-                Streetaddress = Customer.Streetaddress,
-                City = Customer.City,
-                Country = Customer.Country,
-                Emailaddress = Customer.Emailaddress,
-                Phonenumber = Customer.Phonenumber,
-                Zipcode = Customer.Zipcode,
-            };
+            var customerDTO = Customer.Adapt<CreateCustomerDTO>();
 
             _customerService.CreateCustomerWithAccount(customerDTO);
             return RedirectToPage("/Customers/Customers");
