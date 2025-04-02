@@ -1,3 +1,4 @@
+using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -38,17 +39,8 @@ namespace BankWebApp.Pages.Customers
 
             PageCount = result.PageCount;
 
-            Customers = result.Results
-                .Select(c => new CustomerViewModel
-                {
-                    CustomerId = c.CustomerId,
-                    Givenname = c.Givenname,
-                    Surname = c.Surname,
-                    Gender = c.Gender,
-                    Streetaddress = c.Streetaddress,
-                    City = c.City,
-                    Country = c.Country,
-                }).ToList();
+            Customers = result.Results.Adapt<List<CustomerViewModel>>();
+
         }
     }
 }
