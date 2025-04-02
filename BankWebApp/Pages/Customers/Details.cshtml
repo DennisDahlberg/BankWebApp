@@ -70,10 +70,12 @@
                                             <td>@(account.Balance)kr</td>  
                                             <td>
                                                 <div class="d-flex justify-content-end gap-2">
-                                                    <a>
-                                                        <span class="customer-detail-link">
-                                                            <i class="fa-solid fa-circle-info fa-lg"></i>
-                                                        </span>
+                                                    <a asp-page="Accounts/Transactions" 
+                                                        asp-route-accountId="@account.AccountId" 
+                                                        asp-route-customerId="@Model.CustomerId">
+                                                            <span class="customer-detail-link">
+                                                                <i class="fa-solid fa-circle-info fa-lg"></i>
+                                                            </span>
                                                     </a>
 
                                                     <a asp-page="Accounts/Deposit" asp-route-accountId="@account.AccountId" asp-route-customerId="@Model.CustomerId">
