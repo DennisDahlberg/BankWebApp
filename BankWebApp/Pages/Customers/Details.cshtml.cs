@@ -35,19 +35,13 @@ namespace BankWebApp.Pages.Customers
         {
             CustomerId = id;
             var customerDTO = _customerService.GetCustomerByIdAsync(id);
-                        
-            Customer = new CustomerViewModel();
+                                    
             Customer = customerDTO.Adapt<CustomerViewModel>();
 
             CustomerImageUrl = await _randomUserService.FetchFromApi(id);
-
-            Accounts = _accountService.GetAllAccountsFromCustomer(id)
-                .Select(a => new AccountViewModel
-                {
-                    Balance = a.Balance,
-                    AccountId = a.AccountId,
-                   
-                }).ToList();
+                        
+            var accounts = _accountService.GetAllAccountsFromCustomer(id);
+            Accounts = accounts.Adapt<List<AccountViewModel>>();
         }
 
         public IActionResult OnPost()
@@ -58,29 +52,12 @@ namespace BankWebApp.Pages.Customers
             }
 
             var customerDTO = _customerService.GetCustomerByIdAsync(CustomerId);
-            Customer = new CustomerViewModel
-            {
-                Givenname = customerDTO.Givenname,
-                Surname = customerDTO.Surname,
-                CustomerId = customerDTO.CustomerId,
-                Gender = customerDTO.Gender,
-                Streetaddress = customerDTO.Streetaddress,
-                Country = customerDTO.Country,
-                City = customerDTO.City,
-            };
+            Customer = customerDTO.Adapt<CustomerViewModel>();
 
             _accountService.CreateAccount(CustomerId);
 
-            Accounts = _accountService.GetAllAccountsFromCustomer(CustomerId)
-                .Select(a => new AccountViewModel
-                {
-                    Balance = a.Balance,
-                    AccountId = a.AccountId,
-
-                }).ToList();
-
-
-
+            var accounts = _accountService.GetAllAccountsFromCustomer(CustomerId);
+            Accounts = accounts.Adapt<List<AccountViewModel>>();
             return Page();
         }
 
