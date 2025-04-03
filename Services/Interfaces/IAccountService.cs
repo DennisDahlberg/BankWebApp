@@ -16,6 +16,7 @@ namespace Services.Interfaces
         PagedResult<AccountWithCustomerNameDTO> GetAllAccounsFromAllCustomerExcludingOne(int customerId, int page, string orderBy, string sortBy, string q);
         AccountDTO GetAccount(int accountId);
         void CreateAccount(int customerId);
+        Task Delete(int accountId);
         void Deposit(int accountId, decimal amount);
         ResultCode Withdrawal(int accountId, decimal amount);
         ResultCode Transfer(int accountFrom, int accountTo, decimal amount);

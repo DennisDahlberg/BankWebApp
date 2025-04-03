@@ -187,5 +187,13 @@ namespace Services
             _dbContext.SaveChanges();
         }
 
+        public async Task Delete(int accountId)
+        {
+            var account = _dbContext.Accounts
+                .First(c => c.AccountId == accountId);
+            account.IsActive = false;
+            await _dbContext.SaveChangesAsync();
+        }
+
     }
 }

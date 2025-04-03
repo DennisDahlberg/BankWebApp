@@ -92,6 +92,8 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <form method="post">
+                    <input type="hidden" asp-for="@Model.CustomerId"/>
+                    <input type="hidden" asp-for="@Model.AccountId"/>
                     <button type="submit" class="btn btn-danger">
                         <i class="fa-solid fa-trash-can"></i>
                         Delete
