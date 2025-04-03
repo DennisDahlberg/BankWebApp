@@ -10,7 +10,13 @@
         <div class="row justify-content-center">
             
                 <div class="customer-container d-flex py-3 gap-5 justify-content-center rounded position-relative">
-                    <a asp-page="/Customers/Customers" class="btn btn-secondary position-absolute top-0 start-0">Back</a>
+                    <a 
+                        asp-page="/Customers/Customers" 
+                        class="btn btn-secondary position-absolute top-0 start-0">
+                        <i class="fa-regular fa-circle-left"></i>
+                        Back                     
+                    </a>
+
                     <div class="customer-information">
                         <img src="@Model.CustomerImageUrl" alt="Customer picture" class="rounded-circle mb-3"/>
                                                    
