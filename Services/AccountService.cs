@@ -28,7 +28,10 @@ namespace Services
 
         public List<AccountDTO> GetAllAccountsFromCustomer(int customerId)
         {
-            var accounts = _dbContext.Accounts.Where(a => a.Dispositions.Any(d => d.CustomerId == customerId));
+            var accounts = _dbContext.Accounts
+                .Where(a => a.Dispositions
+                    .Any(d => d.CustomerId == customerId) && 
+                    a.IsActive == true);
             return accounts.Adapt<List<AccountDTO>>();
         }
 
@@ -40,7 +43,8 @@ namespace Services
 
             var accounts = _dbContext.Accounts
                 .Where(a => a.AccountId != accountId &&
-                a.Dispositions.Any(d => d.CustomerId == customerId));
+                a.Dispositions.Any(d => d.CustomerId == customerId) &&
+                a.IsActive == true);
 
 
             return accounts.Select(a => new AccountWithCustomerNameDTO
@@ -56,7 +60,7 @@ namespace Services
             (int customerId, int page, string sortOrder, string sortBy, string q)
         {
             var accounts = _dbContext.Accounts
-                .Where(a => a.Dispositions.Any(d => d.CustomerId != customerId))
+                .Where(a => a.Dispositions.Any(d => d.CustomerId != customerId) && a.IsActive == true)
                 .Select(a => new
                 {
                     AccountId = a.AccountId,
@@ -173,13 +177,14 @@ namespace Services
                 Frequency = "Monthly",
                 Created = DateOnly.FromDateTime(DateTime.Now),
                 Balance = 0,
+                IsActive = true,
             };
 
             var disposition = new Disposition()
             {
                 Account = account,
                 Customer = customer,
-                Type = "Owner"
+                Type = "Owner",
             };
 
             _dbContext.Accounts.Add(account);

@@ -124,6 +124,7 @@ namespace Services
                 Frequency = "Monthly",
                 Created = DateOnly.FromDateTime(DateTime.Now),
                 Balance = 0,
+                IsActive = true,
             };
 
             var disposition = new Disposition()
