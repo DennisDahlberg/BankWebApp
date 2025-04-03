@@ -152,8 +152,14 @@ namespace Services
                 Amount = amount,
                 Balance = balance,
                 Type = "Debit",
-                Operation = transactionType.ToString(),
             };
+            if (transactionType == TransactionType.TransferFromAccount)
+                transaction.Operation = "Transfer from account";
+            else if (transactionType == TransactionType.TransferToAccount)
+                transaction.Operation = "Transfer to account";
+            else
+                transaction.Operation = transactionType.ToString();
+
             _dbContext.Transactions.Add(transaction);
         }
 
