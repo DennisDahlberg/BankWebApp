@@ -37,5 +37,10 @@ namespace BankWebApp.Pages.Customers.Accounts
 
             return new JsonResult(new { transactions = transactionViewModels, maxPage = PageCount });
         }
+
+        public void OnPost()
+        {
+
+        }
     }
 }
