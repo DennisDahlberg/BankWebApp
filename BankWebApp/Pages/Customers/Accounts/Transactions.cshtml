@@ -97,7 +97,7 @@
             `<tr>
                     <td>${element.transactionId}</td>
                     <td>${element.amount}</td>
-                    <td>${element.operation}</td>
+                    <td>${element.operation == "" ? "Deposit" : element.operation}</td>
                     <td>${element.balance}</td>
                     <td>${new Date(element.date)
                         .toLocaleDateString()}</td>                    
