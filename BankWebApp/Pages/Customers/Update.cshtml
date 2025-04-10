@@ -89,8 +89,12 @@
 
 
             <div class="d-flex gap-2">
-                <input type="submit" class="btn btn-success" value="Update">
                 <a class="btn btn-secondary" asp-page="/Customers/Details" asp-route-id="@Model.CustomerId">Back</a>
+                <input type="submit" class="btn btn-success" value="Update">                
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal">
+                    <i class="fa-solid fa-trash-can"></i>
+                    Delete
+                </button>
             </div>
 
 
@@ -101,6 +105,33 @@
 
 
 </section>
+
+
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="deleteCustomerModal" tabindex="-1" aria-labelledby="deleteCustomerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content text-bg-dark text-light">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="deleteCustomerModalLabel">Confirmation</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you wish to delete this customer along with their accounts?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 
 @section Scripts
