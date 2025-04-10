@@ -51,5 +51,11 @@ namespace BankWebApp.Pages.Customers
             _customerService.UpdateCustomer(CustomerId, customerDTO);
             return RedirectToPage("/Customers/Details", new { id = CustomerId });
         }
+
+        public void OnPostDelete()
+        {
+
+        }
+
     }
 }
