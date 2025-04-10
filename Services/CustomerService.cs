@@ -32,7 +32,9 @@ namespace Services
 
         public PagedResult<Customer> GetAllCustomers(string sortBy, string sortOrder, int page, string q)
         {
-            var query = _dbContext.Customers.AsQueryable();
+            var query = _dbContext.Customers
+                .Where(c => c.IsActive == true)
+                .AsQueryable();
 
             if (!string.IsNullOrEmpty(q))
             {
