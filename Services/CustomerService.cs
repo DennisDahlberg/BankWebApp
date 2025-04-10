@@ -8,6 +8,7 @@ using DataAccessLayer.DTOs;
 using DataAccessLayer.Enums;
 using DataAccessLayer.Models;
 using FluentResults;
+using Mapster;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Services.Interfaces;
@@ -64,20 +65,15 @@ namespace Services
 
         
 
-        public CustomerDTO GetCustomerByIdAsync(int id)
+        public async Task<Result<CustomerDTO>> GetCustomerByIdAsync(int id)
         {
-           var customer =  _dbContext.Customers.FirstOrDefault(c => c.CustomerId == id);
+           var customer =  await _dbContext.Customers
+                .FirstOrDefaultAsync(c => c.CustomerId == id);
 
-            return new CustomerDTO
-            {
-                Givenname = customer.Givenname,
-                Surname= customer.Surname,
-                Streetaddress = customer.Streetaddress,
-                Country = customer.Country,
-                City = customer.City,
-                CustomerId = customer.CustomerId,
-                Gender = customer.Gender,
-            };
+            if (customer == null || customer.IsActive == false)
+                return Result.Fail("Customer doesn't exist");
+
+            return customer.Adapt<CustomerDTO>();            
         }
 
         public CreateCustomerDTO GetCreateCustomer(int customerId)

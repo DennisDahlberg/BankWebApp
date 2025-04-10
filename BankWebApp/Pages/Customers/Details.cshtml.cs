@@ -31,17 +31,20 @@ namespace BankWebApp.Pages.Customers
         [BindProperty]
         public int CustomerId { get; set; }
 
-        public async Task OnGetAsync(int id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
             CustomerId = id;
-            var customerDTO = _customerService.GetCustomerByIdAsync(id);
-                                    
-            Customer = customerDTO.Adapt<CustomerViewModel>();
+            var result = await _customerService.GetCustomerByIdAsync(id);
+            if (result.IsFailed)
+                return RedirectToPage("/Customers/Customers");
+
+            Customer = result.Value.Adapt<CustomerViewModel>();
 
             CustomerImageUrl = await _randomUserService.FetchFromApi(id);
                         
             var accounts = _accountService.GetAllAccountsFromCustomer(id);
             Accounts = accounts.Adapt<List<AccountViewModel>>();
+            return Page();
         }
 
         public IActionResult OnPost()

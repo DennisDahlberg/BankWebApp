@@ -14,7 +14,7 @@ namespace Services.Interfaces
     public interface ICustomerService
     {
         PagedResult<Customer> GetAllCustomers(string sortBy, string order, int page, string q);
-        CustomerDTO GetCustomerByIdAsync(int id);
+        Task<Result<CustomerDTO>> GetCustomerByIdAsync(int id);
         CreateCustomerDTO GetCreateCustomer(int customerId);
         Task CreateCustomerWithAccount(CreateCustomerDTO customer);
         Task UpdateCustomer(int customerId, CreateCustomerDTO customer);
