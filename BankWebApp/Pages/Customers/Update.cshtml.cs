@@ -52,9 +52,14 @@ namespace BankWebApp.Pages.Customers
             return RedirectToPage("/Customers/Details", new { id = CustomerId });
         }
 
-        public void OnPostDelete()
+        public async Task<IActionResult> OnPostDelete()
         {
+            var result = await _customerService.Delete(CustomerId);
 
+            if (result.IsFailed)
+                return RedirectToPage("/Index");
+
+            return RedirectToPage("/Customers/Customers");
         }
 
     }

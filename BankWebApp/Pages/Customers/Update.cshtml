@@ -125,6 +125,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <form method="post" asp-page-handler="delete">
+                    <input type="hidden" asp-for="@Model.CustomerId"/>
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </div>

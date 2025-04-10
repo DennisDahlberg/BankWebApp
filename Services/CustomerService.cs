@@ -7,6 +7,7 @@ using BankWebApp.Infrastructure.Paging;
 using DataAccessLayer.DTOs;
 using DataAccessLayer.Enums;
 using DataAccessLayer.Models;
+using FluentResults;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Services.Interfaces;
@@ -17,11 +18,14 @@ namespace Services
     {
         private readonly BankAppDataContext _dbContext;
         private readonly ICountryService _countryService;
+        private readonly IAccountService _accountService;
 
-        public CustomerService(BankAppDataContext dbContext, ICountryService countryService)
+        public CustomerService(BankAppDataContext dbContext, 
+            ICountryService countryService, IAccountService accountService)
         {
             _dbContext = dbContext;
             _countryService = countryService;
+            _accountService = accountService;
         }
 
         
@@ -157,6 +161,25 @@ namespace Services
             
             _dbContext.Customers.Update(customerToUpdate);
             await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<Result> Delete(int id)
+        {
+            var customer = await _dbContext.Customers
+                .Include(c => c.Dispositions)
+                .FirstOrDefaultAsync(c => c.CustomerId == id);
+
+            if (customer == null)
+                return Result.Fail("Customer doesn't exist");
+
+            customer.IsActive = false;
+
+            var deletedAccounts = customer.Dispositions
+                .Select(d => _accountService.Delete(d.AccountId));
+            await Task.WhenAll(deletedAccounts);
+
+            await _dbContext.SaveChangesAsync();
+            return Result.Ok();
         }
     }
 }

@@ -2,6 +2,7 @@
 using DataAccessLayer.DTOs;
 using DataAccessLayer.Enums;
 using DataAccessLayer.Models;
+using FluentResults;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +18,6 @@ namespace Services.Interfaces
         CreateCustomerDTO GetCreateCustomer(int customerId);
         Task CreateCustomerWithAccount(CreateCustomerDTO customer);
         Task UpdateCustomer(int customerId, CreateCustomerDTO customer);
+        Task<Result> Delete(int id);
     }
 }
