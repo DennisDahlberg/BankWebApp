@@ -30,7 +30,7 @@ namespace BankWebApp.Pages.Customers.Accounts
 
             AccountId = accountId;
             CustomerId = customerId;
-            Balance = _accountService.GetAccount(accountId).Balance;
+            Balance = _accountService.GetAccount(accountId).Value.Balance;
 
             return Page();
         }

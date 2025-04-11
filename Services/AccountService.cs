@@ -104,9 +104,11 @@ namespace Services
             return accountDTOs.GetPaged(page, 50);
         }
 
-        public AccountDTO GetAccount(int accountId)
+        public Result<AccountDTO> GetAccount(int accountId)
         {
             var account = _dbContext.Accounts.FirstOrDefault(a => a.AccountId == accountId);
+            if (account == null || account.IsActive == false)
+                return Result.Fail("Account does't exist");
             return account.Adapt<AccountDTO>();
         }
 

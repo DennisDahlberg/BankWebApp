@@ -1,6 +1,7 @@
 ﻿using BankWebApp.Infrastructure.Paging;
 using DataAccessLayer.DTOs;
 using DataAccessLayer.Enums;
+using FluentResults;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Services.Interfaces
         List<AccountDTO> GetAllAccountsFromCustomer(int customerId);
         List<AccountWithCustomerNameDTO> GetAllAccounsFromCustomerExcludingOne(int accountId, int customerId);
         PagedResult<AccountWithCustomerNameDTO> GetAllAccounsFromAllCustomerExcludingOne(int customerId, int page, string orderBy, string sortBy, string q);
-        AccountDTO GetAccount(int accountId);
+        Result<AccountDTO> GetAccount(int accountId);
         void CreateAccount(int customerId);
         Task Delete(int accountId);
         void Deposit(int accountId, decimal amount);
