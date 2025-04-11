@@ -14,6 +14,9 @@ using BankWebApp.Infrastructure.Paging;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using Microsoft.Data.SqlClient;
 using Mapster;
+using FluentResults;
+using System.ComponentModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace Services
 {
@@ -198,6 +201,27 @@ namespace Services
                 .First(c => c.AccountId == accountId);
             account.IsActive = false;
             await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<bool> IsValid(int accountId, int customerId)
+        {
+            var account = await _dbContext.Accounts
+                .FirstOrDefaultAsync(c => c.AccountId == accountId);
+
+            if (account == null || account.IsActive == false)
+                return false;
+
+            var dispositions = await _dbContext.Dispositions
+                .Where(d => d.AccountId == accountId)
+                .ToListAsync();
+
+            foreach (var disposition in dispositions)
+            {
+                if (disposition.CustomerId == customerId)
+                    return true;
+            }
+
+            return false;
         }
 
     }

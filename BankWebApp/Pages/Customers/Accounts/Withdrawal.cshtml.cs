@@ -23,11 +23,16 @@ namespace BankWebApp.Pages.Customers.Accounts
         public decimal Withdrawal { get; set; }
 
 
-        public void OnGet(int accountId, int customerId)
+        public async Task<IActionResult> OnGet(int accountId, int customerId)
         {
+            if (!await _accountService.IsValid(accountId, customerId))
+                return RedirectToPage("/Customers/Customers");
+
             AccountId = accountId;
             CustomerId = customerId;
             Balance = _accountService.GetAccount(accountId).Balance;
+
+            return Page();
         }
 
         public IActionResult OnPost()

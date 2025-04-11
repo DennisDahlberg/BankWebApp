@@ -24,11 +24,16 @@ namespace BankWebApp.Pages.Customers.Accounts
         [Range(100, double.MaxValue, ErrorMessage = "You cant make a deposit under 100kr")]
         public decimal Deposit { get; set; }
 
-        public void OnGet(int accountId, int customerId)
+        public async Task<IActionResult> OnGet(int accountId, int customerId)
         {
+            if (!await _accountService.IsValid(accountId, customerId))
+                return RedirectToPage("/Customers/Customers");
+
             AccountId = accountId;
             CustomerId = customerId;
             Balance = _accountService.GetAccount(accountId).Balance;
+
+            return Page();
         }
 
         public IActionResult OnPost()

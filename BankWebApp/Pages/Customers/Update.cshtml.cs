@@ -28,12 +28,17 @@ namespace BankWebApp.Pages.Customers
         public int CustomerId { get; set; }
         public List<SelectListItem> Countries { get; set; }
 
-        public void OnGet(int customerId)
+        public async Task<IActionResult> OnGet(int customerId)
         {
             CustomerId = customerId;
             Countries = _countryService.GetCountryEnums();
-            var customerDTO = _customerService.GetCreateCustomer(customerId);
-            Customer = customerDTO.Adapt<CreateCustomerViewModel>();            
+            var result = await _customerService.GetCreateCustomer(customerId);
+
+            if (result.IsFailed)
+                return RedirectToPage("/Customers/Customers");
+
+            Customer = result.Value.Adapt<CreateCustomerViewModel>();
+            return Page();
         }
 
 

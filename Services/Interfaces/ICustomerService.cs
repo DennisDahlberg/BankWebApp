@@ -15,7 +15,7 @@ namespace Services.Interfaces
     {
         PagedResult<Customer> GetAllCustomers(string sortBy, string order, int page, string q);
         Task<Result<CustomerDTO>> GetCustomerByIdAsync(int id);
-        CreateCustomerDTO GetCreateCustomer(int customerId);
+        Task<Result<CreateCustomerDTO>> GetCreateCustomer(int customerId);
         Task CreateCustomerWithAccount(CreateCustomerDTO customer);
         Task UpdateCustomer(int customerId, CreateCustomerDTO customer);
         Task<Result> Delete(int id);

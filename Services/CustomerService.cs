@@ -76,22 +76,14 @@ namespace Services
             return customer.Adapt<CustomerDTO>();            
         }
 
-        public CreateCustomerDTO GetCreateCustomer(int customerId)
+        public async Task<Result<CreateCustomerDTO>> GetCreateCustomer(int customerId)
         {
-            var customer = _dbContext.Customers.FirstOrDefault(c => c.CustomerId == customerId);
+            var customer = await _dbContext.Customers.FirstOrDefaultAsync(c => c.CustomerId == customerId);
 
-            return new CreateCustomerDTO()
-            {
-                Givenname = customer.Givenname,
-                Surname = customer.Surname,
-                Gender = customer.Gender,
-                City = customer.City,
-                Country = _countryService.GetEnumFromString(customer.Country),
-                Streetaddress = customer.Streetaddress,
-                Emailaddress = customer.Emailaddress,
-                Phonenumber = customer.Telephonenumber,
-                Zipcode = customer.Zipcode,
-            };
+            if (customer == null || customer.IsActive == false)
+                return Result.Fail("Customer doesn't exist");
+
+            return customer.Adapt<CreateCustomerDTO>();            
         }
 
 

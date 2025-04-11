@@ -32,8 +32,11 @@ namespace BankWebApp.Pages.Customers.Accounts
         public string SortOrder { get; set; }
         public int PageCount { get; set; }
 
-        public void OnGet(int accountId, int customerId, string sortBy, string sortOrder, int pageNo, string q, string showContent)
+        public async Task<IActionResult> OnGet(int accountId, int customerId, string sortBy, string sortOrder, int pageNo, string q, string showContent)
         {
+            if (!await _accountService.IsValid(accountId, customerId))
+                return RedirectToPage("/Customers/Customers");
+
             ShowContent = showContent; 
             AccountId = accountId;
             CustomerId = customerId;
@@ -55,8 +58,9 @@ namespace BankWebApp.Pages.Customers.Accounts
             var result = _accountService.GetAllAccounsFromAllCustomerExcludingOne(customerId, pageNo, sortOrder, sortBy, q);
             PageCount = result.PageCount;
 
-            AllAccounts = result.Results.Adapt<List<AccountWithCustomerNameViewModel>>();           
+            AllAccounts = result.Results.Adapt<List<AccountWithCustomerNameViewModel>>();
 
+            return Page();
         }
     }
 }
