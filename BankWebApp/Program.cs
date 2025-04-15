@@ -37,8 +37,8 @@ namespace BankWebApp
             builder.Services.AddTransient<IAccountService,AccountService>();
             builder.Services.AddTransient<ITransactionService,TransactionService>();
             builder.Services.AddTransient<IUserService,UserService>();
+            builder.Services.AddResponseCaching();
             builder.Services.AddHttpClient();
-
 
 
             var app = builder.Build();
@@ -66,6 +66,7 @@ namespace BankWebApp
 
             app.UseAuthorization();
 
+            app.UseResponseCaching();
             app.MapStaticAssets();
             app.MapRazorPages()
                .WithStaticAssets();
