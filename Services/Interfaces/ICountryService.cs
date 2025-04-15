@@ -11,7 +11,7 @@ namespace Services.Interfaces
 {
     public interface ICountryService
     {
-        CountryStatsDTO GetACountriesStats(string countryName);
+        CountryStatsDTO GetACountriesStats(Country countryName);
         List<CountryStatsDTO> GetCountriesStats();
         List<SelectListItem> GetCountryEnums();
         Country GetEnumFromString(string country);

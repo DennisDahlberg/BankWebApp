@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccessLayer.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,6 @@ namespace DataAccessLayer.DTOs
         public int AmountOfAccounts { get; set; }
         public decimal AmountOfMoney { get; set; }
         public string ImageUrl { get; set; }
+        public Country Country { get; set; }
     }
 }

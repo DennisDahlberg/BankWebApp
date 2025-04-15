@@ -1,8 +1,10 @@
 ﻿@model Services.ViewModels.CountryStatsViewModel
 
 <div class="countryContainer" data-aos="fade-up" data-aos-duration="700">
-    <img src="@Model.ImageUrl" />
-    <p class="countryStat"><i class="fa-solid fa-user"></i>: @Model.AmountOfCustomers</p>
-    <p class="countryStat"><i class="fa-solid fa-credit-card"></i>: @Model.AmountOfAccounts</p>
-    <p class="countryStat"><i class="fa-solid fa-coins"></i>: @Model.AmountOfMoney</p>
+    <a asp-page="/TopEarners" asp-route-country="@Model.Country">
+        <img src="@Model.ImageUrl" />
+        <p class="countryStat"><i class="fa-solid fa-user"></i>: @Model.AmountOfCustomers</p>
+        <p class="countryStat"><i class="fa-solid fa-credit-card"></i>: @Model.AmountOfAccounts</p>
+        <p class="countryStat"><i class="fa-solid fa-coins"></i>: @Model.AmountOfMoney</p>
+    </a>
 </div>

@@ -21,42 +21,43 @@ namespace Services
             _dbContext = bankAppDataContext;
         }        
 
-        public CountryStatsDTO GetACountriesStats(string countryName)
+        public CountryStatsDTO GetACountriesStats(Country countryName)
         {
             var customers = _dbContext.Customers
-                .Where(x => x.Country == countryName)
+                .Where(x => x.Country == countryName.ToString())
                 .Count();
 
             var accounts = _dbContext.Accounts
                 .Where(x => x.Dispositions
-                .Any(x => x.Customer.Country == countryName))
+                .Any(x => x.Customer.Country == countryName.ToString()))
                 .Count();
 
             var money = _dbContext.Accounts
                 .Where(x => x.Dispositions
-                .Any(x => x.Customer.Country == countryName))
+                .Any(x => x.Customer.Country == countryName.ToString()))
                 .Sum(x => x.Balance);
 
             return new CountryStatsDTO
             {
                 AmountOfCustomers = customers,
                 AmountOfAccounts = accounts,
-                AmountOfMoney = money
+                AmountOfMoney = money,
+                Country = countryName
             };
         }
 
         public List<CountryStatsDTO> GetCountriesStats()
         {
-            var sweden = GetACountriesStats("Sweden");
+            var sweden = GetACountriesStats(Country.Sweden);
             sweden.ImageUrl = "assets/img/Flags/se.png";
 
-            var denmark = GetACountriesStats("Denmark");
+            var denmark = GetACountriesStats(Country.Denmark);
             denmark.ImageUrl = "assets/img/Flags/dk.png";
 
-            var finland = GetACountriesStats("Finland");
+            var finland = GetACountriesStats(Country.Finland);
             finland.ImageUrl = "assets/img/Flags/fi.png";
 
-            var norway = GetACountriesStats("Norway");
+            var norway = GetACountriesStats(Country.Norway);
             norway.ImageUrl = "assets/img/Flags/no.png";
 
             var stats = new List<CountryStatsDTO>();
