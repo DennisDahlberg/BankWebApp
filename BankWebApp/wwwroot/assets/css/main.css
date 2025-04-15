@@ -53,8 +53,8 @@
 # Country
 --------------------------------------------------------------*/
 .countryStatsContainer {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     padding: 1em 8em;
     z-index: 50;
     gap: 1.5em
@@ -81,7 +81,21 @@
     }
 
 @media (max-width: 1024px) {
-
+    .countryStatsContainer {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2em
+    }
+}
+@media (max-width: 768px) {
+    .countryContainer img {
+        width: 150px;
+        height: 80px;
+    }
+}
+@media (max-width: 465px) {
+    .countryStatsContainer {        
+        gap: 1em
+    }
 }
 
 /*--------------------------------------------------------------
