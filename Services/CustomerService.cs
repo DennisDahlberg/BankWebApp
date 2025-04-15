@@ -172,6 +172,26 @@ namespace Services
             return Result.Ok();
         }
 
-        public async Task<Result<>>
+        public async Task<Result<List<TopEarnerDTO>>> GetTopEarners(Country country)
+        {
+            if (!Enum.IsDefined(typeof(Country), country))
+                return Result.Fail("Not a valid country!");
+
+            return await _dbContext.Customers
+                .Where(c => c.Country == country.ToString())
+                .Select(c => new TopEarnerDTO()
+                {
+                    CustomerId = c.CustomerId,
+                    Streetaddress = c.Streetaddress,
+                    Givenname = c.Givenname,
+                    Surname = c.Surname,
+                    TotalBalance = c.Dispositions
+                        .Select(d => d.Account.Balance)
+                        .Sum()
+                })
+                .OrderByDescending(x => x.TotalBalance)
+                .Take(10)
+                .ToListAsync();
+        }
     }
 }

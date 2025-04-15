@@ -15,6 +15,7 @@ namespace Services.Interfaces
     {
         PagedResult<Customer> GetAllCustomers(string sortBy, string order, int page, string q);
         Task<Result<CustomerDTO>> GetCustomerByIdAsync(int id);
+        Task<Result<List<TopEarnerDTO>>> GetTopEarners(Country country);
         Task<Result<CreateCustomerDTO>> GetCreateCustomer(int customerId);
         Task CreateCustomerWithAccount(CreateCustomerDTO customer);
         Task UpdateCustomer(int customerId, CreateCustomerDTO customer);

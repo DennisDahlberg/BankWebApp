@@ -12,7 +12,7 @@
 
 
         <div class="container section-title" data-aos="fade-down">
-            <span class="description-title">Country</span>
+            <span class="description-title">Top Earners</span>
             <h2>Top Earners</h2>
         </div>
         
@@ -28,17 +28,23 @@
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
-                        <th scope="col">Id</th>
-                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Balance</th>
                         
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td scope="col">Test</td>
-                        <td scope="col">Test</td>
-                        <td scope="col">Test</td>
-                    </tr>                    
+                    @foreach (var customer in Model.TopEarners)
+                    {
+                        <tr>
+                            <td scope="col">@customer.CustomerId</td>
+                            <td scope="col">@customer.Givenname @customer.Surname</td>
+                            <td scope="col">@customer.Streetaddress</td>
+                            <td scope="col">@customer.TotalBalance</td>
+                        </tr>
+                    }
+                                        
                 </tbody>
             </table>
         </div>

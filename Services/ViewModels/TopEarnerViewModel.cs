@@ -11,7 +11,7 @@ namespace Services.ViewModels
         public int CustomerId { get; set; }
         public string Givenname { get; set; } = null!;
         public string Surname { get; set; } = null!;
-        public string Gender { get; set; } = null!;
+        public string Streetaddress { get; set; } = null!;
         public decimal TotalBalance { get; set; }
     }
 }
