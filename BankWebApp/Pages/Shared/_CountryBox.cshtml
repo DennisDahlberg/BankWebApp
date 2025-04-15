@@ -1,7 +1,7 @@
 ﻿@model Services.ViewModels.CountryStatsViewModel
 
 <div class="countryContainer" data-aos="fade-up" data-aos-duration="700">
-    <a asp-page="/TopEarners" asp-route-country="@Model.Country">
+    <a asp-page="/TopEarners" asp-route-country="@Model.Country.ToString()">
         <img src="@Model.ImageUrl" />
         <p class="countryStat"><i class="fa-solid fa-user"></i>: @Model.AmountOfCustomers</p>
         <p class="countryStat"><i class="fa-solid fa-credit-card"></i>: @Model.AmountOfAccounts</p>

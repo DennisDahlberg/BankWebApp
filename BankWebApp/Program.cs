@@ -64,9 +64,10 @@ namespace BankWebApp
 
             app.UseRouting();
 
+            app.UseResponseCaching();
+
             app.UseAuthorization();
 
-            app.UseResponseCaching();
             app.MapStaticAssets();
             app.MapRazorPages()
                .WithStaticAssets();

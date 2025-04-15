@@ -7,6 +7,7 @@ using Services.ViewModels;
 
 namespace BankWebApp.Pages
 {
+    [ResponseCache(Duration = 30)]
     public class IndexModel : PageModel
     {
         private readonly ICountryService _countryService;

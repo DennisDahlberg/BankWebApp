@@ -7,6 +7,7 @@ using Services.ViewModels;
 
 namespace BankWebApp.Pages
 {
+    //[ResponseCache(Duration = 30, VaryByQueryKeys = ["country"])]
     public class TopEarnersModel : PageModel
     {
         private readonly ICustomerService _customerService;
@@ -18,14 +19,15 @@ namespace BankWebApp.Pages
 
         public List<TopEarnerViewModel> TopEarners { get; set; }
 
-        public async Task<IActionResult> OnGet(Country country)
+        public async Task<IActionResult> OnGet(string country)
         {
             var result = await _customerService.GetTopEarners(country);
 
             if (result.IsFailed)
                 return RedirectToPage("/Index");
 
-            TopEarners = result.Value.Adapt<List<TopEarnerViewModel>>();
+            TopEarners = result.Value.Adapt<List<TopEarnerViewModel>>();            
+
             return Page();
         }
     }

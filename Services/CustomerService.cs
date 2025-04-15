@@ -172,7 +172,7 @@ namespace Services
             return Result.Ok();
         }
 
-        public async Task<Result<List<TopEarnerDTO>>> GetTopEarners(Country country)
+        public async Task<Result<List<TopEarnerDTO>>> GetTopEarners(string country)
         {
             if (!Enum.IsDefined(typeof(Country), country))
                 return Result.Fail("Not a valid country!");
