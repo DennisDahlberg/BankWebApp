@@ -1,3 +1,4 @@
+using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Services;
@@ -19,14 +20,7 @@ namespace BankWebApp.Pages
 
         public void OnGet()
         {
-            CountryStats = _countryService.GetCountriesStats()
-                .Select(c => new CountryStatsViewModel
-                {
-                    AmountOfAccounts = c.AmountOfAccounts,
-                    AmountOfCustomers = c.AmountOfCustomers,
-                    AmountOfMoney = c.AmountOfMoney,
-                    ImageUrl = c.ImageUrl
-                }).ToList();
+            CountryStats = _countryService.GetCountriesStats().Adapt<List<CountryStatsViewModel>>();
         }
     }
 }
