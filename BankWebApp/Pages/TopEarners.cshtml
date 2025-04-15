@@ -3,18 +3,49 @@
 @{
 }
 
+
 <section id="hero" class="hero section dark-background">
 
     <img class="backgroundImage" src="~/assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
 
-    <div class="container text-center" data-aos="fade-down" data-aos-delay="100">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <h2>Top Earners!</h2>
+    <div class="container mt-3">
 
-            </div>
 
+        <div class="container section-title" data-aos="fade-down">
+            <span class="description-title">Country</span>
+            <h2>Top Earners</h2>
         </div>
-    </div>    
+        
+        <a class="btn btn-secondary mb-2"
+            data-aos="fade-up"
+            asp-page="/Index">
+            <i class="fa-regular fa-circle-left"></i>
+            Back
+        </a>
+        <div class="table-responsive">
+
+            <table class="table custom-table" data-aos="fade-up">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">Id</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="col">Test</td>
+                        <td scope="col">Test</td>
+                        <td scope="col">Test</td>
+                    </tr>                    
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+
+
 
 </section>
