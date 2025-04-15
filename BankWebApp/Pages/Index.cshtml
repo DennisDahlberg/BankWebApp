@@ -21,23 +21,12 @@
         </div>
     </div>
 
-    <div class="countryStatsContainer">
-        
+    <div class="countryStatsContainer">       
 
         @foreach (var country in Model.CountryStats)
         {
-            
-            <div class="countryContainer" data-aos="fade-up" data-aos-duration="700">
-                <img src="@country.ImageUrl" />
-                <p class="countryStat"><i class="fa-solid fa-user"></i>: @country.AmountOfCustomers</p>
-                <p class="countryStat"><i class="fa-solid fa-credit-card"></i>: @country.AmountOfAccounts</p>
-                <p class="countryStat"><i class="fa-solid fa-coins"></i>: @country.AmountOfMoney</p>
-            </div>
-        }
-
-
-
-        
+           <partial name="_CountryBox" model="@country"/>
+        }        
 
     </div>
 
