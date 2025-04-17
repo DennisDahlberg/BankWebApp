@@ -66,6 +66,19 @@ namespace BankWebApp
 
             app.UseResponseCaching();
 
+            app.Use(async (context, next) =>
+            {
+                context.Response.GetTypedHeaders().CacheControl = new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
+                {
+                    Public = true,
+                    MaxAge = TimeSpan.FromSeconds(30)
+                };
+
+                context.Response.Headers["Vary"] = "country";
+
+                await next();
+            });
+
             app.UseAuthorization();
 
             app.MapStaticAssets();

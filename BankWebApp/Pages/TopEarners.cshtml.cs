@@ -7,7 +7,7 @@ using Services.ViewModels;
 
 namespace BankWebApp.Pages
 {
-    //[ResponseCache(Duration = 30, VaryByQueryKeys = ["country"])]
+    [ResponseCache(Duration = 30, VaryByQueryKeys = ["country"])]
     public class TopEarnersModel : PageModel
     {
         private readonly ICustomerService _customerService;
