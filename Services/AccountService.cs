@@ -226,5 +226,12 @@ namespace Services
             return false;
         }
 
+        public decimal GetTotalBalance(int customerId)
+        {
+            return _dbContext.Dispositions
+                .Where(d => d.CustomerId == customerId)
+                .Select(d => d.Account.Balance)
+                .Sum();
+        }
     }
 }

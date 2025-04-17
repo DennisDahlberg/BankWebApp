@@ -26,6 +26,9 @@ namespace BankWebApp.Pages.Customers
         public CustomerViewModel Customer { get; set; }
 
         [BindProperty]
+        public decimal TotalBalance { get; set; }
+
+        [BindProperty]
         public string CustomerImageUrl { get; set; }
 
         [BindProperty]
@@ -44,6 +47,9 @@ namespace BankWebApp.Pages.Customers
                         
             var accounts = _accountService.GetAllAccountsFromCustomer(id);
             Accounts = accounts.Adapt<List<AccountViewModel>>();
+
+            TotalBalance = _accountService.GetTotalBalance(CustomerId);
+
             return Page();
         }
 

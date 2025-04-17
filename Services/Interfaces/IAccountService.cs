@@ -22,5 +22,6 @@ namespace Services.Interfaces
         ResultCode Withdrawal(int accountId, decimal amount);
         ResultCode Transfer(int accountFrom, int accountTo, decimal amount);
         Task<bool> IsValid(int accountId, int customerId);
+        decimal GetTotalBalance(int customerId);
     }
 }
