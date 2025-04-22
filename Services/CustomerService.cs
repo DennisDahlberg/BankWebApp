@@ -90,18 +90,7 @@ namespace Services
 
         public async Task CreateCustomerWithAccount(CreateCustomerDTO customer)
         {
-            var newCustomer = new Customer()
-            {
-                Givenname = customer.Givenname,
-                Surname = customer.Surname,
-                Gender = customer.Gender,
-                Streetaddress = customer.Streetaddress,
-                Country = customer.Country.ToString(),
-                City = customer.City,
-                Telephonenumber = customer.Phonenumber,
-                Emailaddress = customer.Emailaddress,
-                Zipcode = customer.Zipcode,
-            };
+            var newCustomer = customer.Adapt<Customer>();
             if (customer.Country == Country.Sweden)
                 newCustomer.CountryCode = "SE";
 
@@ -113,6 +102,8 @@ namespace Services
 
             else if (customer.Country == Country.Finland)
                 newCustomer.CountryCode = "FI";
+
+            newCustomer.IsActive = true;
 
             var account = new Account()
             {
@@ -148,7 +139,7 @@ namespace Services
             customerToUpdate.Country = customer.Country.ToString();
             customerToUpdate.Zipcode = customer.Zipcode;
             customerToUpdate.Emailaddress = customer.Emailaddress;
-            customerToUpdate.Telephonenumber = customer.Phonenumber;
+            customerToUpdate.Telephonenumber = customer.Telephonenumber;
             
             _dbContext.Customers.Update(customerToUpdate);
             await _dbContext.SaveChangesAsync();

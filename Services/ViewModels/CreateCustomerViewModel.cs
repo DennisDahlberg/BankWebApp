@@ -27,12 +27,14 @@ namespace Services.ViewModels
         [RegularExpression(@"^\d{4,5}$", ErrorMessage = "Zipcode must be 4 or 5 digits")]
         public string Zipcode { get; set; }
 
-        
+        [RegularExpression(@"^\d{6}-[A-Za-z0-9]{4,5}$", ErrorMessage = "Example of valid Id (980521-3824)")]
+        public string? NationalId { get; set; }
+
         [EmailAddress]
         public string? Emailaddress { get; set; }
 
         
         [RegularExpression(@"^\d{8,10}", ErrorMessage = "Phone number must be between 8-10 digits")]
-        public string? Phonenumber { get; set; }
+        public string? Telephonenumber { get; set; }
     }
 }

@@ -25,8 +25,10 @@ namespace DataAccessLayer.DTOs
 
         public string Zipcode { get; set; }
 
+        public string? NationalId { get; set; }
+
         public string Emailaddress { get; set; }
 
-        public string Phonenumber { get; set; }
+        public string Telephonenumber { get; set; }
     }
 }

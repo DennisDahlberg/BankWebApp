@@ -32,7 +32,7 @@ namespace BankWebApp.Pages.Customers
         }
 
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
             if (!ModelState.IsValid)
             {
@@ -42,7 +42,7 @@ namespace BankWebApp.Pages.Customers
 
             var customerDTO = Customer.Adapt<CreateCustomerDTO>();
 
-            _customerService.CreateCustomerWithAccount(customerDTO);
+            await _customerService.CreateCustomerWithAccount(customerDTO);
             return RedirectToPage("/Customers/Customers");
         }
     }
