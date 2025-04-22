@@ -80,15 +80,15 @@
                             </a>
                         </th>
                         <th scope="col">
-                            Country
+                            National id
                             <a asp-page="/Customers/Customers"
-                               asp-route-sortBy="Country"
+                               asp-route-sortBy="NationalId"
                                asp-route-q="@Model.Q"
                                asp-route-sortOrder="asc">
                                 <i class="fa-solid fa-angle-up"></i>
                             </a>
                             <a asp-page="/Customers/Customers"
-                               asp-route-sortBy="Country"
+                               asp-route-sortBy="NationalId"
                                asp-route-q="@Model.Q"
                                asp-route-sortOrder="desc">
                                 <i class="fa-solid fa-angle-down"></i>
@@ -107,7 +107,7 @@
                                 <td><a>@customer.Givenname @customer.Surname</a></td>
                                 <td>@customer.Streetaddress</td>
                                 <td>@customer.City</td>
-                                <td>@customer.Country</td>
+                                <td>@customer.NationalId</td>
                                 <td><a class="more" asp-page="/Customers/Details" asp-route-id="@customer.CustomerId">Details</a></td>
                             </tr>
                         }

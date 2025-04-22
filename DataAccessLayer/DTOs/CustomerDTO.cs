@@ -15,5 +15,6 @@ namespace DataAccessLayer.DTOs
         public string City { get; set; } = null!;
         public string Country { get; set; } = null!;
         public string Gender { get; set; }
+        public string? NationalId { get; set; }
     }
 }
