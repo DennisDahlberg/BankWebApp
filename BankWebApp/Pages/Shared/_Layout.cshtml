@@ -51,7 +51,7 @@
 
             <a asp-page="/Index" class="logo d-flex align-items-center">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
-                <!-- <img src="assets/img/logo.png" alt=""> -->
+                @* <img src="assets/img/logo.png" alt=""> *@
                 <h1 class="sitename">Plato</h1>
             </a>
 
@@ -80,17 +80,14 @@
                     {                       
                         <li>
                             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-                                <button type="submit" class="logoutBtn"> Logout</button>
+                                <button type="submit" class="logoutBtn">Logout</button>
                             </form>
                         </li>
                     }
                     else
                     {
                         <li>
-                            <a class="navbarLink" asp-area="Identity" asp-page="/Account/Login">
-                                <span><i class="fa-solid fa-right-to-bracket"></i></span>
-                                <span>Login</span>                                    
-                            </a>
+                            <a asp-area="Identity" asp-page="/Account/Login">Login</a>
                         </li>
                     }
 
