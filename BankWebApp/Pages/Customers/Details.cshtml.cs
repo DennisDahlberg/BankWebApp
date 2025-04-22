@@ -43,12 +43,12 @@ namespace BankWebApp.Pages.Customers
 
             Customer = result.Value.Adapt<CustomerViewModel>();
 
-            CustomerImageUrl = await _randomUserService.FetchFromApi(id);
-                        
+            //CustomerImageUrl = await _randomUserService.FetchFromApi(id);
+
             var accounts = _accountService.GetAllAccountsFromCustomer(id);
             Accounts = accounts.Adapt<List<AccountViewModel>>();
 
-            TotalBalance = _accountService.GetTotalBalance(CustomerId);
+            TotalBalance = Accounts.Select(a => a.Balance).Sum();
 
             return Page();
         }

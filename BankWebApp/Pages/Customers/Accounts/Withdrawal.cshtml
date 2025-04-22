@@ -28,7 +28,7 @@
 
                     <div class="from-group">
                         <label asp-for="@Model.Withdrawal">Amount</label>
-                        <input asp-for="@Model.Withdrawal" class="form-control mb-2" />
+                        <input asp-for="@Model.Withdrawal" step="0.01" class="form-control mb-2" />
                         <span asp-validation-for="@Model.Withdrawal" class="text-danger"></span>
                     </div>
 

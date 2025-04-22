@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Services;
 using Services.APIs;
 using Services.Interfaces;
+using System.Globalization;
 
 namespace BankWebApp
 {
@@ -27,6 +28,11 @@ namespace BankWebApp
 
             // Add Mapster to the container
             builder.Services.AddMapster();
+
+
+            var cultureInfo = new CultureInfo("en-US");
+            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
 
             //Dependencies
@@ -64,20 +70,7 @@ namespace BankWebApp
 
             app.UseRouting();
 
-            app.UseResponseCaching();
-
-            app.Use(async (context, next) =>
-            {
-                context.Response.GetTypedHeaders().CacheControl = new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
-                {
-                    Public = true,
-                    MaxAge = TimeSpan.FromSeconds(30)
-                };
-
-                context.Response.Headers["Vary"] = "country";
-
-                await next();
-            });
+            app.UseResponseCaching();            
 
             app.UseAuthorization();
 
