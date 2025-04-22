@@ -207,16 +207,32 @@
 .customer-information {
     flex: 1;
     width: 100%;
+    padding: 0 2em;
 }
 
 .accounts-information {
     flex: 1;
     width: 100%;
+    border-left: 1px solid white;
+    padding: 0 2em;
 }
 
 .customer-container {
     background-color: rgba(0, 0, 0, 0.4);
 }
+
+@media (max-width: 768px) {
+    .customer-container {
+        flex-direction: column;
+    }
+
+    .accounts-information {
+        margin-top: 2em;
+        border-left: none;
+        border-top: 1px solid white;
+    }
+}
+
 /*--------------------------------------------------------------
 # Custom navbar css
 --------------------------------------------------------------*/

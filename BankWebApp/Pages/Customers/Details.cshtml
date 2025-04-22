@@ -9,18 +9,17 @@
     <div class="container text-center" data-aos="fade-down" data-aos-delay="100">
         <div class="row justify-content-center">
             
-                <div class="customer-container d-flex py-3 gap-5 justify-content-center rounded position-relative">
-                    <a 
-                        asp-page="/Customers/Customers" 
-                        class="btn btn-secondary position-absolute top-0 start-0">
-                        <i class="fa-regular fa-circle-left"></i>
-                        Back                     
-                    </a>
+                <div class="customer-container d-flex py-3 justify-content-center rounded">
+                    
 
-                    <div class="customer-information">
-                        <img src="@Model.CustomerImageUrl" alt="Customer picture" class="rounded-circle mb-3"/>
-                                                   
-                            <div class="form-container d-flex flex-column gap-2">
+                    <div class="customer-information position-relative">
+                        @* <img src="@Model.CustomerImageUrl" alt="Customer picture" class="rounded-circle mb-3"/> *@
+                        <a asp-page="/Customers/Customers"
+                           class="btn btn-secondary position-absolute top-0 start-0">
+                            <i class="fa-regular fa-circle-left"></i>
+                            Back
+                        </a>
+                    <div class="form-container d-flex flex-column gap-2 mt-5">
                                 <div class="d-flex gap-2">
                                 <input asp-for="@Model.Customer.Givenname" class="form-control" readonly />
                                 <input asp-for="@Model.Customer.Surname" class="form-control" readonly />
