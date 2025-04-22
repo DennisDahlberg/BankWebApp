@@ -44,7 +44,8 @@ namespace Services
                     c.Surname.Contains(q) ||
                     c.Streetaddress.Contains(q) ||
                     c.City.Contains(q) ||
-                    c.Country.Contains(q));
+                    c.CustomerId.ToString().Contains(q) ||
+                    c.NationalId.Contains(q));
             }
 
             if (sortBy == "Name")
@@ -56,8 +57,8 @@ namespace Services
             else if (sortBy == "City")
                 query = sortOrder == "asc" ? query.OrderBy(c => c.City) : query.OrderByDescending(c => c.City);
 
-            else if (sortBy == "Country")
-                query = sortOrder == "asc" ? query.OrderBy(c => c.Country) : query.OrderByDescending(c => c.Country);
+            else if (sortBy == "NationalId")
+                query = sortOrder == "asc" ? query.OrderBy(c => c.NationalId) : query.OrderByDescending(c => c.NationalId);
 
             return query.GetPaged(page, 50);
             
