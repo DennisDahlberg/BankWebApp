@@ -227,9 +227,9 @@
     }
 
     .accounts-information {
-        margin-top: 2em;
         border-left: none;
         border-top: 1px solid white;
+        padding-top: 2.5em;
     }
 }
 

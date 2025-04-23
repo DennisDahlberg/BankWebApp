@@ -12,14 +12,14 @@
                 <div class="customer-container d-flex py-3 justify-content-center rounded">
                     
 
-                    <div class="customer-information position-relative">
+                    <div class="customer-information">
                         @* <img src="@Model.CustomerImageUrl" alt="Customer picture" class="rounded-circle mb-3"/> *@
-                        <a asp-page="/Customers/Customers"
-                           class="btn btn-secondary position-absolute top-0 start-0">
-                            <i class="fa-regular fa-circle-left"></i>
-                            Back
-                        </a>
-                    <div class="form-container d-flex flex-column gap-2 mt-5">
+                    <div class="container section-title" data-aos="fade-down">
+                        <span class="description-title">@Model.Customer.Surname</span>
+                        <h2>@Model.Customer.Givenname</h2>
+                    </div>
+
+                    <div class="form-container d-flex flex-column gap-2">
                                 <div class="d-flex gap-2">
                                 <input asp-for="@Model.Customer.Givenname" class="form-control" readonly />
                                 <input asp-for="@Model.Customer.Surname" class="form-control" readonly />
@@ -41,7 +41,22 @@
                                 <input asp-for="@Model.Customer.Streetaddress" class="form-control" readonly/>
                                 <input asp-for="@Model.Customer.City" class="form-control" readonly />
                                 <input asp-for="@Model.Customer.Country" class="form-control" readonly />
-                                <a asp-page="/Customers/Update" asp-route-customerId="@Model.CustomerId" class="btn btn-success">Update</a>
+                                <div class="row mb-5">
+                                    <div class="col-6">
+                                        <a asp-page="/Customers/Update" asp-route-customerId="@Model.CustomerId" class="btn btn-success w-100">Update</a>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <a asp-page="/Customers/Customers"
+                                           class="btn btn-secondary w-100">
+                                            <i class="fa-regular fa-circle-left"></i>
+                                            Back
+                                        </a>
+                                    </div>
+
+                                </div>
+                                
+                                
                             </div>
                             
                         
@@ -144,7 +159,7 @@
                     <input type="hidden" asp-for="@Model.CustomerId" />
                     <input type="hidden" asp-for="@Model.CustomerImageUrl" />
                     <input type="hidden" asp-for="@Model.TotalBalance" />
-                    <button type="submit" class="btn btn-success">Create</button>
+                    <button type="submit" class="btn btn-success">Create</button>                    
                 </form>
             </div>
         </div>
