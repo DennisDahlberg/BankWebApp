@@ -28,4 +28,4 @@ Uses a local SQL Server database configured in `appsettings.json`. Make sure SQL
 
 ## Live Demo
 
-The app is currently online and running through azure and can be accessed [Here](secureden.azurewebsites.net)
+The app is currently online and running through azure and can be accessed [**HERE**](https://secureden.azurewebsites.net)
