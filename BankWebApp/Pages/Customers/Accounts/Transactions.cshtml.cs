@@ -1,4 +1,5 @@
 using Mapster;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Services.Interfaces;
@@ -6,6 +7,7 @@ using Services.ViewModels;
 
 namespace BankWebApp.Pages.Customers.Accounts
 {
+    [Authorize(Roles = "Cashier")]
     public class TransactionsModel : PageModel
     {
         private readonly ITransactionService _transactionService;
