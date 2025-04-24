@@ -25,19 +25,31 @@ namespace BankWebApp.Pages.Customers.Accounts
         [BindProperty]
         public int CustomerId { get; set; }
 
+        [BindProperty]
+        public decimal Balance { get; set; }
+
         public int CurrentPage { get; set; }
 
         public int PageCount { get; set; }
 
 
-        public void OnGet(int accountId, int customerId)
+        public IActionResult OnGet(int accountId, int customerId)
         {
             CustomerId = customerId;
-            AccountId = accountId;     
+            AccountId = accountId;
+            
+            var result = _accountService.GetAccount(accountId);
+
+            if (result.IsFailed)
+                return RedirectToPage("/Customers/Customers");
+
+            Balance = result.Value.Balance;
+
+            return Page();
         }
 
         public IActionResult OnGetShowMore(int pageNo, int accountId)
-        {
+        {            
             var transactions = _transactionService.GetAllTransactionsFromCustomer(accountId, pageNo);
             PageCount = transactions.PageCount;
             CurrentPage = pageNo;

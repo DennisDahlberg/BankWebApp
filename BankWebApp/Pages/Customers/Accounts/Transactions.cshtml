@@ -8,27 +8,41 @@
 
     <img class="backgroundImage" src="~/assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
 
-    <div class="container mt-3">
+    <div class="container section-title" data-aos="fade-down">
+        <span class="description-title">Transactions</span>
+        <h2>Transactions</h2>
+    </div>
 
+    <div class="container transaction-container p-3 rounded">       
 
-        <div class="container section-title" data-aos="fade-down">
-            <span class="description-title">Transactions</span>
-            <h2>Transactions</h2>
+        <div class="d-flex gap-2 mb-2">
+            <div>
+                <a asp-page="/Customers/Details"
+                   asp-route-id="@Model.CustomerId"
+                   class="btn btn-secondary">
+                    <i class="fa-regular fa-circle-left"></i>
+                    Back
+                </a>
+            </div>
+
+            <div>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                    <i class="fa-solid fa-trash-can"></i>
+                    Delete
+                </button>
+            </div>           
         </div>
 
-        <div class="mb-2">
-            <a asp-page="/Customers/Details"
-               asp-route-id="@Model.CustomerId"
-               class="btn btn-secondary">
-                <i class="fa-regular fa-circle-left"></i>
-                Back
-            </a>
+       <p>
+           Account: @Model.AccountId
+       </p>
 
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                <i class="fa-solid fa-trash-can"></i>
-                Delete
-            </button>
-        </div>
+       <p>
+            <i class="fa-solid fa-coins"></i> &nbsp; Balance: <span class="text-warning">@Model.Balance</span>
+       </p>
+
+
+        
         
 
         <div class="table-responsive">
