@@ -1,4 +1,4 @@
-# AdvertAPI
+# BankWebApp
 A simple RESTful Web API built with ASP.NET Core, using Entity Framework Core and a local SQL database. It exposes endpoints for managing **Adverts** and **Users**.
 
 ---
