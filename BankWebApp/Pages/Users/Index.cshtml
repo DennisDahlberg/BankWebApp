@@ -79,9 +79,9 @@
                             </a> *@
                         </th>
                         
-                        <th scope="col">
+                        @* <th scope="col">
 
-                        </th>
+                        </th> *@
                     </tr>
                 </thead>
                 <tbody>
@@ -91,7 +91,7 @@
                             <td>@user.UserId</td>
                             <td>@user.Email</td>
                             <td>@user.Role</td>
-                            <td><a class="more" asp-page="/Customers/Details" asp-route-id="@user.UserId">Details</a></td>
+                            @* <td><a class="more" asp-page="/Customers/Details" asp-route-id="@user.UserId">Details</a></td> *@
                         </tr>
                     }
 
