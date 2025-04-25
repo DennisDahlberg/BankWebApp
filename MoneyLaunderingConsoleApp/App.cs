@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,16 @@ namespace MoneyLaunderingConsoleApp
 {
     public class App
     {
-        public void Run()
-        {
+        private readonly ITransactionService _transactionService;
 
+        public App(ITransactionService transactionService)
+        {
+            _transactionService = transactionService;
+        }
+
+        public async Task Run()
+        {
+            await _transactionService.GetSuspiciousTransactions();
         }
     }
 }
