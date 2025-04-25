@@ -10,15 +10,19 @@ namespace MoneyLaunderingConsoleApp
     public class App
     {
         private readonly ITransactionService _transactionService;
+        private readonly IReportService _reportService;
 
-        public App(ITransactionService transactionService)
+        public App(ITransactionService transactionService, IReportService reportService)
         {
             _transactionService = transactionService;
+            _reportService = reportService;
         }
 
         public async Task Run()
         {
-            await _transactionService.GetSuspiciousTransactions();
+            var transactions = await _transactionService.GetSuspiciousTransactions();
+
+            _reportService.Write(transactions);
         }
     }
 }

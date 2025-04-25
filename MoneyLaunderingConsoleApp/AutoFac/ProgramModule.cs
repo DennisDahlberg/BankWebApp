@@ -18,6 +18,7 @@ namespace MoneyLaunderingConsoleApp.AutoFac
             builder.RegisterType<App>().AsSelf();
             builder.RegisterType<BankAppDataContext>().AsSelf();
             builder.RegisterType<TransactionService>().As<ITransactionService>();
+            builder.RegisterType<ReportService>().As<IReportService>();
         }
 
         public static IContainer Configure()
