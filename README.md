@@ -1,5 +1,5 @@
 # BankWebApp
-A simple RESTful Web API built with ASP.NET Core, using Entity Framework Core and a local SQL database. It exposes endpoints for managing **Adverts** and **Users**.
+A database-first bank app built using ASP.NET Razor Pages.It utilizes a database that be found further down in the document.
 
 ---
 
@@ -15,14 +15,14 @@ A simple RESTful Web API built with ASP.NET Core, using Entity Framework Core an
 
 ## Features
 
-- Full CRUD operations on customers
+- Full CRUD operations on customers and their accounts.
 - Uses ASP.NET Identity for authorization and authentication
 
 ---
 
 ## Database
 
-Uses a local SQL Server database configured in `appsettings.json`. Make sure SQL Server is installed and running and that you don't have a database called **BankAppData**.
+Uses a local SQL Server database configured in `appsettings.json`. Make sure SQL Server is installed and running and that you download and install [this database](https://aspcodeprod.blob.core.windows.net/school-dev/BankAppDatav2%20(1).bak) to your machine.
 
 ---
 
